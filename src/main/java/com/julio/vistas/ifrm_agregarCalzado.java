@@ -56,7 +56,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         pnl_agregarCalzado.setBackground(new java.awt.Color(190, 220, 255));
 
         pnl_encabezado.setBackground(new java.awt.Color(220, 240, 255));
-        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_titulo.setText("**Inserte los datos del calzado**");
 
@@ -78,7 +78,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         );
 
         pnl_agregarContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_agregarContent.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_agregarContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_barras.setText("Codigo de Barras");
 
@@ -89,6 +89,8 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         lbl_material.setText("Material");
 
         lbl_stock.setText("Stock");
+
+        sp_stock.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         lbl_marca.setText("Marca");
 

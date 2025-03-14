@@ -48,7 +48,7 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
         pnl_buscar.setBackground(new java.awt.Color(200, 255, 180));
 
         pnl_encabezado.setBackground(new java.awt.Color(225, 255, 210));
-        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_titulo.setText("**Busqueda de Cliente**");
 
@@ -70,7 +70,7 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
         );
 
         pnl_buscarContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_buscarContent.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_buscarContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_buscar.setText("Ingresa el nombre del cliente");
 
@@ -98,16 +98,15 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
             pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_buscarContentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(pnl_buscarContentLayout.createSequentialGroup()
                         .addComponent(lbl_buscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 107, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         pnl_buscarContentLayout.setVerticalGroup(
             pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

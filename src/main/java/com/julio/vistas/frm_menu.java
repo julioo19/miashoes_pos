@@ -48,19 +48,22 @@ public class frm_menu extends javax.swing.JFrame {
         mi_buscarCliente = new javax.swing.JMenuItem();
         mi_modificarCliente = new javax.swing.JMenuItem();
         mi_reporteCliente = new javax.swing.JMenuItem();
+        m_facturacion = new javax.swing.JMenu();
+        mi_agregarFactura = new javax.swing.JMenuItem();
+        mi_buscarFactura = new javax.swing.JMenuItem();
         m_ayuda = new javax.swing.JMenu();
         mi_ayuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 720));
 
-        dp_menu.setBackground(new java.awt.Color(252, 231, 244));
+        dp_menu.setBackground(new java.awt.Color(252, 255, 255));
 
         javax.swing.GroupLayout dp_menuLayout = new javax.swing.GroupLayout(dp_menu);
         dp_menu.setLayout(dp_menuLayout);
         dp_menuLayout.setHorizontalGroup(
             dp_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+            .addGap(0, 756, Short.MAX_VALUE)
         );
         dp_menuLayout.setVerticalGroup(
             dp_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +182,11 @@ public class frm_menu extends javax.swing.JFrame {
 
         mi_modificarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/modificar-24.png"))); // NOI18N
         mi_modificarCliente.setText("Modificar");
+        mi_modificarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_modificarClienteActionPerformed(evt);
+            }
+        });
         m_cliente.add(mi_modificarCliente);
 
         mi_reporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/report-24.png"))); // NOI18N
@@ -186,6 +194,17 @@ public class frm_menu extends javax.swing.JFrame {
         m_cliente.add(mi_reporteCliente);
 
         mb_menu.add(m_cliente);
+
+        m_facturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/factura-58.png"))); // NOI18N
+        m_facturacion.setText("Facturacion");
+
+        mi_agregarFactura.setText("jMenuItem1");
+        m_facturacion.add(mi_agregarFactura);
+
+        mi_buscarFactura.setText("jMenuItem2");
+        m_facturacion.add(mi_buscarFactura);
+
+        mb_menu.add(m_facturacion);
 
         m_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/help-58.png"))); // NOI18N
         m_ayuda.setText("Ayuda");
@@ -232,7 +251,8 @@ public class frm_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_reporteCalzadoActionPerformed
 
     private void mi_registrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_registrarVentaActionPerformed
-        // TODO add your handling code here:
+        ifrm_registrarVenta registrar = new ifrm_registrarVenta();
+        guiStyles.centrarInternalVentana(dp_menu, registrar);
     }//GEN-LAST:event_mi_registrarVentaActionPerformed
 
     private void mi_reporteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reporteVentaActionPerformed
@@ -240,7 +260,8 @@ public class frm_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_reporteVentaActionPerformed
 
     private void mi_registrarSeparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_registrarSeparadoActionPerformed
-        // TODO add your handling code here:
+        ifrm_registrarSeparado separado = new ifrm_registrarSeparado();
+        guiStyles.centrarInternalVentana(dp_menu, separado);
     }//GEN-LAST:event_mi_registrarSeparadoActionPerformed
 
     private void mi_reporteSeparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reporteSeparadoActionPerformed
@@ -256,6 +277,11 @@ public class frm_menu extends javax.swing.JFrame {
         ifrm_buscarCliente cliente = new ifrm_buscarCliente();
         guiStyles.centrarInternalVentana(dp_menu, cliente);
     }//GEN-LAST:event_mi_buscarClienteActionPerformed
+
+    private void mi_modificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_modificarClienteActionPerformed
+        ifrm_modificarCliente modificar = new ifrm_modificarCliente();
+        guiStyles.centrarInternalVentana(dp_menu, modificar);
+    }//GEN-LAST:event_mi_modificarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,14 +324,17 @@ public class frm_menu extends javax.swing.JFrame {
     private javax.swing.JMenu m_ayuda;
     private javax.swing.JMenu m_calzado;
     private javax.swing.JMenu m_cliente;
+    private javax.swing.JMenu m_facturacion;
     private javax.swing.JMenu m_separado;
     private javax.swing.JMenu m_venta;
     private javax.swing.JMenuBar mb_menu;
     private javax.swing.JMenuItem mi_agregarCalzado;
     private javax.swing.JMenuItem mi_agregarCliente;
+    private javax.swing.JMenuItem mi_agregarFactura;
     private javax.swing.JMenuItem mi_ayuda;
     private javax.swing.JMenuItem mi_buscarCalzado;
     private javax.swing.JMenuItem mi_buscarCliente;
+    private javax.swing.JMenuItem mi_buscarFactura;
     private javax.swing.JMenuItem mi_modificarCalzado;
     private javax.swing.JMenuItem mi_modificarCliente;
     private javax.swing.JMenuItem mi_registrarSeparado;
