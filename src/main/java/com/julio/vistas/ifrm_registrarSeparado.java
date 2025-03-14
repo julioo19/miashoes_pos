@@ -41,17 +41,17 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
         lbl_desc = new javax.swing.JLabel();
         pnl_separar = new javax.swing.JPanel();
         lbl_barras = new javax.swing.JLabel();
-        txt_barras = new javax.swing.JTextField();
         btn_buscarCalzado = new javax.swing.JButton();
         lbl_dni = new javax.swing.JLabel();
-        txt_dni = new javax.swing.JTextField();
         lbl_cantidad = new javax.swing.JLabel();
         btn_buscarCliente = new javax.swing.JButton();
-        sp_cantidad = new javax.swing.JSpinner();
         pnl_barrera = new javax.swing.JPanel();
         txt_calzadoResul = new javax.swing.JTextField();
         txt_clienteResul = new javax.swing.JTextField();
         btn_agregarCarro = new javax.swing.JButton();
+        txt_barra = new javax.swing.JTextField();
+        txt_dni = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_carro = new javax.swing.JTable();
         btn_eliminar = new javax.swing.JButton();
@@ -72,7 +72,7 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
 
         lbl_subtitulo.setText("VENTA DE CALZADO BRASILEÑO");
 
-        lbl_desc.setText("INGRESE LOS DATOS DE LA SEPARACION");
+        lbl_desc.setText("Ingrese los datos de la separacion");
 
         javax.swing.GroupLayout pnl_encabezadoLayout = new javax.swing.GroupLayout(pnl_encabezado);
         pnl_encabezado.setLayout(pnl_encabezadoLayout);
@@ -83,15 +83,16 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
                 .addComponent(lbl_imagen)
                 .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                        .addGap(321, 321, 321)
+                        .addGap(301, 301, 301)
                         .addComponent(lbl_titulo))
                     .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(lbl_subtitulo))
-                    .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(lbl_desc)))
-                .addContainerGap(290, Short.MAX_VALUE))
+                        .addGap(251, 251, 251)
+                        .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_encabezadoLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lbl_desc))
+                            .addComponent(lbl_subtitulo))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_encabezadoLayout.setVerticalGroup(
             pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,8 +127,6 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
         btn_buscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscarCliente.setText(" ");
 
-        sp_cantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
         pnl_barrera.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout pnl_barreraLayout = new javax.swing.GroupLayout(pnl_barrera);
@@ -155,19 +154,15 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
             pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_separarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnl_separarLayout.createSequentialGroup()
-                        .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_barras)
-                            .addComponent(lbl_dni))
-                        .addGap(36, 36, 36)
-                        .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_dni, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(txt_barras)))
-                    .addGroup(pnl_separarLayout.createSequentialGroup()
-                        .addComponent(lbl_cantidad)
-                        .addGap(18, 18, 18)
-                        .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_barras)
+                    .addComponent(lbl_dni)
+                    .addComponent(lbl_cantidad))
+                .addGap(12, 12, 12)
+                .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_barra)
+                    .addComponent(txt_dni, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jSpinner1))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_buscarCalzado, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +175,7 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
                     .addComponent(txt_clienteResul)
                     .addGroup(pnl_separarLayout.createSequentialGroup()
                         .addComponent(btn_agregarCarro)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 318, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl_separarLayout.setVerticalGroup(
@@ -193,17 +188,21 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
                         .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lbl_barras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_barras)
-                                .addComponent(btn_buscarCalzado)))
+                                .addComponent(btn_buscarCalzado)
+                                .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_dni)
-                            .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_buscarCliente))
-                        .addGap(18, 18, 18)
+                        .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_separarLayout.createSequentialGroup()
+                                .addComponent(btn_buscarCliente)
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_separarLayout.createSequentialGroup()
+                                .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbl_dni)
+                                    .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)))
                         .addGroup(pnl_separarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_cantidad)
-                            .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnl_separarLayout.createSequentialGroup()
                         .addComponent(txt_calzadoResul, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -299,6 +298,7 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_cobrar;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lbl_barras;
     private javax.swing.JLabel lbl_cantidad;
     private javax.swing.JLabel lbl_desc;
@@ -310,9 +310,8 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_separar;
     private javax.swing.JPanel pnl_separarCalzado;
-    private javax.swing.JSpinner sp_cantidad;
     private javax.swing.JTable tbl_carro;
-    private javax.swing.JTextField txt_barras;
+    private javax.swing.JTextField txt_barra;
     private javax.swing.JTextField txt_calzadoResul;
     private javax.swing.JTextField txt_clienteResul;
     private javax.swing.JTextField txt_dni;

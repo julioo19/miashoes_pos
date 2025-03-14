@@ -113,4 +113,9 @@ public class fontStyles {
         cantidad.putClientProperty(FLATLAF, "h3");
         cantidad.setForeground(Color.BLACK);
     }
+    
+    public static void estiloReporteVentaGeneral(JLabel titulo){
+        titulo.putClientProperty(FLATLAF, "h1");
+        titulo.setForeground(Color.BLACK);
+    }
 }

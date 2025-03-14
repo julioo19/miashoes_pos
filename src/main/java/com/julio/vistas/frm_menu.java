@@ -191,6 +191,11 @@ public class frm_menu extends javax.swing.JFrame {
 
         mi_reporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/report-24.png"))); // NOI18N
         mi_reporteCliente.setText("Reporte de clientes");
+        mi_reporteCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_reporteClienteActionPerformed(evt);
+            }
+        });
         m_cliente.add(mi_reporteCliente);
 
         mb_menu.add(m_cliente);
@@ -256,7 +261,8 @@ public class frm_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_registrarVentaActionPerformed
 
     private void mi_reporteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reporteVentaActionPerformed
-        // TODO add your handling code here:
+        ifrm_reporteVenta reporteVenta = new ifrm_reporteVenta();
+        guiStyles.centrarInternalVentana(dp_menu, reporteVenta);
     }//GEN-LAST:event_mi_reporteVentaActionPerformed
 
     private void mi_registrarSeparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_registrarSeparadoActionPerformed
@@ -282,6 +288,11 @@ public class frm_menu extends javax.swing.JFrame {
         ifrm_modificarCliente modificar = new ifrm_modificarCliente();
         guiStyles.centrarInternalVentana(dp_menu, modificar);
     }//GEN-LAST:event_mi_modificarClienteActionPerformed
+
+    private void mi_reporteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reporteClienteActionPerformed
+        ifrm_reporteCliente reporteCliente = new ifrm_reporteCliente();
+        guiStyles.centrarInternalVentana(dp_menu, reporteCliente);
+    }//GEN-LAST:event_mi_reporteClienteActionPerformed
 
     /**
      * @param args the command line arguments

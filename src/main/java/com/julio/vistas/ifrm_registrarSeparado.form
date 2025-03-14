@@ -107,19 +107,21 @@
                       <Component id="lbl_imagen" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="321" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="301" max="-2" attributes="0"/>
                               <Component id="lbl_titulo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
-                              <Component id="lbl_subtitulo" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
-                              <Component id="lbl_desc" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="lbl_desc" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lbl_subtitulo" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="290" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -165,7 +167,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_desc">
               <Properties>
-                <Property name="text" type="java.lang.String" value="INGRESE LOS DATOS DE LA SEPARACION"/>
+                <Property name="text" type="java.lang.String" value="Ingrese los datos de la separacion"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -184,23 +186,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbl_barras" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_dni" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txt_dni" pref="141" max="32767" attributes="0"/>
-                                  <Component id="txt_barras" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lbl_cantidad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="sp_cantidad" min="-2" pref="141" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbl_barras" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_dni" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_cantidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txt_barra" max="32767" attributes="0"/>
+                          <Component id="txt_dni" pref="147" max="32767" attributes="0"/>
+                          <Component id="jSpinner1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -215,7 +210,7 @@
                           <Component id="txt_clienteResul" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="btn_agregarCarro" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="318" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -232,20 +227,27 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lbl_barras" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txt_barras" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btn_buscarCalzado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_barra" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_dni" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_dni" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btn_buscarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btn_buscarCliente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lbl_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txt_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lbl_cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sp_cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -269,8 +271,6 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_barras">
-            </Component>
             <Component class="javax.swing.JButton" name="btn_buscarCalzado">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -287,8 +287,6 @@
                 <Property name="text" type="java.lang.String" value="DNI"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_dni">
-            </Component>
             <Component class="javax.swing.JLabel" name="lbl_cantidad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cantidad"/>
@@ -303,13 +301,6 @@
                   <Image iconType="3" name="/iconos/b&#xfa;squeda-24.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="sp_cantidad">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="pnl_barrera">
@@ -352,6 +343,12 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar al carrito"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_barra">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_dni">
+            </Component>
+            <Component class="javax.swing.JSpinner" name="jSpinner1">
             </Component>
           </SubComponents>
         </Container>
