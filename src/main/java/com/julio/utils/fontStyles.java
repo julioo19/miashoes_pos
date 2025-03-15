@@ -54,7 +54,8 @@ public class fontStyles {
         marca.setForeground(Color.BLACK);
     }
 
-    public static void estiloReporteCalzado(JLabel marca) {
+    public static void estiloReporteCalzado(JLabel titulo, JLabel marca) {
+        titulo.putClientProperty(FLATLAF, "h1");
         marca.putClientProperty(FLATLAF, "h2");
         marca.setForeground(Color.BLACK);
     }
@@ -113,9 +114,58 @@ public class fontStyles {
         cantidad.putClientProperty(FLATLAF, "h3");
         cantidad.setForeground(Color.BLACK);
     }
-    
-    public static void estiloReporteVentaGeneral(JLabel titulo){
+
+    public static void estiloReporteVentaGeneral(JLabel titulo, JLabel subtitulo) {
         titulo.putClientProperty(FLATLAF, "h1");
+        subtitulo.putClientProperty(FLATLAF, "h2");
         titulo.setForeground(Color.BLACK);
+        subtitulo.setForeground(Color.BLACK);
+    }
+
+    public static void estiloReporteSeparadoGeneral(JLabel titulo, JLabel subtitulo) {
+        titulo.putClientProperty(FLATLAF, "h1");
+        subtitulo.putClientProperty(FLATLAF, "h2");
+        titulo.setForeground(Color.BLACK);
+        subtitulo.setForeground(Color.BLACK);
+    }
+
+    public static void estiloAyudaright(JLabel nombre, JLabel numVersion, JLabel devName, JLabel gmail, JLabel numero) {
+        nombre.putClientProperty(FLATLAF, "h3");
+        numVersion.putClientProperty(FLATLAF, "h3");
+        devName.putClientProperty(FLATLAF, "h3");
+        gmail.putClientProperty(FLATLAF, "h3");
+        numero.putClientProperty(FLATLAF, "h3");
+
+    }
+
+    public static void estiloAyudaleft(JLabel titulo, JLabel sistema, JLabel version, JLabel dev,
+            JLabel correo, JLabel soporte) {
+        titulo.putClientProperty(FLATLAF, "h1");
+        sistema.putClientProperty(FLATLAF, "h3");
+        version.putClientProperty(FLATLAF, "h3");
+        dev.putClientProperty(FLATLAF, "h3");
+        correo.putClientProperty(FLATLAF, "h3");
+        soporte.putClientProperty(FLATLAF, "h3");
+    }
+
+    public static void estiloAgregarFactura(JLabel titulo, JLabel nro, JLabel fecha, JLabel barra, JLabel marca) {
+        titulo.putClientProperty(FLATLAF, "h1");
+        nro.putClientProperty(FLATLAF, "h3");
+        fecha.putClientProperty(FLATLAF, "h3");
+        barra.putClientProperty(FLATLAF, "h3");
+        marca.putClientProperty(FLATLAF, "h3");
+
+        titulo.setForeground(Color.BLACK);
+        nro.setForeground(Color.BLACK);
+        fecha.setForeground(Color.BLACK);
+        barra.setForeground(Color.BLACK);
+        marca.setForeground(Color.BLACK);
+    }
+    
+    public static void estiloBuscarFactura(JLabel titulo, JLabel campo){
+        titulo.putClientProperty(FLATLAF, "h1");
+        campo.putClientProperty(FLATLAF, "h3");
+        titulo.setForeground(Color.BLACK);
+        campo.setForeground(Color.BLACK);
     }
 }

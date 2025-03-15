@@ -25,9 +25,7 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
     }
 
     private void initStyles(){
-        LocalDate today = LocalDate.now();
-        lbl_fechaHoy.setText(today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        fontStyles.estiloReporteVentaGeneral(lbl_titulo);
+        fontStyles.estiloReporteVentaGeneral(lbl_titulo, lbl_escogerFecha);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,32 +38,30 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
 
         tp_reporteVenta = new javax.swing.JTabbedPane();
         pnl_general = new javax.swing.JPanel();
-        lbl_fecha = new javax.swing.JLabel();
-        lbl_fechaHoy = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         pnl_encabezado = new javax.swing.JPanel();
         lbl_titulo = new javax.swing.JLabel();
+        pnl_generalContent = new javax.swing.JPanel();
+        lbl_escogerFecha = new javax.swing.JLabel();
+        btn_excel = new javax.swing.JButton();
+        btn_pdf = new javax.swing.JButton();
+        dc_escogerDia = new com.toedter.calendar.JDateChooser();
         pnl_avanzado = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
+        pnl_content = new javax.swing.JPanel();
+        cb_zapatosMasVendidos = new javax.swing.JCheckBox();
+        cb_zapatosMenosVendidos = new javax.swing.JCheckBox();
+        cb_ventasMes = new javax.swing.JCheckBox();
+        mc_zapatosMasVendidos = new com.toedter.calendar.JMonthChooser();
+        mc_zapatosMenosVendidos = new com.toedter.calendar.JMonthChooser();
+        mc_ventasMes = new com.toedter.calendar.JMonthChooser();
+        btn_descargarZip = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Reporte de Ventas");
 
         pnl_general.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbl_fecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fecha-60.png"))); // NOI18N
-
-        lbl_fechaHoy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/pdf-80.png"))); // NOI18N
-
         pnl_encabezado.setBackground(new java.awt.Color(242, 242, 255));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_titulo.setText("Reporte de Ventas del dia");
 
@@ -76,7 +72,7 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
             .addGroup(pnl_encabezadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_titulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         pnl_encabezadoLayout.setVerticalGroup(
             pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,25 +82,61 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        pnl_generalContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lbl_escogerFecha.setText("Seleccione el dia");
+
+        btn_excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
+
+        btn_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/pdf-80.png"))); // NOI18N
+
+        dc_escogerDia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        dc_escogerDia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        javax.swing.GroupLayout pnl_generalContentLayout = new javax.swing.GroupLayout(pnl_generalContent);
+        pnl_generalContent.setLayout(pnl_generalContentLayout);
+        pnl_generalContentLayout.setHorizontalGroup(
+            pnl_generalContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_generalContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_generalContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_generalContentLayout.createSequentialGroup()
+                        .addComponent(lbl_escogerFecha)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnl_generalContentLayout.createSequentialGroup()
+                        .addComponent(dc_escogerDia, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnl_generalContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))))
+        );
+        pnl_generalContentLayout.setVerticalGroup(
+            pnl_generalContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_generalContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_escogerFecha)
+                .addGroup(pnl_generalContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_generalContentLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl_generalContentLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(dc_escogerDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(btn_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
+
         javax.swing.GroupLayout pnl_generalLayout = new javax.swing.GroupLayout(pnl_general);
         pnl_general.setLayout(pnl_generalLayout);
         pnl_generalLayout.setHorizontalGroup(
             pnl_generalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_generalLayout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
-            .addGroup(pnl_generalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_generalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_generalLayout.createSequentialGroup()
-                        .addComponent(lbl_fecha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_fechaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnl_generalContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnl_generalLayout.setVerticalGroup(
@@ -112,16 +144,8 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
             .addGroup(pnl_generalLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(pnl_encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addGroup(pnl_generalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addGroup(pnl_generalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_fecha)
-                    .addGroup(pnl_generalLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(lbl_fechaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnl_generalContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -129,39 +153,62 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
 
         pnl_avanzado.setBackground(new java.awt.Color(255, 255, 255));
 
-        jCheckBox1.setText("Descargar los zapatos mas vendidos");
+        pnl_content.setBackground(new java.awt.Color(255, 255, 255));
 
-        jCheckBox2.setText("Descargar los zapatos menos vendidos");
+        cb_zapatosMasVendidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cb_zapatosMasVendidos.setText("Descargar los zapatos mas vendidos");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/winrar-80.png"))); // NOI18N
-        jButton3.setEnabled(false);
+        cb_zapatosMenosVendidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cb_zapatosMenosVendidos.setText("Descargar los zapatos menos vendidos");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        cb_ventasMes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cb_ventasMes.setText("Descargar las ventas del mes: ");
+
+        mc_zapatosMasVendidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        mc_zapatosMenosVendidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        mc_ventasMes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnl_contentLayout = new javax.swing.GroupLayout(pnl_content);
+        pnl_content.setLayout(pnl_contentLayout);
+        pnl_contentLayout.setHorizontalGroup(
+            pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_contentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(350, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addGroup(pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cb_zapatosMenosVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_zapatosMasVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cb_ventasMes))
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(65, 65, 65))
+                .addGroup(pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mc_ventasMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mc_zapatosMasVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mc_zapatosMenosVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
+        pnl_contentLayout.setVerticalGroup(
+            pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_contentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cb_zapatosMasVendidos)
+                    .addComponent(mc_zapatosMasVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_zapatosMenosVendidos)
+                    .addComponent(mc_zapatosMenosVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_ventasMes)
+                    .addComponent(mc_ventasMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
+
+        btn_descargarZip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/winrar-80.png"))); // NOI18N
+        btn_descargarZip.setText("Descargar");
+        btn_descargarZip.setEnabled(false);
 
         javax.swing.GroupLayout pnl_avanzadoLayout = new javax.swing.GroupLayout(pnl_avanzado);
         pnl_avanzado.setLayout(pnl_avanzadoLayout);
@@ -169,15 +216,21 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
             pnl_avanzadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_avanzadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnl_avanzadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_avanzadoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_descargarZip, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnl_avanzadoLayout.setVerticalGroup(
             pnl_avanzadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_avanzadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_descargarZip)
+                .addGap(63, 63, 63))
         );
 
         tp_reporteVenta.addTab("Avanzado", pnl_avanzado);
@@ -200,18 +253,23 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl_fecha;
-    private javax.swing.JLabel lbl_fechaHoy;
+    private javax.swing.JButton btn_descargarZip;
+    private javax.swing.JButton btn_excel;
+    private javax.swing.JButton btn_pdf;
+    private javax.swing.JCheckBox cb_ventasMes;
+    private javax.swing.JCheckBox cb_zapatosMasVendidos;
+    private javax.swing.JCheckBox cb_zapatosMenosVendidos;
+    private com.toedter.calendar.JDateChooser dc_escogerDia;
+    private javax.swing.JLabel lbl_escogerFecha;
     private javax.swing.JLabel lbl_titulo;
+    private com.toedter.calendar.JMonthChooser mc_ventasMes;
+    private com.toedter.calendar.JMonthChooser mc_zapatosMasVendidos;
+    private com.toedter.calendar.JMonthChooser mc_zapatosMenosVendidos;
     private javax.swing.JPanel pnl_avanzado;
+    private javax.swing.JPanel pnl_content;
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_general;
+    private javax.swing.JPanel pnl_generalContent;
     private javax.swing.JTabbedPane tp_reporteVenta;
     // End of variables declaration//GEN-END:variables
 }

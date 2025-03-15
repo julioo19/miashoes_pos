@@ -203,10 +203,22 @@ public class frm_menu extends javax.swing.JFrame {
         m_facturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/factura-58.png"))); // NOI18N
         m_facturacion.setText("Facturacion");
 
-        mi_agregarFactura.setText("jMenuItem1");
+        mi_agregarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-24.png"))); // NOI18N
+        mi_agregarFactura.setText("Agregar");
+        mi_agregarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_agregarFacturaActionPerformed(evt);
+            }
+        });
         m_facturacion.add(mi_agregarFactura);
 
-        mi_buscarFactura.setText("jMenuItem2");
+        mi_buscarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
+        mi_buscarFactura.setText("Buscar");
+        mi_buscarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_buscarFacturaActionPerformed(evt);
+            }
+        });
         m_facturacion.add(mi_buscarFactura);
 
         mb_menu.add(m_facturacion);
@@ -215,6 +227,11 @@ public class frm_menu extends javax.swing.JFrame {
         m_ayuda.setText("Ayuda");
 
         mi_ayuda.setText("Acerca de");
+        mi_ayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_ayudaActionPerformed(evt);
+            }
+        });
         m_ayuda.add(mi_ayuda);
 
         mb_menu.add(m_ayuda);
@@ -271,7 +288,8 @@ public class frm_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_registrarSeparadoActionPerformed
 
     private void mi_reporteSeparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reporteSeparadoActionPerformed
-        // TODO add your handling code here:
+        ifrm_reporteSeparado reporteSeparado = new ifrm_reporteSeparado();
+        guiStyles.centrarInternalVentana(dp_menu, reporteSeparado);
     }//GEN-LAST:event_mi_reporteSeparadoActionPerformed
 
     private void mi_agregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_agregarClienteActionPerformed
@@ -293,6 +311,22 @@ public class frm_menu extends javax.swing.JFrame {
         ifrm_reporteCliente reporteCliente = new ifrm_reporteCliente();
         guiStyles.centrarInternalVentana(dp_menu, reporteCliente);
     }//GEN-LAST:event_mi_reporteClienteActionPerformed
+
+    private void mi_ayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_ayudaActionPerformed
+        ifrm_acercaAyuda ayuda = new ifrm_acercaAyuda();
+        guiStyles.centrarInternalVentana(dp_menu, ayuda);
+    }//GEN-LAST:event_mi_ayudaActionPerformed
+
+    private void mi_agregarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_agregarFacturaActionPerformed
+        ifrm_agregarFactura agregarFactura = new ifrm_agregarFactura();
+        guiStyles.centrarInternalVentana(dp_menu, agregarFactura);
+        
+    }//GEN-LAST:event_mi_agregarFacturaActionPerformed
+
+    private void mi_buscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_buscarFacturaActionPerformed
+        ifrm_buscarFactura buscarFactura = new ifrm_buscarFactura();
+        guiStyles.centrarInternalVentana(dp_menu, buscarFactura);
+    }//GEN-LAST:event_mi_buscarFacturaActionPerformed
 
     /**
      * @param args the command line arguments
