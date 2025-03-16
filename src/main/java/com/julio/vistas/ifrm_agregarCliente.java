@@ -51,7 +51,7 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
         pnl_agregarCliente.setBackground(new java.awt.Color(190, 220, 255));
 
         pnl_encabezado.setBackground(new java.awt.Color(220, 240, 255));
-        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_titulo.setText("**Inserte los datos del cliente**");
 
@@ -67,22 +67,29 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
         pnl_encabezadoLayout.setVerticalGroup(
             pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_encabezadoLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(lbl_titulo)
                 .addGap(22, 22, 22))
         );
 
         pnl_agregarContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_agregarContent.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_agregarContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_dni.setText("DNI");
 
+        txt_dni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lbl_nombre.setText("Nombre");
+
+        txt_nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_telefono.setText("Telefono");
 
+        txt_telefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btn_guardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_guardar.setText("Guardar");
+        btn_guardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_agregarContentLayout = new javax.swing.GroupLayout(pnl_agregarContent);
         pnl_agregarContent.setLayout(pnl_agregarContentLayout);

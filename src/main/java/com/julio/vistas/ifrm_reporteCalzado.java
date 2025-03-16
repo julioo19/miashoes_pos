@@ -48,10 +48,13 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
         lbl_marca.setText("Seleccionar Marca");
 
         cb_marca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
+        btn_excel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/pdf-80.png"))); // NOI18N
+        btn_pdf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnl_encabezado.setBackground(new java.awt.Color(242, 242, 255));
 
@@ -103,9 +106,9 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_reporteContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_marca))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(65, 65, 65)
                 .addComponent(btn_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );

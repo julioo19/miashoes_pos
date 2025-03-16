@@ -76,8 +76,11 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
 
         txt_buscar.setBackground(new java.awt.Color(200, 255, 180));
         txt_buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscar.setText("Buscar");
+        btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tbl_cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,15 +101,16 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
             pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_buscarContentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(pnl_buscarContentLayout.createSequentialGroup()
                         .addComponent(lbl_buscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(113, Short.MAX_VALUE))
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 107, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnl_buscarContentLayout.setVerticalGroup(
             pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

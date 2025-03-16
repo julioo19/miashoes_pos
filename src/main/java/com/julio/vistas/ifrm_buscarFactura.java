@@ -73,7 +73,7 @@ public class ifrm_buscarFactura extends javax.swing.JInternalFrame {
 
         lbl_campo.setText("Rellene el campo");
 
-        txt_campo.setText("jTextField1");
+        txt_campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         rb_factura.setText("Nro Factura");
 

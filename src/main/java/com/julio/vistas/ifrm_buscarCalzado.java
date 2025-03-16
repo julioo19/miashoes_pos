@@ -50,7 +50,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         pnl_buscar.setBackground(new java.awt.Color(200, 255, 180));
 
         pnl_encabezado.setBackground(new java.awt.Color(225, 255, 210));
-        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_titulo.setText("**Busqueda de Calzado**");
 
@@ -72,7 +72,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         );
 
         pnl_buscarContent.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_buscarContent.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pnl_buscarContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tbl_busqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,8 +91,11 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
 
         txt_buscar.setBackground(new java.awt.Color(200, 255, 180));
         txt_buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscar.setText("Buscar");
+        btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_buscarContentLayout = new javax.swing.GroupLayout(pnl_buscarContent);
         pnl_buscarContent.setLayout(pnl_buscarContentLayout);
@@ -107,7 +110,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_buscar)
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

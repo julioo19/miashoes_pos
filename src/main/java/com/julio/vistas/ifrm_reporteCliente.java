@@ -41,8 +41,10 @@ public class ifrm_reporteCliente extends javax.swing.JInternalFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lista de clientes", "Clientes que mas compran", "Clientes que mas separan" }));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/pdf-80.png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -50,9 +50,9 @@
                       <Component id="pnl_venta" alignment="0" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="btn_eliminarSeleccion" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="373" max="32767" attributes="0"/>
-                          <Component id="btn_eliminarSeleccion1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_eliminarSeleccion" min="-2" pref="147" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btn_eliminarSeleccion1" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="txt_montoFinal" min="-2" pref="195" max="-2" attributes="0"/>
                       </Group>
@@ -76,7 +76,7 @@
                       <Component id="txt_montoFinal" min="-2" pref="127" max="-2" attributes="0"/>
                       <Component id="btn_eliminarSeleccion" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,7 +116,7 @@
                               <Component id="lbl_titulo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="378" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -134,7 +134,7 @@
                           </Group>
                           <Component id="lbl_imagen" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -198,10 +198,10 @@
                       <Component id="pnl_barrera" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txt_calzadoResul" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txt_calzadoResul" alignment="0" pref="536" max="32767" attributes="0"/>
                           <Component id="txt_nombreResul" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btn_agregarCarro" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btn_agregarCarro" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -248,7 +248,7 @@
                               <Component id="btn_agregarCarro" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
                   <Component id="pnl_barrera" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -347,6 +347,11 @@
                   <Image iconType="3" name="/iconos/a&#xf1;adir-30.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar al carrito"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -423,6 +428,11 @@
               <Image iconType="3" name="/iconos/cerrar-30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar seleccion"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_montoFinal">
@@ -450,6 +460,11 @@
               <Image iconType="3" name="/iconos/dinero-65.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="COBRAR"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
             <Property name="iconTextGap" type="int" value="20"/>
           </Properties>
         </Component>

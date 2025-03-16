@@ -63,7 +63,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="mc_mesSeparado" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="350" max="32767" attributes="0"/>
+                                      <EmptySpace pref="348" max="32767" attributes="0"/>
                                       <Component id="btn_excel" min="-2" pref="124" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="lbl_escogerMes" min="-2" max="-2" attributes="0"/>
@@ -139,11 +139,23 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JMonthChooser" name="mc_mesSeparado">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn_excel">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/excel-80.png"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
                 </Property>
               </Properties>
             </Component>
@@ -151,6 +163,11 @@
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/pdf-80.png"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
                 </Property>
               </Properties>
             </Component>
@@ -195,7 +212,7 @@
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="164" max="32767" attributes="0"/>
+                      <EmptySpace pref="169" max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
@@ -225,6 +242,11 @@
                   <Image iconType="3" name="/iconos/winrar-80.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Descargar"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>

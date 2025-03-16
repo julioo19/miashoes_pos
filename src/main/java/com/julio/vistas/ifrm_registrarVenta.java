@@ -92,7 +92,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     .addGroup(pnl_encabezadoLayout.createSequentialGroup()
                         .addGap(319, 319, 319)
                         .addComponent(lbl_titulo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         pnl_encabezadoLayout.setVerticalGroup(
             pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +106,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_desc))
                     .addComponent(lbl_imagen))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pnl_venta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -148,6 +148,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         btn_agregarCarro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_agregarCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-30.png"))); // NOI18N
         btn_agregarCarro.setText("Agregar al carrito");
+        btn_agregarCarro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_ventaLayout = new javax.swing.GroupLayout(pnl_venta);
         pnl_venta.setLayout(pnl_ventaLayout);
@@ -172,10 +173,10 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addComponent(pnl_barrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_calzadoResul)
+                    .addComponent(txt_calzadoResul, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addComponent(txt_nombreResul)
                     .addGroup(pnl_ventaLayout.createSequentialGroup()
-                        .addComponent(btn_agregarCarro)
+                        .addComponent(btn_agregarCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -208,7 +209,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     .addGroup(pnl_ventaLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(btn_agregarCarro)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
             .addComponent(pnl_barrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -231,6 +232,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         btn_eliminarSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_eliminarSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N
         btn_eliminarSeleccion.setText("Eliminar seleccion");
+        btn_eliminarSeleccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txt_montoFinal.setBackground(new java.awt.Color(245, 240, 160));
         txt_montoFinal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -240,6 +242,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         btn_eliminarSeleccion1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_eliminarSeleccion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/dinero-65.png"))); // NOI18N
         btn_eliminarSeleccion1.setText("COBRAR");
+        btn_eliminarSeleccion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_eliminarSeleccion1.setIconTextGap(20);
 
         javax.swing.GroupLayout pnl_registrarVentaLayout = new javax.swing.GroupLayout(pnl_registrarVenta);
@@ -253,9 +256,9 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     .addComponent(pnl_venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
-                        .addComponent(btn_eliminarSeleccion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
-                        .addComponent(btn_eliminarSeleccion1)
+                        .addComponent(btn_eliminarSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_eliminarSeleccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_montoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -274,7 +277,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     .addComponent(btn_eliminarSeleccion1)
                     .addComponent(txt_montoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_eliminarSeleccion))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

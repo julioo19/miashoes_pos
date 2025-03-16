@@ -51,6 +51,8 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         tbl_detalleFactura = new javax.swing.JTable();
         pnl_pie = new javax.swing.JPanel();
         btn_guardar = new javax.swing.JButton();
+        pnl_pie2 = new javax.swing.JPanel();
+        btn_guardar2 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Registrar Factura");
@@ -90,7 +92,17 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
 
         lbl_marca.setText("Marca");
 
+        txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
+        btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        dc_fechaEmision.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        dc_fechaEmision.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txt_factura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_agregarTabla.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_agregarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-30.png"))); // NOI18N
@@ -172,7 +184,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         pnl_pieLayout.setHorizontalGroup(
             pnl_pieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_pieLayout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -181,6 +193,30 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_pieLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnl_pie2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_guardar2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_guardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N
+        btn_guardar2.setText("Borrar seleccion");
+        btn_guardar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnl_pie2Layout = new javax.swing.GroupLayout(pnl_pie2);
+        pnl_pie2.setLayout(pnl_pie2Layout);
+        pnl_pie2Layout.setHorizontalGroup(
+            pnl_pie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_pie2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_guardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnl_pie2Layout.setVerticalGroup(
+            pnl_pie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_pie2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_guardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -197,9 +233,10 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnl_registrarSeparadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnl_registrarSeparadoLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(pnl_pie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(pnl_pie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         pnl_registrarSeparadoLayout.setVerticalGroup(
@@ -209,12 +246,14 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                 .addComponent(pnl_encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_registrarSeparadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_registrarSeparadoLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnl_pie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 7, Short.MAX_VALUE)))
+                        .addGroup(pnl_registrarSeparadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnl_pie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnl_pie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addComponent(pnl_contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -237,6 +276,8 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_agregarTabla;
     private javax.swing.JButton btn_buscarRef;
     private javax.swing.JButton btn_guardar;
+    private javax.swing.JButton btn_guardar1;
+    private javax.swing.JButton btn_guardar2;
     private javax.swing.JComboBox<String> cb_marca;
     private com.toedter.calendar.JDateChooser dc_fechaEmision;
     private javax.swing.JScrollPane jScrollPane1;
@@ -248,6 +289,8 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_contenido;
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_pie;
+    private javax.swing.JPanel pnl_pie1;
+    private javax.swing.JPanel pnl_pie2;
     private javax.swing.JPanel pnl_registrarSeparado;
     private javax.swing.JTable tbl_detalleFactura;
     private javax.swing.JTextField txt_barra;

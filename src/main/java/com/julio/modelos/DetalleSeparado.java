@@ -15,6 +15,7 @@ public class DetalleSeparado {
     private Separado separado;
     private Calzado calzado;
     private int cantidad;
+    private BigDecimal descuento;
     private BigDecimal adelanto;
 
     public int getDetalleSeparado_id() {
@@ -55,6 +56,14 @@ public class DetalleSeparado {
 
     public void setAdelanto(BigDecimal adelanto) {
         this.adelanto = adelanto;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
     }
     
     

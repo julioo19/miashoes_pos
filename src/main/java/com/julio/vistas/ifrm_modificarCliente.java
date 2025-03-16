@@ -82,9 +82,11 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
 
         jTextField1.setBackground(new java.awt.Color(245, 240, 160));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         jButton1.setText("Buscar por nombre");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_buscarLayout = new javax.swing.GroupLayout(pnl_buscar);
         pnl_buscar.setLayout(pnl_buscarLayout);
@@ -102,17 +104,15 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         pnl_buscarLayout.setVerticalGroup(
             pnl_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_buscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnl_buscarLayout.createSequentialGroup()
-                        .addComponent(jTextField1)
-                        .addGap(3, 3, 3))
-                    .addGroup(pnl_buscarLayout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addGroup(pnl_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addGroup(pnl_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(pnl_buscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField1)
+                .addGap(9, 9, 9))
         );
 
         pnl_modificarContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,10 +120,15 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
 
         lbl_nombre.setText("Nombre");
 
+        txt_nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lbl_nro.setText("Telefono");
+
+        txt_nro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_actualizar.setText("Actualizar");
+        btn_actualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_modificarContentLayout = new javax.swing.GroupLayout(pnl_modificarContent);
         pnl_modificarContent.setLayout(pnl_modificarContentLayout);
@@ -162,13 +167,13 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "DNI", "NOMBRE", "TELEFONO"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -196,7 +201,7 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_modificarContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

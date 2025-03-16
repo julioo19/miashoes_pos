@@ -87,8 +87,10 @@ public class ifrm_reporteVenta extends javax.swing.JInternalFrame {
         lbl_escogerFecha.setText("Seleccione el dia");
 
         btn_excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
+        btn_excel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/pdf-80.png"))); // NOI18N
+        btn_pdf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         dc_escogerDia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         dc_escogerDia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

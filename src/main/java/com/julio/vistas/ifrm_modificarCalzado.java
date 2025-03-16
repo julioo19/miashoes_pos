@@ -91,6 +91,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
 
         btn_abrirBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_abrirBusqueda.setText("Buscar por referencia");
+        btn_abrirBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_busquedaLayout = new javax.swing.GroupLayout(pnl_busqueda);
         pnl_busqueda.setLayout(pnl_busquedaLayout);
@@ -102,7 +103,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_abrirBusqueda)
+                .addComponent(btn_abrirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_busquedaLayout.setVerticalGroup(
@@ -122,18 +123,29 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
 
         lbl_ref.setText("Referencia");
 
+        txt_ref.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lbl_color.setText("Color");
         lbl_color.setToolTipText("");
+
+        txt_color.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_material.setText("Material");
         lbl_material.setToolTipText("");
 
+        txt_material.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lbl_stock.setText("Stock");
+
+        sp_stock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_marca.setText("Marca");
 
+        cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btn_actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_actualizar.setText("Actualizar");
+        btn_actualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_modificarContentLayout = new javax.swing.GroupLayout(pnl_modificarContent);
         pnl_modificarContent.setLayout(pnl_modificarContentLayout);
@@ -231,7 +243,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_modificarContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

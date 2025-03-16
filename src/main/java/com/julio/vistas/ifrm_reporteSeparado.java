@@ -74,9 +74,13 @@ public class ifrm_reporteSeparado extends javax.swing.JInternalFrame {
 
         lbl_escogerMes.setText("Seleccione el mes");
 
+        mc_mesSeparado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btn_excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
+        btn_excel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/pdf-80.png"))); // NOI18N
+        btn_pdf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_generalLayout = new javax.swing.GroupLayout(pnl_general);
         pnl_general.setLayout(pnl_generalLayout);
@@ -91,7 +95,7 @@ public class ifrm_reporteSeparado extends javax.swing.JInternalFrame {
                         .addGroup(pnl_generalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnl_generalLayout.createSequentialGroup()
                                 .addComponent(mc_mesSeparado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                                 .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbl_escogerMes)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_generalLayout.createSequentialGroup()
@@ -127,6 +131,7 @@ public class ifrm_reporteSeparado extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/winrar-80.png"))); // NOI18N
         jButton1.setText("Descargar");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.setEnabled(false);
 
         javax.swing.GroupLayout pnl_avanzadoLayout = new javax.swing.GroupLayout(pnl_avanzado);
@@ -151,7 +156,7 @@ public class ifrm_reporteSeparado extends javax.swing.JInternalFrame {
                 .addComponent(jCheckBox1)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(27, 27, 27))
         );

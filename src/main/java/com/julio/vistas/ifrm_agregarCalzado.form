@@ -183,7 +183,7 @@
                           <Component id="lbl_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cb_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Component id="btn_guardar" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
@@ -197,6 +197,13 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_barras">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_ref">
               <Properties>
@@ -204,6 +211,13 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_ref">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_color">
               <Properties>
@@ -211,6 +225,13 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_color">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_material">
               <Properties>
@@ -218,6 +239,13 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_material">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_stock">
               <Properties>
@@ -228,6 +256,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
                 </Property>
               </Properties>
             </Component>
@@ -241,6 +274,11 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -252,6 +290,11 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

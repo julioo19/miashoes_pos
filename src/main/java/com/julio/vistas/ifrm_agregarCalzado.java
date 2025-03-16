@@ -82,20 +82,32 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
 
         lbl_barras.setText("Codigo de Barras");
 
+        txt_barras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lbl_ref.setText("Referencia");
+
+        txt_ref.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_color.setText("Color");
 
+        txt_color.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lbl_material.setText("Material");
+
+        txt_material.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_stock.setText("Stock");
 
         sp_stock.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        sp_stock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_marca.setText("Marca");
 
+        cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btn_guardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_guardar.setText("Guardar");
+        btn_guardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_agregarContentLayout = new javax.swing.GroupLayout(pnl_agregarContent);
         pnl_agregarContent.setLayout(pnl_agregarContentLayout);
@@ -149,7 +161,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_marca)
                     .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
