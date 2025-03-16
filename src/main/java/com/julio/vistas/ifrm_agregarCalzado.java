@@ -4,6 +4,8 @@
  */
 package com.julio.vistas;
 
+import com.julio.controladores.C_cargarMarcas;
+import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
 
 /**
@@ -18,10 +20,16 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     public ifrm_agregarCalzado() {
         initComponents();
         initStyles();
+        initContent();
     }
 
     private void initStyles(){
         fontStyles.estilosAgregarCalzado(lbl_titulo ,lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
+    }
+    
+    private void initContent(){
+        C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
+        cargarMarcas.llenarComboMarca();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,7 +214,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JComboBox<String> cb_marca;
+    private javax.swing.JComboBox<Marca> cb_marca;
     private javax.swing.JLabel lbl_barras;
     private javax.swing.JLabel lbl_color;
     private javax.swing.JLabel lbl_marca;

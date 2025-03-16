@@ -20,12 +20,12 @@ public class DAODetalleFacturacionImple extends C_Conexion implements DAODetalle
     @Override
     public void registrarDetalleFacturacion(DetalleFacturacion d_facturacion) throws Exception {
         try{
-            PreparedStatement st = this.conectar.prepareStatement(REGISTRAR_DETALLE_FACTURA);
-            st.setString(1, d_facturacion.getFactura().getNro_factura());
-            st.setString(2, d_facturacion.getCalzado().getCod_barra());
-            st.setInt(3, d_facturacion.getCantidad());
-            st.executeUpdate();
-            st.close();
+            try (PreparedStatement st = this.conectar.prepareStatement(REGISTRAR_DETALLE_FACTURA)) {
+                st.setString(1, d_facturacion.getFactura().getNro_factura());
+                st.setString(2, d_facturacion.getCalzado().getCod_barra());
+                st.setInt(3, d_facturacion.getCantidad());
+                st.executeUpdate();
+            }
         }
         catch(SQLException e){
             throw e;
