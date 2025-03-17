@@ -73,12 +73,14 @@ public class ifrm_buscarFactura extends javax.swing.JInternalFrame {
 
         lbl_campo.setText("Rellene el campo");
 
+        txt_campo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         rb_factura.setText("Nro Factura");
 
         rb_referencia.setText("Referencia");
 
+        btn_buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

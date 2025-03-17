@@ -4,12 +4,17 @@
  */
 package com.julio.vistas;
 
+import com.julio.dao.DAOClienteImple;
+import com.julio.interfaces.DAOCliente;
+import com.julio.modelos.Cliente;
 import com.julio.utils.fontStyles;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ACER
  */
+
 public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
 
     /**
@@ -19,8 +24,8 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
         initComponents();
         initStyle();
     }
-    
-    private void initStyle(){
+
+    private void initStyle() {
         fontStyles.estiloAgregarCliente(lbl_titulo, lbl_dni, lbl_nombre, lbl_telefono);
     }
 
@@ -67,7 +72,7 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
         pnl_encabezadoLayout.setVerticalGroup(
             pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_encabezadoLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(lbl_titulo)
                 .addGap(22, 22, 22))
         );
@@ -77,19 +82,28 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
 
         lbl_dni.setText("DNI");
 
+        txt_dni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_dni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_nombre.setText("Nombre");
 
+        txt_nombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_telefono.setText("Telefono");
 
+        txt_telefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_telefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_guardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_guardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/save-30.png"))); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_agregarContentLayout = new javax.swing.GroupLayout(pnl_agregarContent);
         pnl_agregarContent.setLayout(pnl_agregarContentLayout);
@@ -99,29 +113,29 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_agregarContentLayout.createSequentialGroup()
-                        .addComponent(lbl_dni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnl_agregarContentLayout.createSequentialGroup()
                         .addComponent(lbl_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap(417, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_agregarContentLayout.createSequentialGroup()
-                        .addComponent(lbl_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(273, 273, 273))))
+                            .addGroup(pnl_agregarContentLayout.createSequentialGroup()
+                                .addComponent(lbl_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE))
+                            .addGroup(pnl_agregarContentLayout.createSequentialGroup()
+                                .addComponent(lbl_dni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(55, 55, 55)))
+                        .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(txt_dni)
+                            .addComponent(txt_telefono)
+                            .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(182, 182, 182))))
         );
         pnl_agregarContentLayout.setVerticalGroup(
             pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_agregarContentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_agregarContentLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lbl_dni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_dni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -171,6 +185,40 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        if (!validarCampos()) {
+            return;
+        }
+        String dni = txt_dni.getText().trim().toUpperCase();
+        String nombre = txt_nombre.getText().trim().toUpperCase();
+        String nro = txt_telefono.getText().trim();
+        Cliente cliente = new Cliente();
+        cliente.setDni_id(dni);
+        cliente.setNombre_cliente(nombre);
+        cliente.setNro_telefono(nro);
+        try {
+            DAOCliente dao = new DAOClienteImple();
+            dao.registarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Cliente agregado correctamente", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar el calzado: " + e.getMessage());
+            e.printStackTrace();
+        }
+    
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private boolean validarCampos() {
+    if (txt_dni.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    if (txt_nombre.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Debe ingresar un nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;

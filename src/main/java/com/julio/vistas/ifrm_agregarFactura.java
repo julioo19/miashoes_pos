@@ -4,6 +4,8 @@
  */
 package com.julio.vistas;
 
+import com.julio.controladores.C_cargarMarcas;
+import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
 
 /**
@@ -18,10 +20,16 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     public ifrm_agregarFactura() {
         initComponents();
         initStyles();
+        initContent();
     }
     
     private void initStyles(){
         fontStyles.estiloAgregarFactura(lbl_titulo, lbl_factura, lbl_fecha, lbl_barra, lbl_marca);
+    }
+    
+    private void initContent(){
+        C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
+        cargarMarcas.llenarComboMarca();
     }
 
     /**
@@ -92,16 +100,19 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
 
         lbl_marca.setText("Marca");
 
+        txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
         btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         dc_fechaEmision.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        dc_fechaEmision.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        dc_fechaEmision.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        txt_factura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_factura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        cb_marca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_agregarTabla.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -146,7 +157,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                     .addComponent(dc_fechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_buscarRef)
+                    .addComponent(btn_buscarRef, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbl_barra)
                         .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -156,7 +167,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                     .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addComponent(btn_agregarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         tbl_detalleFactura.setModel(new javax.swing.table.DefaultTableModel(
@@ -276,9 +287,8 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_agregarTabla;
     private javax.swing.JButton btn_buscarRef;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JButton btn_guardar1;
     private javax.swing.JButton btn_guardar2;
-    private javax.swing.JComboBox<String> cb_marca;
+    private javax.swing.JComboBox<Marca> cb_marca;
     private com.toedter.calendar.JDateChooser dc_fechaEmision;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_barra;
@@ -289,7 +299,6 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_contenido;
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_pie;
-    private javax.swing.JPanel pnl_pie1;
     private javax.swing.JPanel pnl_pie2;
     private javax.swing.JPanel pnl_registrarSeparado;
     private javax.swing.JTable tbl_detalleFactura;

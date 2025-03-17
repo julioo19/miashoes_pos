@@ -19,14 +19,14 @@ public class C_Conexion {
     private final String HOST = "localhost";
     private final String USER = "postgres";
     private final String PASSWORD = "julio";
-    private final String BD = "mia";
+    private final String BD = "miashoes_pos";
     private final String PORT = "5432";
     private final String URL = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + BD;
 
     public Connection establecerConexion() {
         try {
             conectar = DriverManager.getConnection(URL, USER, PASSWORD);
-            JOptionPane.showMessageDialog(null, "Se conecto BB", "SIUCHO", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Se conecto correctamente a la base de Datos");
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "No se pudo conectar con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);

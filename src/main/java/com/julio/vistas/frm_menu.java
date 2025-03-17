@@ -274,8 +274,8 @@ public class frm_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_reporteCalzadoActionPerformed
 
     private void mi_registrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_registrarVentaActionPerformed
-        ifrm_registrarVenta registrar = new ifrm_registrarVenta();
-        guiStyles.centrarInternalVentana(dp_menu, registrar);
+        ifrm_registrarVenta registrarVenta = new ifrm_registrarVenta();
+        guiStyles.centrarInternalVentana(dp_menu, registrarVenta);
     }//GEN-LAST:event_mi_registrarVentaActionPerformed
 
     private void mi_reporteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reporteVentaActionPerformed

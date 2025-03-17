@@ -19,11 +19,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         initComponents();
         initStyles();
     }
-
+    
     private void initStyles(){
-        fontStyles.estiloRegistrarVenta(lbl_titulo, lbl_subtitulo, lbl_desc, lbl_dni,
-                lbl_cantidad);
+        fontStyles.estiloRegistrarVenta(lbl_mia, lbl_sub, lbl_contenido, lbl_dni, lbl_cantidad, lbl_descuento);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,44 +35,49 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
 
         pnl_registrarVenta = new javax.swing.JPanel();
         pnl_encabezado = new javax.swing.JPanel();
-        lbl_titulo = new javax.swing.JLabel();
         lbl_imagen = new javax.swing.JLabel();
-        lbl_subtitulo = new javax.swing.JLabel();
-        lbl_desc = new javax.swing.JLabel();
-        pnl_venta = new javax.swing.JPanel();
+        lbl_mia = new javax.swing.JLabel();
+        lbl_sub = new javax.swing.JLabel();
+        lbl_contenido = new javax.swing.JLabel();
+        pnl_datos = new javax.swing.JPanel();
         lbl_barra = new javax.swing.JLabel();
+        lbl_dni = new javax.swing.JLabel();
+        lbl_cantidad = new javax.swing.JLabel();
+        txt_dni = new javax.swing.JTextField();
         txt_barra = new javax.swing.JTextField();
         btn_buscarRef = new javax.swing.JButton();
-        btn_buscarDni = new javax.swing.JButton();
-        lbl_dni = new javax.swing.JLabel();
-        txt_dni = new javax.swing.JTextField();
-        lbl_cantidad = new javax.swing.JLabel();
+        btn_buscarNombre = new javax.swing.JButton();
         sp_cantidad = new javax.swing.JSpinner();
-        pnl_barrera = new javax.swing.JPanel();
-        txt_calzadoResul = new javax.swing.JTextField();
-        txt_nombreResul = new javax.swing.JTextField();
+        lbl_descuento = new javax.swing.JLabel();
+        txt_descuento = new javax.swing.JTextField();
+        pnl_botonAgregar = new javax.swing.JPanel();
         btn_agregarCarro = new javax.swing.JButton();
+        pnl_tabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_carro = new javax.swing.JTable();
+        pnl_datosLlenos = new javax.swing.JPanel();
+        txt_calzadoDatos = new javax.swing.JTextField();
+        txt_clienteDatos = new javax.swing.JTextField();
+        pnl_botonEliminar = new javax.swing.JPanel();
         btn_eliminarSeleccion = new javax.swing.JButton();
-        txt_montoFinal = new javax.swing.JTextField();
-        btn_eliminarSeleccion1 = new javax.swing.JButton();
+        pnl_monto = new javax.swing.JPanel();
+        txt_monto = new javax.swing.JTextField();
+        pnl_botonCobrar = new javax.swing.JPanel();
+        btn_cobrar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Registrar Venta");
 
-        pnl_registrarVenta.setBackground(new java.awt.Color(255, 255, 255));
-
-        pnl_encabezado.setBackground(new java.awt.Color(252, 231, 244));
+        pnl_encabezado.setBackground(new java.awt.Color(255, 255, 242));
         pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_titulo.setText("MIA SHOES");
 
         lbl_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mia_shoes_76.jpg"))); // NOI18N
 
-        lbl_subtitulo.setText("VENTA DE CALZADO BRASILEÑO");
+        lbl_mia.setText("MIA SHOES");
 
-        lbl_desc.setText("Ingrese los datos de la venta");
+        lbl_sub.setText("Venta de Calzados Brasileños");
+
+        lbl_contenido.setText("Punto de Venta");
 
         javax.swing.GroupLayout pnl_encabezadoLayout = new javax.swing.GroupLayout(pnl_encabezado);
         pnl_encabezado.setLayout(pnl_encabezadoLayout);
@@ -83,167 +88,271 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addComponent(lbl_imagen)
                 .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_subtitulo)
-                            .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(lbl_desc))))
+                        .addGap(323, 323, 323)
+                        .addComponent(lbl_mia))
                     .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(lbl_titulo)))
-                .addContainerGap(378, Short.MAX_VALUE))
+                        .addGap(278, 278, 278)
+                        .addComponent(lbl_sub))
+                    .addGroup(pnl_encabezadoLayout.createSequentialGroup()
+                        .addGap(317, 317, 317)
+                        .addComponent(lbl_contenido)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_encabezadoLayout.setVerticalGroup(
             pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_encabezadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_encabezadoLayout.createSequentialGroup()
-                        .addComponent(lbl_titulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_subtitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_desc))
-                    .addComponent(lbl_imagen))
-                .addContainerGap(11, Short.MAX_VALUE))
+                        .addComponent(lbl_mia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_sub)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_contenido)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pnl_venta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnl_datos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_barra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/código-de-barras-30.png"))); // NOI18N
-
-        btn_buscarRef.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
-        btn_buscarRef.setText(" ");
-
-        btn_buscarDni.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_buscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
-        btn_buscarDni.setText(" ");
 
         lbl_dni.setText("DNI");
 
         lbl_cantidad.setText("Cantidad");
 
-        sp_cantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        txt_dni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_dni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        pnl_barrera.setBackground(new java.awt.Color(0, 0, 0));
+        txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout pnl_barreraLayout = new javax.swing.GroupLayout(pnl_barrera);
-        pnl_barrera.setLayout(pnl_barreraLayout);
-        pnl_barreraLayout.setHorizontalGroup(
-            pnl_barreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 19, Short.MAX_VALUE)
-        );
-        pnl_barreraLayout.setVerticalGroup(
-            pnl_barreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
+        btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txt_calzadoResul.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txt_calzadoResul.setEnabled(false);
+        btn_buscarNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
+        btn_buscarNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txt_nombreResul.setEnabled(false);
+        sp_cantidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sp_cantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_agregarCarro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl_descuento.setText("Descuento");
+
+        txt_descuento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_descuento.setForeground(new java.awt.Color(199, 199, 205));
+        txt_descuento.setText("Opcional");
+        txt_descuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        pnl_botonAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_agregarCarro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_agregarCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-30.png"))); // NOI18N
         btn_agregarCarro.setText("Agregar al carrito");
         btn_agregarCarro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout pnl_ventaLayout = new javax.swing.GroupLayout(pnl_venta);
-        pnl_venta.setLayout(pnl_ventaLayout);
-        pnl_ventaLayout.setHorizontalGroup(
-            pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ventaLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_botonAgregarLayout = new javax.swing.GroupLayout(pnl_botonAgregar);
+        pnl_botonAgregar.setLayout(pnl_botonAgregarLayout);
+        pnl_botonAgregarLayout.setHorizontalGroup(
+            pnl_botonAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_botonAgregarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_cantidad)
+                .addComponent(btn_agregarCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnl_botonAgregarLayout.setVerticalGroup(
+            pnl_botonAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_botonAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_agregarCarro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnl_datosLayout = new javax.swing.GroupLayout(pnl_datos);
+        pnl_datos.setLayout(pnl_datosLayout);
+        pnl_datosLayout.setHorizontalGroup(
+            pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_datosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_datosLayout.createSequentialGroup()
+                        .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_cantidad)
+                            .addComponent(lbl_dni)
+                            .addComponent(lbl_barra)
+                            .addComponent(lbl_descuento))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txt_dni, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(txt_barra)
+                            .addComponent(sp_cantidad)
+                            .addComponent(txt_descuento, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_buscarRef, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(btn_buscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        pnl_datosLayout.setVerticalGroup(
+            pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_datosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_barra)
+                    .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_buscarRef)))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbl_dni)
-                    .addComponent(lbl_barra))
+                    .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscarNombre, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sp_cantidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_buscarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addComponent(pnl_barrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_cantidad)
+                    .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_calzadoResul, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                    .addComponent(txt_nombreResul)
-                    .addGroup(pnl_ventaLayout.createSequentialGroup()
-                        .addComponent(btn_agregarCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_descuento)
+                    .addComponent(txt_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        pnl_ventaLayout.setVerticalGroup(
-            pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ventaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ventaLayout.createSequentialGroup()
-                        .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_barra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_barra)
-                                .addComponent(btn_buscarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_dni)
-                            .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_buscarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnl_ventaLayout.createSequentialGroup()
-                        .addComponent(txt_calzadoResul, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_nombreResul, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ventaLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(pnl_ventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_cantidad)
-                            .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnl_ventaLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(btn_agregarCarro)))
-                .addContainerGap(49, Short.MAX_VALUE))
-            .addComponent(pnl_barrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+
+        pnl_tabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tbl_carro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "C_BARRAS", "REF", "CANTIDAD", "PRECIO", "DESCUENTO", "TOTAL"
+                "C_BARRA", "REF", "CANTIDAD", "PRECIO", "DESCUENTO", "MONTO"
             }
         ));
-        tbl_carro.setShowGrid(false);
         tbl_carro.setShowHorizontalLines(true);
         tbl_carro.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tbl_carro);
 
-        btn_eliminarSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        javax.swing.GroupLayout pnl_tablaLayout = new javax.swing.GroupLayout(pnl_tabla);
+        pnl_tabla.setLayout(pnl_tablaLayout);
+        pnl_tablaLayout.setHorizontalGroup(
+            pnl_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnl_tablaLayout.setVerticalGroup(
+            pnl_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnl_datosLlenos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txt_calzadoDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_calzadoDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_calzadoDatos.setEnabled(false);
+
+        txt_clienteDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_clienteDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_clienteDatos.setEnabled(false);
+
+        javax.swing.GroupLayout pnl_datosLlenosLayout = new javax.swing.GroupLayout(pnl_datosLlenos);
+        pnl_datosLlenos.setLayout(pnl_datosLlenosLayout);
+        pnl_datosLlenosLayout.setHorizontalGroup(
+            pnl_datosLlenosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_datosLlenosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_datosLlenosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_calzadoDatos)
+                    .addComponent(txt_clienteDatos))
+                .addContainerGap())
+        );
+        pnl_datosLlenosLayout.setVerticalGroup(
+            pnl_datosLlenosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_datosLlenosLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(txt_calzadoDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_clienteDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        pnl_botonEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_eliminarSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_eliminarSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N
-        btn_eliminarSeleccion.setText("Eliminar seleccion");
+        btn_eliminarSeleccion.setText("Eliminar Seleccion");
         btn_eliminarSeleccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txt_montoFinal.setBackground(new java.awt.Color(245, 240, 160));
-        txt_montoFinal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        txt_montoFinal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_montoFinal.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        javax.swing.GroupLayout pnl_botonEliminarLayout = new javax.swing.GroupLayout(pnl_botonEliminar);
+        pnl_botonEliminar.setLayout(pnl_botonEliminarLayout);
+        pnl_botonEliminarLayout.setHorizontalGroup(
+            pnl_botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_botonEliminarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_eliminarSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnl_botonEliminarLayout.setVerticalGroup(
+            pnl_botonEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_botonEliminarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_eliminarSeleccion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        btn_eliminarSeleccion1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_eliminarSeleccion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/dinero-65.png"))); // NOI18N
-        btn_eliminarSeleccion1.setText("COBRAR");
-        btn_eliminarSeleccion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_eliminarSeleccion1.setIconTextGap(20);
+        pnl_monto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txt_monto.setBackground(new java.awt.Color(245, 240, 160));
+        txt_monto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txt_monto.setEnabled(false);
+
+        javax.swing.GroupLayout pnl_montoLayout = new javax.swing.GroupLayout(pnl_monto);
+        pnl_monto.setLayout(pnl_montoLayout);
+        pnl_montoLayout.setHorizontalGroup(
+            pnl_montoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_montoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_monto, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnl_montoLayout.setVerticalGroup(
+            pnl_montoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_montoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_monto, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnl_botonCobrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_cobrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_cobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/dinero-65.png"))); // NOI18N
+        btn_cobrar.setText("COBRAR");
+        btn_cobrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnl_botonCobrarLayout = new javax.swing.GroupLayout(pnl_botonCobrar);
+        pnl_botonCobrar.setLayout(pnl_botonCobrarLayout);
+        pnl_botonCobrarLayout.setHorizontalGroup(
+            pnl_botonCobrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_botonCobrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_cobrar, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnl_botonCobrarLayout.setVerticalGroup(
+            pnl_botonCobrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_botonCobrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_cobrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnl_registrarVentaLayout = new javax.swing.GroupLayout(pnl_registrarVenta);
         pnl_registrarVenta.setLayout(pnl_registrarVentaLayout);
@@ -253,31 +362,40 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl_venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
                     .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
-                        .addComponent(btn_eliminarSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_eliminarSeleccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_montoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnl_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
+                                .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_registrarVentaLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         pnl_registrarVentaLayout.setVerticalGroup(
             pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnl_venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
+                        .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnl_datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_eliminarSeleccion1)
-                    .addComponent(txt_montoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_eliminarSeleccion))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -297,28 +415,35 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregarCarro;
-    private javax.swing.JButton btn_buscarDni;
+    private javax.swing.JButton btn_buscarNombre;
     private javax.swing.JButton btn_buscarRef;
+    private javax.swing.JButton btn_cobrar;
     private javax.swing.JButton btn_eliminarSeleccion;
-    private javax.swing.JButton btn_eliminarSeleccion1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_barra;
     private javax.swing.JLabel lbl_cantidad;
-    private javax.swing.JLabel lbl_desc;
+    private javax.swing.JLabel lbl_contenido;
+    private javax.swing.JLabel lbl_descuento;
     private javax.swing.JLabel lbl_dni;
     private javax.swing.JLabel lbl_imagen;
-    private javax.swing.JLabel lbl_subtitulo;
-    private javax.swing.JLabel lbl_titulo;
-    private javax.swing.JPanel pnl_barrera;
+    private javax.swing.JLabel lbl_mia;
+    private javax.swing.JLabel lbl_sub;
+    private javax.swing.JPanel pnl_botonAgregar;
+    private javax.swing.JPanel pnl_botonCobrar;
+    private javax.swing.JPanel pnl_botonEliminar;
+    private javax.swing.JPanel pnl_datos;
+    private javax.swing.JPanel pnl_datosLlenos;
     private javax.swing.JPanel pnl_encabezado;
+    private javax.swing.JPanel pnl_monto;
     private javax.swing.JPanel pnl_registrarVenta;
-    private javax.swing.JPanel pnl_venta;
+    private javax.swing.JPanel pnl_tabla;
     private javax.swing.JSpinner sp_cantidad;
     private javax.swing.JTable tbl_carro;
     private javax.swing.JTextField txt_barra;
-    private javax.swing.JTextField txt_calzadoResul;
+    private javax.swing.JTextField txt_calzadoDatos;
+    private javax.swing.JTextField txt_clienteDatos;
+    private javax.swing.JTextField txt_descuento;
     private javax.swing.JTextField txt_dni;
-    private javax.swing.JTextField txt_montoFinal;
-    private javax.swing.JTextField txt_nombreResul;
+    private javax.swing.JTextField txt_monto;
     // End of variables declaration//GEN-END:variables
 }

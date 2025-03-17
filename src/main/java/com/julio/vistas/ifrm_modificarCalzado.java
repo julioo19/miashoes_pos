@@ -4,6 +4,8 @@
  */
 package com.julio.vistas;
 
+import com.julio.controladores.C_cargarMarcas;
+import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
 
 /**
@@ -18,10 +20,16 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     public ifrm_modificarCalzado() {
         initComponents();
         initStyles();
+        initContent();
     }
 
     private void initStyles(){
         fontStyles.estiloModificarCalzado(lbl_titulo, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
+    }
+    
+    private void initContent(){
+        C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
+        cargarMarcas.llenarComboMarca();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,8 +59,6 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         lbl_marca = new javax.swing.JLabel();
         cb_marca = new javax.swing.JComboBox<>();
         btn_actualizar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_modificarTabla = new javax.swing.JTable();
 
         setClosable(true);
         setTitle("Modificar Calzado");
@@ -87,8 +93,10 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         lbl_barra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/código-de-barras-30.png"))); // NOI18N
 
         txt_barra.setBackground(new java.awt.Color(245, 240, 160));
-        txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btn_abrirBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_abrirBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_abrirBusqueda.setText("Buscar por referencia");
         btn_abrirBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -101,9 +109,9 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lbl_barra)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_abrirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_abrirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_busquedaLayout.setVerticalGroup(
@@ -123,27 +131,33 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
 
         lbl_ref.setText("Referencia");
 
+        txt_ref.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_ref.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_color.setText("Color");
         lbl_color.setToolTipText("");
 
+        txt_color.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_color.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_material.setText("Material");
         lbl_material.setToolTipText("");
 
+        txt_material.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_material.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_stock.setText("Stock");
 
+        sp_stock.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sp_stock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_marca.setText("Marca");
 
+        cb_marca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_actualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-30.png"))); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -173,8 +187,8 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                         .addGap(101, 101, 101)
                         .addComponent(txt_color, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(93, 93, 93)
-                .addComponent(btn_actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(68, 68, 68))
+                .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         pnl_modificarContentLayout.setVerticalGroup(
             pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,21 +218,8 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_marca)
                     .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
-
-        tbl_modificarTabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbl_modificarTabla);
 
         javax.swing.GroupLayout pnl_modificarCalzadoLayout = new javax.swing.GroupLayout(pnl_modificarCalzado);
         pnl_modificarCalzado.setLayout(pnl_modificarCalzadoLayout);
@@ -229,8 +230,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_modificarCalzadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnl_busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl_modificarContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+                    .addComponent(pnl_modificarContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnl_modificarCalzadoLayout.setVerticalGroup(
@@ -241,9 +241,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_modificarContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(pnl_modificarContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -267,8 +265,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_abrirBusqueda;
     private javax.swing.JButton btn_actualizar;
-    private javax.swing.JComboBox<String> cb_marca;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<Marca> cb_marca;
     private javax.swing.JLabel lbl_barra;
     private javax.swing.JLabel lbl_color;
     private javax.swing.JLabel lbl_marca;
@@ -281,7 +278,6 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_modificarCalzado;
     private javax.swing.JPanel pnl_modificarContent;
     private javax.swing.JSpinner sp_stock;
-    private javax.swing.JTable tbl_modificarTabla;
     private javax.swing.JTextField txt_barra;
     private javax.swing.JTextField txt_color;
     private javax.swing.JTextField txt_material;

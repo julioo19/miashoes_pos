@@ -5,8 +5,14 @@
 package com.julio.vistas;
 
 import com.julio.controladores.C_cargarMarcas;
+import com.julio.dao.DAOCalzadoImple;
+import com.julio.interfaces.DAOCalzado;
+import com.julio.modelos.Calzado;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
@@ -23,14 +29,16 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         initContent();
     }
 
-    private void initStyles(){
-        fontStyles.estilosAgregarCalzado(lbl_titulo ,lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
+    private void initStyles() {
+        fontStyles.estilosAgregarCalzado(lbl_titulo, lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
     }
-    
-    private void initContent(){
+
+    private void initContent() {
         C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
         cargarMarcas.llenarComboMarca();
+        ((JSpinner.DefaultEditor) sp_stock.getEditor()).getTextField().setEditable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +65,9 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         lbl_marca = new javax.swing.JLabel();
         cb_marca = new javax.swing.JComboBox<>();
         btn_guardar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txt_placeholder = new javax.swing.JTextField();
+        txt_precio = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Agregar Calzado");
@@ -90,32 +101,56 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
 
         lbl_barras.setText("Codigo de Barras");
 
+        txt_barras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_barras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_ref.setText("Referencia");
 
+        txt_ref.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_ref.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_color.setText("Color");
 
+        txt_color.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_color.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_material.setText("Material");
 
+        txt_material.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_material.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_stock.setText("Stock");
 
+        sp_stock.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sp_stock.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         sp_stock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_marca.setText("Marca");
 
+        cb_marca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_guardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_guardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/save-30.png"))); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Precio Sugerido");
+
+        txt_placeholder.setEditable(false);
+        txt_placeholder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_placeholder.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_placeholder.setText("S/.");
+        txt_placeholder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_placeholder.setEnabled(false);
+
+        txt_precio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_precio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_agregarContentLayout = new javax.swing.GroupLayout(pnl_agregarContent);
         pnl_agregarContent.setLayout(pnl_agregarContentLayout);
@@ -129,17 +164,21 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
                     .addComponent(lbl_color)
                     .addComponent(lbl_material)
                     .addComponent(lbl_stock)
-                    .addComponent(lbl_marca))
+                    .addComponent(lbl_marca)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_barras)
-                        .addComponent(txt_ref)
-                        .addComponent(txt_color)
-                        .addComponent(txt_material)
-                        .addComponent(sp_stock)
-                        .addComponent(cb_marca, 0, 163, Short.MAX_VALUE)))
+                    .addComponent(txt_barras)
+                    .addComponent(txt_ref)
+                    .addComponent(txt_color)
+                    .addComponent(txt_material)
+                    .addComponent(sp_stock)
+                    .addComponent(cb_marca, 0, 163, Short.MAX_VALUE)
+                    .addGroup(pnl_agregarContentLayout.createSequentialGroup()
+                        .addComponent(txt_placeholder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_precio)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_agregarContentLayout.setVerticalGroup(
@@ -169,7 +208,12 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_marca)
                     .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_placeholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -211,10 +255,101 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        if (!verificarCampos()) {
+            return;
+        }
+        String cod_barra = txt_barras.getText().trim();
+        String ref = txt_ref.getText().toUpperCase().trim();
+        String color = txt_color.getText().toUpperCase().trim();
+        String material = txt_material.getText().toUpperCase().trim();
+        int stock = (Integer) sp_stock.getValue();
+        int id_marca = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
+        BigDecimal precio = new BigDecimal(txt_precio.getText().trim().replace(",", "."));
+        /*/
+        JOptionPane.showMessageDialog(null,
+                "Código de Barra = " + cod_barra + "\n"
+                + "Referencia = " + ref + "\n"
+                + "Color = " + color + "\n"
+                + "Material = " + material + "\n"
+                + "Stock = " + stock + "\n"
+                + "ID Marca = " + id_marca + "\n"
+                + "Precio: " + precio,
+                "Datos Ingresados", JOptionPane.INFORMATION_MESSAGE);
+/*/
+        Calzado calzado = new Calzado();
+        Marca marca = new Marca();
+        calzado.setCod_barra(cod_barra);
+        calzado.setReferencia(ref);
+        calzado.setColor(color);
+        calzado.setMaterial(material);
+        calzado.setStock(stock);
+        marca.setId_marca(id_marca);
+        calzado.setMarca(marca);
+        calzado.setPrecio_sugerido(precio);
+
+        try {
+            DAOCalzado dao = new DAOCalzadoImple();
+            dao.registrarCalzado(calzado);
+            JOptionPane.showMessageDialog(null, "Calzado agregado correctamente", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al agregar el calzado: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private boolean verificarCampos() {
+        if (txt_barras.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (txt_ref.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una referencia para el calzado", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (txt_color.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un color para el calzado", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (txt_material.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un material para el calzado", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        int stock = (Integer) sp_stock.getValue();
+        if (stock <= 0) {
+            JOptionPane.showMessageDialog(null, "El stock debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (cb_marca.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe escoger una marca ", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        String precio_texto = txt_precio.getText().trim().replace(",", ".");
+        if (precio_texto.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un precio para el calzado", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        try {
+            BigDecimal precio = new BigDecimal(precio_texto);
+            if (precio.compareTo(BigDecimal.ZERO) <= 0) {
+                JOptionPane.showMessageDialog(null, "El precio debe ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número válido en el precio", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
     private javax.swing.JComboBox<Marca> cb_marca;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_barras;
     private javax.swing.JLabel lbl_color;
     private javax.swing.JLabel lbl_marca;
@@ -229,6 +364,8 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_barras;
     private javax.swing.JTextField txt_color;
     private javax.swing.JTextField txt_material;
+    private javax.swing.JTextField txt_placeholder;
+    private javax.swing.JTextField txt_precio;
     private javax.swing.JTextField txt_ref;
     // End of variables declaration//GEN-END:variables
 }

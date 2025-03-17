@@ -88,7 +88,7 @@ public class fontStyles {
     }
 
     public static void estiloRegistrarVenta(JLabel titulo, JLabel sub, JLabel desc, JLabel dni,
-            JLabel cantidad) {
+            JLabel cantidad, JLabel descuento) {
         titulo.putClientProperty(FLATLAF, "h1");
         titulo.setForeground(Color.BLACK);
         sub.putClientProperty(FLATLAF, "h3");
@@ -99,6 +99,8 @@ public class fontStyles {
         dni.setForeground(Color.BLACK);
         cantidad.putClientProperty(FLATLAF, "h3");
         cantidad.setForeground(Color.BLACK);
+        descuento.putClientProperty(FLATLAF, "h3");
+        descuento.setForeground(Color.BLACK);
     }
 
     public static void estiloRegistrarSeparadoJLabel(JLabel titulo, JLabel sub, JLabel desc, JLabel dni,
@@ -161,11 +163,16 @@ public class fontStyles {
         barra.setForeground(Color.BLACK);
         marca.setForeground(Color.BLACK);
     }
-    
-    public static void estiloBuscarFactura(JLabel titulo, JLabel campo){
+
+    public static void estiloBuscarFactura(JLabel titulo, JLabel campo) {
         titulo.putClientProperty(FLATLAF, "h1");
         campo.putClientProperty(FLATLAF, "h3");
         titulo.setForeground(Color.BLACK);
         campo.setForeground(Color.BLACK);
+    }
+
+    public static void estiloReporteCliente(JLabel titulo) {
+        titulo.putClientProperty(FLATLAF, "h2");
+        titulo.setForeground(Color.BLACK);
     }
 }

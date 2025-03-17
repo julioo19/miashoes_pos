@@ -128,9 +128,9 @@
                           <Group type="102" attributes="0">
                               <Component id="lbl_buscar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txt_buscar" min="-2" pref="144" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btn_buscar" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="txt_buscar" min="-2" pref="190" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btn_buscar" min="-2" pref="107" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -237,6 +237,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btn_buscar">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/b&#xfa;squeda-24.png"/>
                 </Property>

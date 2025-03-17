@@ -117,7 +117,8 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
 
         btn_buscarCalzado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_buscarCalzado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
-        btn_buscarCalzado.setText(" ");
+        btn_buscarCalzado.setText("...");
+        btn_buscarCalzado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_dni.setText("DNI");
 
@@ -125,7 +126,8 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
 
         btn_buscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_buscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
-        btn_buscarCliente.setText(" ");
+        btn_buscarCliente.setText("...");
+        btn_buscarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnl_barrera.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -144,9 +146,18 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
 
         txt_clienteResul.setEnabled(false);
 
-        btn_agregarCarro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_agregarCarro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_agregarCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-30.png"))); // NOI18N
         btn_agregarCarro.setText("Agregar al carrito");
+
+        txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txt_dni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_dni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jSpinner1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jSpinner1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_separarLayout = new javax.swing.GroupLayout(pnl_separar);
         pnl_separar.setLayout(pnl_separarLayout);
@@ -175,7 +186,7 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
                     .addComponent(txt_clienteResul)
                     .addGroup(pnl_separarLayout.createSequentialGroup()
                         .addComponent(btn_agregarCarro)
-                        .addGap(0, 318, Short.MAX_VALUE)))
+                        .addGap(0, 294, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnl_separarLayout.setVerticalGroup(
@@ -226,6 +237,14 @@ public class ifrm_registrarSeparado extends javax.swing.JInternalFrame {
         tbl_carro.setShowHorizontalLines(true);
         tbl_carro.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tbl_carro);
+        if (tbl_carro.getColumnModel().getColumnCount() > 0) {
+            tbl_carro.getColumnModel().getColumn(0).setHeaderValue("C_BARRAS");
+            tbl_carro.getColumnModel().getColumn(1).setHeaderValue("REF");
+            tbl_carro.getColumnModel().getColumn(2).setHeaderValue("CANTIDAD");
+            tbl_carro.getColumnModel().getColumn(3).setHeaderValue("PRECIO");
+            tbl_carro.getColumnModel().getColumn(4).setHeaderValue("DESCUENTO");
+            tbl_carro.getColumnModel().getColumn(5).setHeaderValue("TOTAL");
+        }
 
         btn_eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N

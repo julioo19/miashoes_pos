@@ -41,12 +41,12 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
     public void modificarCliente(Cliente cliente) throws Exception {
         try{
             establecerConexion();
-            PreparedStatement st = this.conectar.prepareStatement(ACTUALIZAR_CLIENTE);
-            st.setString(1, cliente.getDni_id());
-            st.setString(2, cliente.getNombre_cliente());
-            st.setString(3, cliente.getNro_telefono());
-            st.executeUpdate();
-            st.close();
+            try (PreparedStatement st = this.conectar.prepareStatement(ACTUALIZAR_CLIENTE)) {
+                st.setString(1, cliente.getDni_id());
+                st.setString(2, cliente.getNombre_cliente());
+                st.setString(3, cliente.getNro_telefono());
+                st.executeUpdate();
+            }
         }
         catch(SQLException e){
             throw e;

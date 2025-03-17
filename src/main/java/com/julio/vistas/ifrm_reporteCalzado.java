@@ -4,6 +4,8 @@
  */
 package com.julio.vistas;
 
+import com.julio.controladores.C_cargarMarcas;
+import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
 
 /**
@@ -18,10 +20,16 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
     public ifrm_reporteCalzado() {
         initComponents();
         initStyles();
+        initContent();
     }
     
     private void initStyles(){
         fontStyles.estiloReporteCalzado(lbl_titulo,lbl_marca);
+    }
+    
+    private void initContent(){
+       C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
+       cargarMarcas.llenarComboMarca();
     }
 
     /**
@@ -35,20 +43,18 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
 
         pnl_reporteContent = new javax.swing.JPanel();
         lbl_marca = new javax.swing.JLabel();
-        cb_marca = new javax.swing.JComboBox<>();
         btn_excel = new javax.swing.JButton();
         btn_pdf = new javax.swing.JButton();
         pnl_encabezado = new javax.swing.JPanel();
         lbl_titulo = new javax.swing.JLabel();
+        cb_marca = new javax.swing.JComboBox<>();
 
         setClosable(true);
+        setTitle("Reporte de Calzado");
 
         pnl_reporteContent.setBackground(new java.awt.Color(255, 255, 255));
 
         lbl_marca.setText("Seleccionar Marca");
-
-        cb_marca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/excel-80.png"))); // NOI18N
         btn_excel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -57,6 +63,7 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
         btn_pdf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnl_encabezado.setBackground(new java.awt.Color(242, 242, 255));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_titulo.setText("Lista de Calzados completo");
 
@@ -77,6 +84,9 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        cb_marca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cb_marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout pnl_reporteContentLayout = new javax.swing.GroupLayout(pnl_reporteContent);
         pnl_reporteContent.setLayout(pnl_reporteContentLayout);
         pnl_reporteContentLayout.setHorizontalGroup(
@@ -86,15 +96,15 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_reporteContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_reporteContentLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(lbl_marca)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 276, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                        .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_reporteContentLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnl_reporteContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_pdf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_excel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btn_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnl_reporteContentLayout.setVerticalGroup(
@@ -102,15 +112,15 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_reporteContentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnl_encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(pnl_reporteContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_marca))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(btn_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_reporteContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_reporteContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbl_marca)
+                        .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_excel))
+                .addGap(18, 18, 18)
+                .addComponent(btn_pdf)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,7 +141,7 @@ public class ifrm_reporteCalzado extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_excel;
     private javax.swing.JButton btn_pdf;
-    private javax.swing.JComboBox<String> cb_marca;
+    private javax.swing.JComboBox<Marca> cb_marca;
     private javax.swing.JLabel lbl_marca;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JPanel pnl_encabezado;
