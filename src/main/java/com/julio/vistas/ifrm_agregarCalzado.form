@@ -132,22 +132,26 @@
                           <Component id="lbl_color" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_material" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_stock" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_talla" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_marca" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_precio" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btn_guardar" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="txt_barras" max="32767" attributes="0"/>
-                          <Component id="txt_ref" max="32767" attributes="0"/>
-                          <Component id="txt_color" max="32767" attributes="0"/>
-                          <Component id="txt_material" max="32767" attributes="0"/>
-                          <Component id="sp_stock" max="32767" attributes="0"/>
-                          <Component id="cb_marca" pref="163" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="txt_placeholder" min="-2" pref="33" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txt_precio" max="32767" attributes="0"/>
+                              <Component id="txt_precio" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="cb_marca" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btn_guardar" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="txt_barras" pref="163" max="32767" attributes="0"/>
+                              <Component id="txt_ref" max="32767" attributes="0"/>
+                              <Component id="txt_color" max="32767" attributes="0"/>
+                              <Component id="txt_material" max="32767" attributes="0"/>
+                              <Component id="sp_stock" max="32767" attributes="0"/>
+                              <Component id="txt_talla" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -179,21 +183,26 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbl_talla" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_talla" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl_stock" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="sp_stock" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cb_marca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_precio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txt_placeholder" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txt_precio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="96" max="32767" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                       <Component id="btn_guardar" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
@@ -331,7 +340,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_guardarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="lbl_precio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Precio Sugerido"/>
               </Properties>
@@ -353,6 +362,23 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_precio">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_talla">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Talla"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_talla">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>

@@ -4,8 +4,11 @@
  */
 package com.julio.vistas;
 
+import com.julio.dao.DAOCalzadoImple;
+import com.julio.interfaces.DAOCalzado;
 import com.julio.utils.fontStyles;
-import com.julio.utils.guiStyles;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,10 +24,10 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         initStyles();
     }
 
-    
-    private void initStyles(){
+    private void initStyles() {
         fontStyles.estiloBuscarCalzado(lbl_titulo, lbl_buscar);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,17 +77,18 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         pnl_buscarContent.setBackground(new java.awt.Color(255, 255, 255));
         pnl_buscarContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        tbl_busqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tbl_busqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "C_BARRA", "REF", "COLOR", "MATERIAL", "TALLA", "MARCA"
+                "C_BARRA", "REF", "COLOR", "MATERIAL", "TALLA", "STOCK", "MARCA", "PRECIO"
             }
         ));
+        tbl_busqueda.setShowGrid(true);
+        tbl_busqueda.setShowHorizontalLines(true);
+        tbl_busqueda.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tbl_busqueda);
 
         lbl_buscar.setText("Ingrese la referencia");
@@ -97,6 +101,11 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_buscarContentLayout = new javax.swing.GroupLayout(pnl_buscarContent);
         pnl_buscarContent.setLayout(pnl_buscarContentLayout);
@@ -105,7 +114,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
             .addGroup(pnl_buscarContentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
                     .addGroup(pnl_buscarContentLayout.createSequentialGroup()
                         .addComponent(lbl_buscar)
                         .addGap(18, 18, 18)
@@ -163,6 +172,36 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        String ref = txt_buscar.getText().trim();
+        if(!validarCampos(ref)){
+            return;
+        }
+        try {
+            DAOCalzado dao = new DAOCalzadoImple();
+            DefaultTableModel dtm = (DefaultTableModel) tbl_busqueda.getModel();
+            dtm.setRowCount(0);
+            dao.listarCalzado(ref).forEach((u) -> dtm.addRow(new Object[]{u.getCod_barra(), u.getReferencia(), u.getColor(),
+                u.getMaterial(), u.getTalla(), u.getStock(), u.getMarca().getNombre_marca(), u.getPrecio_sugerido()}));
+            if (tbl_busqueda.getRowCount() <= 0){
+                JOptionPane.showMessageDialog(null, "No se encontro la referencia: " + ref, "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
+                txt_buscar.setText("");
+                txt_buscar.requestFocus();
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "No se pudo cargar la tabla con los datos", "Error" ,JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private boolean validarCampos(String ref){
+        if (ref.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una referencia", "Error", JOptionPane.ERROR_MESSAGE);
+            txt_buscar.requestFocus();
+            return false;
+        }
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;

@@ -30,7 +30,8 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     }
 
     private void initStyles() {
-        fontStyles.estilosAgregarCalzado(lbl_titulo, lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
+        fontStyles.estilosAgregarCalzado(lbl_titulo, lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca,
+                lbl_talla, lbl_precio);
     }
 
     private void initContent() {
@@ -65,9 +66,11 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         lbl_marca = new javax.swing.JLabel();
         cb_marca = new javax.swing.JComboBox<>();
         btn_guardar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_precio = new javax.swing.JLabel();
         txt_placeholder = new javax.swing.JTextField();
         txt_precio = new javax.swing.JTextField();
+        lbl_talla = new javax.swing.JLabel();
+        txt_talla = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Agregar Calzado");
@@ -140,7 +143,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Precio Sugerido");
+        lbl_precio.setText("Precio Sugerido");
 
         txt_placeholder.setEditable(false);
         txt_placeholder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,6 +154,11 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
 
         txt_precio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_precio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lbl_talla.setText("Talla");
+
+        txt_talla.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_talla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_agregarContentLayout = new javax.swing.GroupLayout(pnl_agregarContent);
         pnl_agregarContent.setLayout(pnl_agregarContentLayout);
@@ -164,21 +172,24 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
                     .addComponent(lbl_color)
                     .addComponent(lbl_material)
                     .addComponent(lbl_stock)
+                    .addComponent(lbl_talla)
                     .addComponent(lbl_marca)
-                    .addComponent(jLabel1))
+                    .addComponent(lbl_precio))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_barras)
-                    .addComponent(txt_ref)
-                    .addComponent(txt_color)
-                    .addComponent(txt_material)
-                    .addComponent(sp_stock)
-                    .addComponent(cb_marca, 0, 163, Short.MAX_VALUE)
+                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_agregarContentLayout.createSequentialGroup()
                         .addComponent(txt_placeholder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_precio)))
+                        .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_barras, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                        .addComponent(txt_ref)
+                        .addComponent(txt_color)
+                        .addComponent(txt_material)
+                        .addComponent(sp_stock)
+                        .addComponent(txt_talla)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_agregarContentLayout.setVerticalGroup(
@@ -202,18 +213,22 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
                     .addComponent(txt_material, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_talla)
+                    .addComponent(txt_talla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_stock)
                     .addComponent(sp_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_marca)
-                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_marca))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_agregarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lbl_precio)
                     .addComponent(txt_placeholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -263,6 +278,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         String ref = txt_ref.getText().toUpperCase().trim();
         String color = txt_color.getText().toUpperCase().trim();
         String material = txt_material.getText().toUpperCase().trim();
+        int talla = Integer.parseInt(txt_talla.getText());
         int stock = (Integer) sp_stock.getValue();
         int id_marca = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
         BigDecimal precio = new BigDecimal(txt_precio.getText().trim().replace(",", "."));
@@ -283,6 +299,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         calzado.setReferencia(ref);
         calzado.setColor(color);
         calzado.setMaterial(material);
+        calzado.setTalla(talla);
         calzado.setStock(stock);
         marca.setId_marca(id_marca);
         calzado.setMarca(marca);
@@ -349,13 +366,14 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
     private javax.swing.JComboBox<Marca> cb_marca;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_barras;
     private javax.swing.JLabel lbl_color;
     private javax.swing.JLabel lbl_marca;
     private javax.swing.JLabel lbl_material;
+    private javax.swing.JLabel lbl_precio;
     private javax.swing.JLabel lbl_ref;
     private javax.swing.JLabel lbl_stock;
+    private javax.swing.JLabel lbl_talla;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JPanel pnl_agregarCalzado;
     private javax.swing.JPanel pnl_agregarContent;
@@ -367,5 +385,6 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_placeholder;
     private javax.swing.JTextField txt_precio;
     private javax.swing.JTextField txt_ref;
+    private javax.swing.JTextField txt_talla;
     // End of variables declaration//GEN-END:variables
 }

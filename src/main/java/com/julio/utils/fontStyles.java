@@ -16,7 +16,7 @@ public class fontStyles {
     private static final String FLATLAF = "FlatLaf.styleClass";
 
     public static void estilosAgregarCalzado(JLabel titulo, JLabel barras, JLabel ref, JLabel color, JLabel material, JLabel stock,
-            JLabel marca) {
+            JLabel marca, JLabel precio, JLabel talla) {
         titulo.putClientProperty(FLATLAF, "h1");
         ref.putClientProperty(FLATLAF, "h3");
         ref.setForeground(Color.BLACK);
@@ -29,7 +29,12 @@ public class fontStyles {
         stock.putClientProperty(FLATLAF, "h3");
         stock.setForeground(Color.BLACK);
         marca.putClientProperty(FLATLAF, "h3");
+        talla.putClientProperty(FLATLAF, "h3");
+        precio.putClientProperty(FLATLAF, "h3");
         marca.setForeground(Color.BLACK);
+        talla.setForeground(Color.BLACK);
+        precio.setForeground(Color.BLACK);
+        
     }
 
     public static void estiloBuscarCalzado(JLabel titulo, JLabel buscar) {

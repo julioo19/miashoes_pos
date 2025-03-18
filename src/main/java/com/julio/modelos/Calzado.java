@@ -16,9 +16,19 @@ public class Calzado {
     private int stock;
     private String color;
     private String material;
+    private int talla;
     private Marca marca;
     private BigDecimal precio_sugerido;
 
+    public int getTalla() {
+        return talla;
+    }
+
+    public void setTalla(int talla) {
+        this.talla = talla;
+    }
+
+    
     public String getCod_barra() {
         return cod_barra;
     }

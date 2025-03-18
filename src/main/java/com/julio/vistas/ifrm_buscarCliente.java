@@ -4,7 +4,11 @@
  */
 package com.julio.vistas;
 
+import com.julio.dao.DAOClienteImple;
+import com.julio.interfaces.DAOCliente;
 import com.julio.utils.fontStyles;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -82,18 +86,24 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
+        tbl_cliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tbl_cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "DNI", "NOMBRE", "TELEFONO"
             }
         ));
+        tbl_cliente.setShowGrid(true);
+        tbl_cliente.setShowHorizontalLines(true);
+        tbl_cliente.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tbl_cliente);
 
         javax.swing.GroupLayout pnl_buscarContentLayout = new javax.swing.GroupLayout(pnl_buscarContent);
@@ -161,6 +171,36 @@ public class ifrm_buscarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        if(!validarCampos()){
+            return;
+        }
+        String nombre = txt_buscar.getText().trim().toUpperCase();
+        try{
+            DAOCliente dao = new DAOClienteImple();
+            DefaultTableModel dtm = (DefaultTableModel) tbl_cliente.getModel();
+            dtm.setRowCount(0);
+            dao.listarCliente(nombre).forEach((u) -> dtm.addRow(new Object[]{u.getDni_id(), u.getNombre_cliente(),
+                u.getNro_telefono()
+            }));
+            if (tbl_cliente.getRowCount() <= 0 ){
+                JOptionPane.showMessageDialog(null, "No se encontro el cliente: " + nombre, "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
+                txt_buscar.setText("");
+                txt_buscar.requestFocus();
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al cargar los clientes en la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+    
+    private boolean validarCampos(){
+        if (txt_buscar.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe rellenar el campo de busqueda", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;

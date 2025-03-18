@@ -8,7 +8,10 @@ import com.julio.controladores.C_Conexion;
 import com.julio.interfaces.DAOCliente;
 import com.julio.modelos.Cliente;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +20,7 @@ import java.sql.SQLException;
 public class DAOClienteImple extends C_Conexion implements DAOCliente{
     private final String REGISTRAR_CLIENTE = "INSERT INTO cliente(dni_cliente, nombre_cliente, nro_telef) VALUES (?, ?, ?)";
     private final String ACTUALIZAR_CLIENTE = "UPDATE cliente SET dni_cliente = ?, nombre_cliente = ?, nro_telef = ?";
+    private final String BUSCAR_CLIENTE = "SELECT * FROM cliente where nombre_cliente ILIKE ?";
 
     @Override
     public void registarCliente(Cliente cliente) throws Exception {
@@ -54,6 +58,34 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
         finally{
             cerrarConexion();
         }
+    }
+
+    @Override
+    public List<Cliente> listarCliente(String campo) throws Exception {
+        List<Cliente> listaCliente = new ArrayList<>();
+        try{
+            establecerConexion();
+            ResultSet rs;
+            try (PreparedStatement st = conectar.prepareStatement(BUSCAR_CLIENTE)) {
+                st.setString(1, "%" + campo + "%");
+                rs = st.executeQuery();
+                while(rs.next()){
+                    Cliente cliente = new Cliente();
+                    cliente.setDni_id(rs.getString("dni_cliente"));
+                    cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+                    cliente.setNro_telefono(rs.getString("nro_telef"));
+                    listaCliente.add(cliente);
+                }
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            throw e;
+        }
+        finally{
+            cerrarConexion();
+        }
+        return listaCliente;
     }
     
 }

@@ -14,5 +14,5 @@ import java.util.List;
 public interface DAOCalzado {
     public void registrarCalzado (Calzado calzado) throws Exception;
     public void modificarCalzado (Calzado calzado) throws Exception;
-    public List<Calzado> listarCalzado() throws Exception;
+    public List<Calzado> listarCalzado(String campo) throws Exception;
 }

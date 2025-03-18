@@ -5,6 +5,7 @@
 package com.julio.interfaces;
 
 import com.julio.modelos.Cliente;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.julio.modelos.Cliente;
 public interface DAOCliente {
     public void registarCliente(Cliente cliente) throws Exception;
     public void modificarCliente(Cliente cliente) throws Exception;
+    public List<Cliente> listarCliente(String campo) throws Exception;
 }

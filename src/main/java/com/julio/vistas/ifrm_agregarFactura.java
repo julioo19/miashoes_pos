@@ -7,6 +7,7 @@ package com.julio.vistas;
 import com.julio.controladores.C_cargarMarcas;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,12 +23,12 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         initStyles();
         initContent();
     }
-    
-    private void initStyles(){
+
+    private void initStyles() {
         fontStyles.estiloAgregarFactura(lbl_titulo, lbl_factura, lbl_fecha, lbl_barra, lbl_marca);
     }
-    
-    private void initContent(){
+
+    private void initContent() {
         C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
         cargarMarcas.llenarComboMarca();
     }
@@ -119,6 +120,11 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         btn_agregarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-30.png"))); // NOI18N
         btn_agregarTabla.setText("Agregar");
         btn_agregarTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_agregarTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarTablaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_contenidoLayout = new javax.swing.GroupLayout(pnl_contenido);
         pnl_contenido.setLayout(pnl_contenidoLayout);
@@ -281,6 +287,22 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_agregarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarTablaActionPerformed
+        String factura = txt_factura.getText();
+        dc_fechaEmision.setDateFormatString("");
+        String fecha_emision = dc_fechaEmision.getDate().toString();
+        String barra = txt_barra.getText();
+        int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
+        JOptionPane.showMessageDialog(null,
+                "Factura: " + factura + "\n"
+                + "Fecha de Emisión: " + fecha_emision + "\n"
+                + "Código de Barra: " + barra + "\n"
+                + "ID Marca: " + marca_id,
+                "Información de Factura",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_btn_agregarTablaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
