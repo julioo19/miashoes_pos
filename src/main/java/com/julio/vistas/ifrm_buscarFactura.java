@@ -4,7 +4,11 @@
  */
 package com.julio.vistas;
 
+import com.julio.dao.DAOFacturacionImple;
+import com.julio.interfaces.DAOFacturacion;
 import com.julio.utils.fontStyles;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -84,6 +88,11 @@ public class ifrm_buscarFactura extends javax.swing.JInternalFrame {
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_contentLayout = new javax.swing.GroupLayout(pnl_content);
         pnl_content.setLayout(pnl_contentLayout);
@@ -117,15 +126,16 @@ public class ifrm_buscarFactura extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tbl_facturaResul.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tbl_facturaResul.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "N° FACTURA", "MARCA", "FECHA"
             }
         ));
         jScrollPane1.setViewportView(tbl_facturaResul);
@@ -160,6 +170,20 @@ public class ifrm_buscarFactura extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        try{
+            DAOFacturacion dao = new DAOFacturacionImple();
+            DefaultTableModel dtm = (DefaultTableModel) tbl_facturaResul.getModel();
+            dtm.setRowCount(0);
+            dao.listarFactura(txt_campo.getText()).forEach((u) -> dtm.addRow(new Object[]{ u.getNro_factura(), 
+                u.getMarca().getId_marca(), u.getFecha_emision()}));
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "No se pudo cargar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

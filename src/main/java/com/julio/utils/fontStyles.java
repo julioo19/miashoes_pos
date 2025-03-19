@@ -155,18 +155,20 @@ public class fontStyles {
         soporte.putClientProperty(FLATLAF, "h3");
     }
 
-    public static void estiloAgregarFactura(JLabel titulo, JLabel nro, JLabel fecha, JLabel barra, JLabel marca) {
+    public static void estiloAgregarFactura(JLabel titulo, JLabel nro, JLabel fecha, JLabel barra, JLabel cantidad, JLabel marca) {
         titulo.putClientProperty(FLATLAF, "h1");
         nro.putClientProperty(FLATLAF, "h3");
         fecha.putClientProperty(FLATLAF, "h3");
         barra.putClientProperty(FLATLAF, "h3");
         marca.putClientProperty(FLATLAF, "h3");
+        cantidad.putClientProperty(FLATLAF, "h3");
 
         titulo.setForeground(Color.BLACK);
         nro.setForeground(Color.BLACK);
         fecha.setForeground(Color.BLACK);
         barra.setForeground(Color.BLACK);
         marca.setForeground(Color.BLACK);
+        cantidad.setForeground(Color.BLACK);
     }
 
     public static void estiloBuscarFactura(JLabel titulo, JLabel campo) {

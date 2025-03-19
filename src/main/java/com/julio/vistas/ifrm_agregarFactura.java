@@ -5,9 +5,18 @@
 package com.julio.vistas;
 
 import com.julio.controladores.C_cargarMarcas;
+import com.julio.dao.DAOFacturacionImple;
+import com.julio.interfaces.DAOFacturacion;
+import com.julio.modelos.Facturacion;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,12 +34,15 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     }
 
     private void initStyles() {
-        fontStyles.estiloAgregarFactura(lbl_titulo, lbl_factura, lbl_fecha, lbl_barra, lbl_marca);
+        fontStyles.estiloAgregarFactura(lbl_titulo, lbl_factura, lbl_fecha, lbl_barra, lbl_cantidad, lbl_marca);
     }
 
     private void initContent() {
         C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
         cargarMarcas.llenarComboMarca();
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) dc_fechaEmision.getDateEditor();
+        editor.setEditable(false);
+        dc_fechaEmision.setMaxSelectableDate(new Date());
     }
 
     /**
@@ -56,12 +68,16 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         txt_factura = new javax.swing.JTextField();
         cb_marca = new javax.swing.JComboBox<>();
         btn_agregarTabla = new javax.swing.JButton();
+        lbl_cantidad = new javax.swing.JLabel();
+        sp_cantidad = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_detalleFactura = new javax.swing.JTable();
         pnl_pie = new javax.swing.JPanel();
         btn_guardar = new javax.swing.JButton();
-        pnl_pie2 = new javax.swing.JPanel();
-        btn_guardar2 = new javax.swing.JButton();
+        pnl_botonBorrar = new javax.swing.JPanel();
+        btn_borrarSeleccion = new javax.swing.JButton();
+        pnl_calzadoDesc = new javax.swing.JPanel();
+        txt_calzadoDesc = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Registrar Factura");
@@ -107,7 +123,9 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
         btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        dc_fechaEmision.setBackground(new java.awt.Color(255, 255, 153));
         dc_fechaEmision.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        dc_fechaEmision.setDateFormatString("yyyy-MM-dd");
         dc_fechaEmision.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txt_factura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -126,6 +144,11 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
             }
         });
 
+        lbl_cantidad.setText("Cantidad");
+
+        sp_cantidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sp_cantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout pnl_contenidoLayout = new javax.swing.GroupLayout(pnl_contenido);
         pnl_contenido.setLayout(pnl_contenidoLayout);
         pnl_contenidoLayout.setHorizontalGroup(
@@ -135,20 +158,28 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                 .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_agregarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnl_contenidoLayout.createSequentialGroup()
-                        .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_barra)
-                            .addComponent(lbl_fecha)
-                            .addComponent(lbl_marca)
-                            .addComponent(lbl_factura))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_factura)
-                            .addComponent(dc_fechaEmision, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                            .addComponent(txt_barra)
-                            .addComponent(cb_marca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(pnl_contenidoLayout.createSequentialGroup()
+                                .addComponent(lbl_cantidad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_contenidoLayout.createSequentialGroup()
+                                .addComponent(lbl_marca)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_contenidoLayout.createSequentialGroup()
+                                .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_barra)
+                                    .addComponent(lbl_fecha)
+                                    .addComponent(lbl_factura))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txt_factura, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dc_fechaEmision, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(txt_barra, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscarRef)))
-                .addGap(50, 50, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         pnl_contenidoLayout.setVerticalGroup(
             pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,24 +198,26 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                     .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbl_barra)
                         .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
-                .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_marca)
-                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
+                .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_marca, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_cantidad))
+                .addGap(119, 119, 119)
                 .addComponent(btn_agregarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
+        tbl_detalleFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tbl_detalleFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "N° FACTURA", "REF", "COLOR", "MATERIAL", "FECHA"
+                "N° FACTURA", "C_BARRA", "CANTIDAD", "FECHA"
             }
         ));
         jScrollPane1.setViewportView(tbl_detalleFactura);
@@ -195,6 +228,11 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/save-30.png"))); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_pieLayout = new javax.swing.GroupLayout(pnl_pie);
         pnl_pie.setLayout(pnl_pieLayout);
@@ -213,28 +251,56 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        pnl_pie2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnl_botonBorrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_guardar2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_guardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N
-        btn_guardar2.setText("Borrar seleccion");
-        btn_guardar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_borrarSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_borrarSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N
+        btn_borrarSeleccion.setText("Borrar seleccion");
+        btn_borrarSeleccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_borrarSeleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_borrarSeleccionActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout pnl_pie2Layout = new javax.swing.GroupLayout(pnl_pie2);
-        pnl_pie2.setLayout(pnl_pie2Layout);
-        pnl_pie2Layout.setHorizontalGroup(
-            pnl_pie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_pie2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_botonBorrarLayout = new javax.swing.GroupLayout(pnl_botonBorrar);
+        pnl_botonBorrar.setLayout(pnl_botonBorrarLayout);
+        pnl_botonBorrarLayout.setHorizontalGroup(
+            pnl_botonBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_botonBorrarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_guardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_borrarSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        pnl_pie2Layout.setVerticalGroup(
-            pnl_pie2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_pie2Layout.createSequentialGroup()
+        pnl_botonBorrarLayout.setVerticalGroup(
+            pnl_botonBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_botonBorrarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_guardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_borrarSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+        );
+
+        pnl_calzadoDesc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txt_calzadoDesc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_calzadoDesc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_calzadoDesc.setEnabled(false);
+
+        javax.swing.GroupLayout pnl_calzadoDescLayout = new javax.swing.GroupLayout(pnl_calzadoDesc);
+        pnl_calzadoDesc.setLayout(pnl_calzadoDescLayout);
+        pnl_calzadoDescLayout.setHorizontalGroup(
+            pnl_calzadoDescLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_calzadoDescLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_calzadoDesc)
+                .addContainerGap())
+        );
+        pnl_calzadoDescLayout.setVerticalGroup(
+            pnl_calzadoDescLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_calzadoDescLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(txt_calzadoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_registrarSeparadoLayout = new javax.swing.GroupLayout(pnl_registrarSeparado);
@@ -250,10 +316,11 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnl_registrarSeparadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnl_registrarSeparadoLayout.createSequentialGroup()
-                                .addComponent(pnl_pie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pnl_botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(pnl_pie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                            .addComponent(pnl_calzadoDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         pnl_registrarSeparadoLayout.setVerticalGroup(
@@ -264,12 +331,15 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_registrarSeparadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_registrarSeparadoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(pnl_calzadoDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
                         .addGroup(pnl_registrarSeparadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnl_pie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnl_pie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 46, Short.MAX_VALUE))
+                            .addComponent(pnl_botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 44, Short.MAX_VALUE))
                     .addComponent(pnl_contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -290,41 +360,103 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
 
     private void btn_agregarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarTablaActionPerformed
         String factura = txt_factura.getText();
-        dc_fechaEmision.setDateFormatString("");
-        String fecha_emision = dc_fechaEmision.getDate().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha_emision = sdf.format(dc_fechaEmision.getDate());
         String barra = txt_barra.getText();
-        int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
-        JOptionPane.showMessageDialog(null,
-                "Factura: " + factura + "\n"
-                + "Fecha de Emisión: " + fecha_emision + "\n"
-                + "Código de Barra: " + barra + "\n"
-                + "ID Marca: " + marca_id,
-                "Información de Factura",
-                JOptionPane.INFORMATION_MESSAGE);
-
+        int cantidad = (Integer) sp_cantidad.getValue();
+        //int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
+        Object[] row = {factura, barra, cantidad, fecha_emision};
+        DefaultTableModel dtm = (DefaultTableModel) tbl_detalleFactura.getModel();
+        dtm.addRow(row);
+        txt_barra.requestFocus();
     }//GEN-LAST:event_btn_agregarTablaActionPerformed
 
+    private void btn_borrarSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarSeleccionActionPerformed
+        if (tbl_detalleFactura.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar 1 o mas filas", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int numRows = tbl_detalleFactura.getSelectedRows().length;
+        DefaultTableModel dtm = (DefaultTableModel) tbl_detalleFactura.getModel();
+        //String factura = txt_factura.getText();
+        //De momento funciona piola este eliminador de filas
+        for (int i = 0; i < numRows; i++) {
+            //System.out.println(tbl_detalleFactura.getValueAt(i, 0));
+            dtm.removeRow(tbl_detalleFactura.getSelectedRow());
+        }
+    }//GEN-LAST:event_btn_borrarSeleccionActionPerformed
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        guardarFacturacion();
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private boolean vaildarCampos() {
+        if (txt_factura.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe insertar una factura", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (txt_barra.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe insertar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        Date fecha = dc_fechaEmision.getDate();
+        if (fecha == null) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha en la cajita de la derecha", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return true;
+    }
+    
+    private void guardarFacturacion(){
+        Date fecha_emision = dc_fechaEmision.getDate();
+        long time = fecha_emision.getTime();
+        java.sql.Date fecha_final = new java.sql.Date(time);
+        String factura = txt_factura.getText().trim().toUpperCase();
+        int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
+        
+        Facturacion factos = new Facturacion();
+        Marca marca = new Marca();
+        factos.setNro_factura(factura);
+        marca.setId_marca(marca_id);
+        factos.setMarca(marca);
+        factos.setFecha_emision(fecha_final);
+        try {
+            DAOFacturacion dao = new DAOFacturacionImple();
+            dao.registrarFacturacion(factos);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo enviar a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+    private void guardarDetalleFacturacion(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregarTabla;
+    private javax.swing.JButton btn_borrarSeleccion;
     private javax.swing.JButton btn_buscarRef;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JButton btn_guardar2;
     private javax.swing.JComboBox<Marca> cb_marca;
     private com.toedter.calendar.JDateChooser dc_fechaEmision;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_barra;
+    private javax.swing.JLabel lbl_cantidad;
     private javax.swing.JLabel lbl_factura;
     private javax.swing.JLabel lbl_fecha;
     private javax.swing.JLabel lbl_marca;
     private javax.swing.JLabel lbl_titulo;
+    private javax.swing.JPanel pnl_botonBorrar;
+    private javax.swing.JPanel pnl_calzadoDesc;
     private javax.swing.JPanel pnl_contenido;
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_pie;
-    private javax.swing.JPanel pnl_pie2;
     private javax.swing.JPanel pnl_registrarSeparado;
+    private javax.swing.JSpinner sp_cantidad;
     private javax.swing.JTable tbl_detalleFactura;
     private javax.swing.JTextField txt_barra;
+    private javax.swing.JTextField txt_calzadoDesc;
     private javax.swing.JTextField txt_factura;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,8 +7,12 @@ package com.julio.dao;
 import com.julio.controladores.C_Conexion;
 import com.julio.interfaces.DAOFacturacion;
 import com.julio.modelos.Facturacion;
+import com.julio.modelos.Marca;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,6 +20,7 @@ import java.sql.SQLException;
  */
 public class DAOFacturacionImple extends C_Conexion implements DAOFacturacion {
     private final String REGISTRAR_FACTURACION = "INSERT INTO facturacion (id_factura, marca_id, fecha_emision) VALUES (?, ?, ?)";
+    private final String BUSQUEDA_FACTURACION = "SELECT * FROM facturacion where id_factura = ?";
     
     @Override
     public void registrarFacturacion(Facturacion facturacion) throws Exception {
@@ -34,6 +39,35 @@ public class DAOFacturacionImple extends C_Conexion implements DAOFacturacion {
         finally{
             cerrarConexion();
         }
+    }
+
+    @Override
+    public List<Facturacion> listarFactura(String campo) throws Exception {
+        List<Facturacion> listaFactura = new ArrayList<>();
+        try{
+            this.establecerConexion();
+            ResultSet rs;
+            try (PreparedStatement st = this.conectar.prepareStatement(BUSQUEDA_FACTURACION)) {
+                st.setString(1, campo);
+                rs = st.executeQuery();
+                while(rs.next()){
+                    Facturacion factura = new Facturacion();
+                    factura.setNro_factura(rs.getString("id_factura"));
+                    factura.setMarca(new Marca());
+                    factura.getMarca().setId_marca(rs.getInt("marca_id"));
+                    factura.setFecha_emision(rs.getDate("fecha_emision"));
+                    listaFactura.add(factura);
+                }
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            throw e;
+        }
+        finally{
+            cerrarConexion();
+        }
+        return listaFactura;
     }
     
 }

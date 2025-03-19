@@ -5,6 +5,7 @@
 package com.julio.interfaces;
 
 import com.julio.modelos.Facturacion;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,5 @@ import com.julio.modelos.Facturacion;
  */
 public interface DAOFacturacion {
     public void registrarFacturacion(Facturacion facturacion) throws Exception;
+    public List<Facturacion> listarFactura(String campo) throws Exception;
 }
