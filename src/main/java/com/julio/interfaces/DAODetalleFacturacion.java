@@ -5,6 +5,7 @@
 package com.julio.interfaces;
 
 import com.julio.modelos.DetalleFacturacion;
+import java.util.List;
 import javax.swing.JTable;
 
 /**
@@ -12,5 +13,5 @@ import javax.swing.JTable;
  * @author ACER
  */
 public interface DAODetalleFacturacion {
-    public void registrarDetalleFacturacion(DetalleFacturacion d_facturacion, JTable tbl_detalle) throws Exception;
+    public void registrarDetalleFacturacion(List<DetalleFacturacion> detalles) throws Exception;
 }

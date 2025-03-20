@@ -7,6 +7,7 @@ package com.julio.vistas;
 import com.julio.dao.DAOCalzadoImple;
 import com.julio.interfaces.DAOCalzado;
 import com.julio.utils.fontStyles;
+import com.julio.utils.guiStyles;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -174,28 +175,38 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         String ref = txt_buscar.getText().trim();
-        if(!validarCampos(ref)){
+        if (!validarCampos(ref)) {
             return;
         }
+        llenarTablaRef(ref);
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void llenarTablaRef(String campo) {
         try {
             DAOCalzado dao = new DAOCalzadoImple();
             DefaultTableModel dtm = (DefaultTableModel) tbl_busqueda.getModel();
             dtm.setRowCount(0);
-            dao.listarCalzado(ref).forEach((u) -> dtm.addRow(new Object[]{u.getCod_barra(), u.getReferencia(), u.getColor(),
+            dao.listarCalzado(campo).forEach((u) -> dtm.addRow(new Object[]{u.getCod_barra(), u.getReferencia(), u.getColor(),
                 u.getMaterial(), u.getTalla(), u.getStock(), u.getMarca().getNombre_marca(), u.getPrecio_sugerido()}));
-            if (tbl_busqueda.getRowCount() <= 0){
-                JOptionPane.showMessageDialog(null, "No se encontro la referencia: " + ref, "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
-                txt_buscar.setText("");
-                txt_buscar.requestFocus();
+            if (tbl_busqueda.getRowCount() <= 0) {
+                int reply = JOptionPane.showConfirmDialog(null, "No se encontro la referencia: " + campo + "\nDesea agregar este calzado?", "INFORMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado();
+                    guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
+                } else {
+                    txt_buscar.setText("");
+                    txt_buscar.requestFocus();
+                }
+
             }
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "No se pudo cargar la tabla con los datos", "Error" ,JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo cargar la tabla con los datos", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btn_buscarActionPerformed
+    }
 
-    private boolean validarCampos(String ref){
-        if (ref.isEmpty()){
+    private boolean validarCampos(String ref) {
+        if (ref.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar una referencia", "Error", JOptionPane.ERROR_MESSAGE);
             txt_buscar.requestFocus();
             return false;

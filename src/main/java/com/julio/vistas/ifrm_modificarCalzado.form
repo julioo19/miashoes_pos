@@ -133,7 +133,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txt_barra" min="-2" pref="195" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_abrirBusqueda" min="-2" pref="197" max="-2" attributes="0"/>
+                      <Component id="btn_buscar" min="-2" pref="48" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -145,7 +145,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="txt_barra" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_abrirBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lbl_barra" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
@@ -177,7 +177,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_abrirBusqueda">
+            <Component class="javax.swing.JButton" name="btn_buscar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
@@ -185,13 +185,15 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/b&#xfa;squeda-24.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar por referencia"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder/>
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_buscarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -5,8 +5,13 @@
 package com.julio.vistas;
 
 import com.julio.controladores.C_cargarMarcas;
+import com.julio.dao.DAOCalzadoImple;
+import com.julio.interfaces.DAOCalzado;
+import com.julio.modelos.Calzado;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
@@ -23,14 +28,16 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         initContent();
     }
 
-    private void initStyles(){
+    private void initStyles() {
         fontStyles.estiloModificarCalzado(lbl_titulo, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
     }
-    
-    private void initContent(){
+
+    private void initContent() {
         C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
         cargarMarcas.llenarComboMarca();
+        ((JSpinner.DefaultEditor) sp_stock.getEditor()).getTextField().setEditable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +53,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         pnl_busqueda = new javax.swing.JPanel();
         lbl_barra = new javax.swing.JLabel();
         txt_barra = new javax.swing.JTextField();
-        btn_abrirBusqueda = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
         pnl_modificarContent = new javax.swing.JPanel();
         lbl_ref = new javax.swing.JLabel();
         txt_ref = new javax.swing.JTextField();
@@ -96,10 +103,14 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_abrirBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_abrirBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
-        btn_abrirBusqueda.setText("Buscar por referencia");
-        btn_abrirBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
+        btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_busquedaLayout = new javax.swing.GroupLayout(pnl_busqueda);
         pnl_busqueda.setLayout(pnl_busquedaLayout);
@@ -111,7 +122,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_abrirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_busquedaLayout.setVerticalGroup(
@@ -121,7 +132,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addGroup(pnl_busquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_busquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_abrirBusqueda))
+                        .addComponent(btn_buscar))
                     .addComponent(lbl_barra, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
@@ -261,10 +272,34 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        String barra = txt_barra.getText().trim().toUpperCase();
+        if (barra.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            DAOCalzado dao = new DAOCalzadoImple();
+            Calzado barra_obtenida = dao.getCalzadoId(barra);
+            if(barra_obtenida != null){
+                txt_ref.setText(barra_obtenida.getReferencia());
+                txt_color.setText(barra_obtenida.getColor());
+                txt_material.setText(barra_obtenida.getMaterial());
+                int stock = barra_obtenida.getStock();
+                sp_stock.setValue((Integer) stock);
+            }
+            else{
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo buscar el codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_abrirBusqueda;
     private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JComboBox<Marca> cb_marca;
     private javax.swing.JLabel lbl_barra;
     private javax.swing.JLabel lbl_color;

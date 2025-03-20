@@ -18,7 +18,8 @@ import java.util.List;
 public class DAOCalzadoImple extends C_Conexion implements DAOCalzado{
     private final String REGISTRAR_CALZADO = "INSERT INTO calzado(codigo_barra, referencia, color, material, talla, stock, marca_id, precio_sugerido) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String ACTUALIZAR_CALZADO = "UPDATE calzado SET referencia = ?, color = ?, material = ?, talla = ?, stock = ?, marca_id = ?, precio_sugerido = ? WHERE codigo_barra = ?";
-    private final String BUSCAR_CALZADO = "SELECT * FROM buscar_calzado(?)";
+    private final String BUSCAR_CALZADO_REFERENCIA = "SELECT * FROM buscar_calzado(?)";
+    private final String BUSCAR_CALZADO_BARRA = "SELECT codigo_barra, referencia, color, material, talla, stock, marca_id, precio_sugerido FROM calzado WHERE codigo_barra = ?";
 
     @Override
     public void registrarCalzado(Calzado calzado) throws Exception {
@@ -72,7 +73,7 @@ public class DAOCalzadoImple extends C_Conexion implements DAOCalzado{
         try{
             this.establecerConexion();
             ResultSet rs;
-            try (PreparedStatement st = this.conectar.prepareStatement(BUSCAR_CALZADO)) {
+            try (PreparedStatement st = this.conectar.prepareStatement(BUSCAR_CALZADO_REFERENCIA)) {
                 st.setString(1, campo);
                 rs = st.executeQuery();
                 while(rs.next()){
@@ -98,6 +99,39 @@ public class DAOCalzadoImple extends C_Conexion implements DAOCalzado{
             cerrarConexion();
         }
         return listaCalzado;
+    }
+    
+
+    @Override
+    public Calzado getCalzadoId(String barra) throws Exception {
+        Calzado calzado = new Calzado();
+        try{
+            this.establecerConexion();
+            ResultSet rs;
+            try (PreparedStatement st = this.conectar.prepareStatement(BUSCAR_CALZADO_BARRA)) {
+                st.setString(1, barra);
+                rs = st.executeQuery();
+                while(rs.next()){
+                    calzado.setCod_barra(rs.getString("codigo_barra"));
+                    calzado.setReferencia(rs.getString("referencia"));
+                    calzado.setColor(rs.getString("color"));
+                    calzado.setMaterial(rs.getString("material"));
+                    calzado.setTalla(rs.getInt("talla"));
+                    calzado.setStock(rs.getInt("stock"));
+                    calzado.setMarca(new Marca());
+                    calzado.getMarca().setId_marca(rs.getInt("marca_id"));
+                    calzado.setPrecio_sugerido(rs.getBigDecimal("precio_sugerido"));
+                }
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            throw e;
+        }
+        finally{
+            this.cerrarConexion();
+        }
+        return calzado;
     }
 
     

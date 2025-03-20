@@ -5,8 +5,12 @@
 package com.julio.vistas;
 
 import com.julio.controladores.C_cargarMarcas;
+import com.julio.dao.DAODetalleFacturacionImple;
 import com.julio.dao.DAOFacturacionImple;
+import com.julio.interfaces.DAODetalleFacturacion;
 import com.julio.interfaces.DAOFacturacion;
+import com.julio.modelos.Calzado;
+import com.julio.modelos.DetalleFacturacion;
 import com.julio.modelos.Facturacion;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
@@ -14,8 +18,11 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,6 +50,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         JTextFieldDateEditor editor = (JTextFieldDateEditor) dc_fechaEmision.getDateEditor();
         editor.setEditable(false);
         dc_fechaEmision.setMaxSelectableDate(new Date());
+        ((JSpinner.DefaultEditor) sp_cantidad.getEditor()).getTextField().setEditable(false);
     }
 
     /**
@@ -178,8 +186,8 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
                                     .addComponent(dc_fechaEmision, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                                     .addComponent(txt_barra, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_buscarRef)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addComponent(btn_buscarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         pnl_contenidoLayout.setVerticalGroup(
             pnl_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +225,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "N° FACTURA", "C_BARRA", "CANTIDAD", "FECHA"
+                "N° FACTURA", "C_BARRA", "CANTIDAD"
             }
         ));
         jScrollPane1.setViewportView(tbl_detalleFactura);
@@ -359,6 +367,17 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarTablaActionPerformed
+        if (!validarCampos()) {
+            return;
+        }
+        agregarFilas();
+        txt_factura.setEnabled(false);
+        dc_fechaEmision.setEnabled(false);
+        cb_marca.setEnabled(false);
+        txt_barra.requestFocus();
+    }//GEN-LAST:event_btn_agregarTablaActionPerformed
+
+    private void agregarFilas() {
         String factura = txt_factura.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha_emision = sdf.format(dc_fechaEmision.getDate());
@@ -368,8 +387,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         Object[] row = {factura, barra, cantidad, fecha_emision};
         DefaultTableModel dtm = (DefaultTableModel) tbl_detalleFactura.getModel();
         dtm.addRow(row);
-        txt_barra.requestFocus();
-    }//GEN-LAST:event_btn_agregarTablaActionPerformed
+    }
 
     private void btn_borrarSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarSeleccionActionPerformed
         if (tbl_detalleFactura.getSelectionModel().isSelectionEmpty()) {
@@ -378,19 +396,33 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         }
         int numRows = tbl_detalleFactura.getSelectedRows().length;
         DefaultTableModel dtm = (DefaultTableModel) tbl_detalleFactura.getModel();
-        //String factura = txt_factura.getText();
         //De momento funciona piola este eliminador de filas
         for (int i = 0; i < numRows; i++) {
-            //System.out.println(tbl_detalleFactura.getValueAt(i, 0));
             dtm.removeRow(tbl_detalleFactura.getSelectedRow());
+        }
+        int rows = tbl_detalleFactura.getRowCount();
+        if (rows == 0) {
+            setFields(true);
         }
     }//GEN-LAST:event_btn_borrarSeleccionActionPerformed
 
+    private void setFields(boolean flag) {
+        txt_factura.setEnabled(flag);
+        dc_fechaEmision.setEnabled(flag);
+        cb_marca.setEnabled(flag);
+    }
+    
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        int numRow = tbl_detalleFactura.getRowCount();
+        if (numRow == 0) {
+            JOptionPane.showMessageDialog(null, "Debe agregar datos a la tabla, rellene los campos y clickee 'Agregar'", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         guardarFacturacion();
+        guardarDetalleFacturacion();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    private boolean vaildarCampos() {
+    private boolean validarCampos() {
         if (txt_factura.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe insertar una factura", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -403,20 +435,21 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         if (fecha == null) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha en la cajita de la derecha", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
         return true;
     }
-    
-    private void guardarFacturacion(){
+
+    private void guardarFacturacion() {
         Date fecha_emision = dc_fechaEmision.getDate();
         long time = fecha_emision.getTime();
         java.sql.Date fecha_final = new java.sql.Date(time);
-        String factura = txt_factura.getText().trim().toUpperCase();
+        //String factura = txt_factura.getText().trim().toUpperCase();
+        String factura = (String) tbl_detalleFactura.getValueAt(0, 0);
+        String factura_final = factura.trim().toUpperCase();
         int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
-        
+
         Facturacion factos = new Facturacion();
         Marca marca = new Marca();
-        factos.setNro_factura(factura);
+        factos.setNro_factura(factura_final);
         marca.setId_marca(marca_id);
         factos.setMarca(marca);
         factos.setFecha_emision(fecha_final);
@@ -428,9 +461,37 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-    
-    private void guardarDetalleFacturacion(){
-        
+
+    private void guardarDetalleFacturacion() {
+        List<DetalleFacturacion> detalles = obtenerDetallesTabla();
+        try {
+            DAODetalleFacturacion dao = new DAODetalleFacturacionImple();
+            dao.registrarDetalleFacturacion(detalles);
+            JOptionPane.showMessageDialog(null, "Factura y detalles guardados correctamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar detalles: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    private List<DetalleFacturacion> obtenerDetallesTabla() {
+        List<DetalleFacturacion> listaDetalles = new ArrayList<>();
+        int rowCount = tbl_detalleFactura.getRowCount();
+        for (int row = 0; row < rowCount; row++) {
+            DetalleFacturacion d_facto = new DetalleFacturacion();
+            Facturacion facturacion = new Facturacion();
+            facturacion.setNro_factura((String) tbl_detalleFactura.getValueAt(row, 0));
+
+            Calzado calzado = new Calzado();
+            calzado.setCod_barra((String) tbl_detalleFactura.getValueAt(row, 1));
+
+            d_facto.setFactura(facturacion);
+            d_facto.setCalzado(calzado);
+            d_facto.setCantidad((Integer) tbl_detalleFactura.getValueAt(0, 2));
+            listaDetalles.add(d_facto);
+        }
+        return listaDetalles;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

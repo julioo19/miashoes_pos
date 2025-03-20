@@ -15,4 +15,5 @@ public interface DAOCalzado {
     public void registrarCalzado (Calzado calzado) throws Exception;
     public void modificarCalzado (Calzado calzado) throws Exception;
     public List<Calzado> listarCalzado(String campo) throws Exception;
+    public Calzado getCalzadoId (String barra) throws Exception;
 }

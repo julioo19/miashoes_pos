@@ -21,7 +21,7 @@ public class guiStyles {
         aparecerInternalVentana(frame);
     }
 
-    private static void aparecerInternalVentana(JInternalFrame frame) {
+    public static void aparecerInternalVentana(JInternalFrame frame) {
         frame.setVisible(true);
     }
 }

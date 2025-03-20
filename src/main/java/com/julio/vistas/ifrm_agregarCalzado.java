@@ -282,17 +282,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         int stock = (Integer) sp_stock.getValue();
         int id_marca = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
         BigDecimal precio = new BigDecimal(txt_precio.getText().trim().replace(",", "."));
-        /*/
-        JOptionPane.showMessageDialog(null,
-                "Código de Barra = " + cod_barra + "\n"
-                + "Referencia = " + ref + "\n"
-                + "Color = " + color + "\n"
-                + "Material = " + material + "\n"
-                + "Stock = " + stock + "\n"
-                + "ID Marca = " + id_marca + "\n"
-                + "Precio: " + precio,
-                "Datos Ingresados", JOptionPane.INFORMATION_MESSAGE);
-/*/
+
         Calzado calzado = new Calzado();
         Marca marca = new Marca();
         calzado.setCod_barra(cod_barra);

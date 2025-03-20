@@ -9,42 +9,42 @@ import com.julio.interfaces.DAODetalleFacturacion;
 import com.julio.modelos.DetalleFacturacion;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.swing.JTable;
+import java.util.List;
 
 /**
  *
  * @author ACER
  */
 public class DAODetalleFacturacionImple extends C_Conexion implements DAODetalleFacturacion {
-
     private final String REGISTRAR_DETALLE_FACTURA = "INSERT INTO detallefacturacion (factura_id, calzado_id, cantidad) VALUES (?, ?, ?)";
 
     @Override
-    public void registrarDetalleFacturacion(DetalleFacturacion d_facturacion, JTable tbl_detalle) throws Exception {
+    public void registrarDetalleFacturacion(List<DetalleFacturacion> detalles) throws Exception {
         try {
+            this.establecerConexion();
             final int batchSize = 12;
             int count = 0;
-            int rowCount = tbl_detalle.getRowCount();
-            try (PreparedStatement st = this.conectar.prepareStatement(REGISTRAR_DETALLE_FACTURA)) {
-                for (int row = 0; row < rowCount; row++) {
+            try (PreparedStatement st = conectar.prepareStatement(REGISTRAR_DETALLE_FACTURA)) {
+                for (DetalleFacturacion detalle : detalles) {
+                    /*/esto tiene que ir en el boton guardar
                     String nro_facto = (String) tbl_detalle.getValueAt(row, 0);
                     String calzado = (String) tbl_detalle.getValueAt(row, 1);
-                    int cantidad = (Integer) tbl_detalle.getValueAt(row, 0);
-                    st.setString(1, nro_facto);
-                    st.setString(2, calzado);
-                    st.setInt(3, cantidad);
+                    int cantidad = (Integer) tbl_detalle.getValueAt(row, 2);
+                    /*Hasta int cantidad*/
+                    st.setString(1, detalle.getFactura().getNro_factura());
+                    st.setString(2, detalle.getCalzado().getCod_barra());
+                    st.setInt(3, detalle.getCantidad());
                     st.addBatch();
                     if (++count % batchSize == 0) {
                         st.executeBatch();
-                        st.clearBatch();
-                        count = 0;
+                        st.clearBatch(); //limpiamos despues de ejecucion
+                        count = 0; //reseteo de conteo
                     }
-
                 }
+                //no duplicados
                 if (count >= 0) {
                     st.executeBatch();
                 }
-
             }
         } catch (SQLException e) {
             throw e;
@@ -52,5 +52,4 @@ public class DAODetalleFacturacionImple extends C_Conexion implements DAODetalle
             cerrarConexion();
         }
     }
-
 }
