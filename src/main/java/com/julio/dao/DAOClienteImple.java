@@ -20,7 +20,8 @@ import java.util.List;
 public class DAOClienteImple extends C_Conexion implements DAOCliente{
     private final String REGISTRAR_CLIENTE = "INSERT INTO cliente(dni_cliente, nombre_cliente, nro_telef) VALUES (?, ?, ?)";
     private final String ACTUALIZAR_CLIENTE = "UPDATE cliente SET dni_cliente = ?, nombre_cliente = ?, nro_telef = ?";
-    private final String BUSCAR_CLIENTE = "SELECT * FROM cliente where nombre_cliente ILIKE ?";
+    private final String BUSCAR_CLIENTE_NOMBRE = "SELECT * FROM cliente where nombre_cliente ILIKE ?";
+    private final String BUSCAR_CLIENTE_DNI = "SELECT * FROM cliente where dni_cliente = ?";
 
     @Override
     public void registarCliente(Cliente cliente) throws Exception {
@@ -66,7 +67,7 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
         try{
             establecerConexion();
             ResultSet rs;
-            try (PreparedStatement st = conectar.prepareStatement(BUSCAR_CLIENTE)) {
+            try (PreparedStatement st = conectar.prepareStatement(BUSCAR_CLIENTE_NOMBRE)) {
                 st.setString(1, "%" + campo + "%");
                 rs = st.executeQuery();
                 while(rs.next()){
@@ -86,6 +87,32 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
             cerrarConexion();
         }
         return listaCliente;
+    }
+
+    @Override
+    public Cliente getClienteId(String dni) throws Exception {
+        Cliente cliente = new Cliente();
+        try{
+            this.establecerConexion();
+            ResultSet rs;
+            try (PreparedStatement st = this.conectar.prepareStatement(BUSCAR_CLIENTE_DNI)) {
+                st.setString(1, dni);
+                rs = st.executeQuery();
+                while(rs.next()){
+                    cliente.setDni_id(rs.getString("dni_cliente"));
+                    cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+                    cliente.setNro_telefono(rs.getString("nro_telef"));
+                }
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            throw e;
+        }
+        finally{
+            cerrarConexion();
+        }
+        return cliente;
     }
     
 }

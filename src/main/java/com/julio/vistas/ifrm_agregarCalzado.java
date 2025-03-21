@@ -38,6 +38,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
         cargarMarcas.llenarComboMarca();
         ((JSpinner.DefaultEditor) sp_stock.getEditor()).getTextField().setEditable(false);
+        cb_marca.setSelectedIndex(-1);
     }
 
     /**
@@ -274,7 +275,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         if (!verificarCampos()) {
             return;
         }
-        String cod_barra = txt_barras.getText().trim();
+        String cod_barra = txt_barras.getText().trim().toUpperCase();
         String ref = txt_ref.getText().toUpperCase().trim();
         String color = txt_color.getText().toUpperCase().trim();
         String material = txt_material.getText().toUpperCase().trim();

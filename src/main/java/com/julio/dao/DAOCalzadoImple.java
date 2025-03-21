@@ -19,7 +19,7 @@ public class DAOCalzadoImple extends C_Conexion implements DAOCalzado{
     private final String REGISTRAR_CALZADO = "INSERT INTO calzado(codigo_barra, referencia, color, material, talla, stock, marca_id, precio_sugerido) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String ACTUALIZAR_CALZADO = "UPDATE calzado SET referencia = ?, color = ?, material = ?, talla = ?, stock = ?, marca_id = ?, precio_sugerido = ? WHERE codigo_barra = ?";
     private final String BUSCAR_CALZADO_REFERENCIA = "SELECT * FROM buscar_calzado(?)";
-    private final String BUSCAR_CALZADO_BARRA = "SELECT codigo_barra, referencia, color, material, talla, stock, marca_id, precio_sugerido FROM calzado WHERE codigo_barra = ?";
+    private final String BUSCAR_CALZADO_BARRA = "SELECT * FROM buscar_calzado_por_barra(?)";
 
     @Override
     public void registrarCalzado(Calzado calzado) throws Exception {
@@ -119,7 +119,7 @@ public class DAOCalzadoImple extends C_Conexion implements DAOCalzado{
                     calzado.setTalla(rs.getInt("talla"));
                     calzado.setStock(rs.getInt("stock"));
                     calzado.setMarca(new Marca());
-                    calzado.getMarca().setId_marca(rs.getInt("marca_id"));
+                    calzado.getMarca().setNombre_marca(rs.getString("nombre_marca"));
                     calzado.setPrecio_sugerido(rs.getBigDecimal("precio_sugerido"));
                 }
             }

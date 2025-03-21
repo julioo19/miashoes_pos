@@ -10,6 +10,7 @@ import com.julio.interfaces.DAOCalzado;
 import com.julio.modelos.Calzado;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
+import com.julio.utils.guiStyles;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
@@ -36,6 +37,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         C_cargarMarcas cargarMarcas = new C_cargarMarcas(cb_marca);
         cargarMarcas.llenarComboMarca();
         ((JSpinner.DefaultEditor) sp_stock.getEditor()).getTextField().setEditable(false);
+        cb_marca.setSelectedIndex(-1);
     }
 
     /**
@@ -171,6 +173,11 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-30.png"))); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_modificarContentLayout = new javax.swing.GroupLayout(pnl_modificarContent);
         pnl_modificarContent.setLayout(pnl_modificarContentLayout);
@@ -273,6 +280,15 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        buscarID();
+
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void buscarID() {
         String barra = txt_barra.getText().trim().toUpperCase();
         if (barra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
@@ -281,22 +297,26 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         try {
             DAOCalzado dao = new DAOCalzadoImple();
             Calzado barra_obtenida = dao.getCalzadoId(barra);
-            if(barra_obtenida != null){
+            if (barra_obtenida != null) {
                 txt_ref.setText(barra_obtenida.getReferencia());
                 txt_color.setText(barra_obtenida.getColor());
                 txt_material.setText(barra_obtenida.getMaterial());
                 int stock = barra_obtenida.getStock();
                 sp_stock.setValue((Integer) stock);
-            }
-            else{
-                
+                cb_marca.getModel().setSelectedItem(barra_obtenida.getMarca().getNombre_marca());
+                //System.out.println(marca);
+            } 
+            else {
+                int reply = JOptionPane.showConfirmDialog(null, "No se encontro el codigo de barras: " + barra_obtenida.getCod_barra() + "\nDesea agregar este calzado?", "INFORMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado();
+                    guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
+                }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo buscar el codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No existe el codigo de barras en la base de datos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btn_buscarActionPerformed
-
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_buscar;

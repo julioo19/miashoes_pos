@@ -4,7 +4,11 @@
  */
 package com.julio.vistas;
 
+import com.julio.dao.DAOClienteImple;
+import com.julio.interfaces.DAOCliente;
+import com.julio.modelos.Cliente;
 import com.julio.utils.fontStyles;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +23,8 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         initComponents();
         initStyles();
     }
-    
-    private void initStyles(){
+
+    private void initStyles() {
         fontStyles.estiloModificarCliente(lbl_titulo, lbl_nombre, lbl_nro);
     }
 
@@ -37,9 +41,9 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         pnl_encabezado = new javax.swing.JPanel();
         lbl_titulo = new javax.swing.JLabel();
         pnl_buscar = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        lbl_dni = new javax.swing.JLabel();
+        txt_dni = new javax.swing.JTextField();
+        btn_buscar = new javax.swing.JButton();
         pnl_modificarContent = new javax.swing.JPanel();
         lbl_nombre = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
@@ -76,16 +80,20 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         pnl_buscar.setBackground(new java.awt.Color(255, 255, 255));
         pnl_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/identificacion-30.png"))); // NOI18N
+        lbl_dni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/identificacion-30.png"))); // NOI18N
 
-        jTextField1.setBackground(new java.awt.Color(245, 240, 160));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_dni.setBackground(new java.awt.Color(245, 240, 160));
+        txt_dni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_dni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
-        jButton1.setText("Buscar por nombre");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/búsqueda-24.png"))); // NOI18N
+        btn_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_buscarLayout = new javax.swing.GroupLayout(pnl_buscar);
         pnl_buscar.setLayout(pnl_buscarLayout);
@@ -93,11 +101,11 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
             pnl_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_buscarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lbl_dni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_buscarLayout.setVerticalGroup(
@@ -105,12 +113,12 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_buscarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnl_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_buscar)
+                    .addComponent(lbl_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(pnl_buscarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(txt_dni)
                 .addGap(9, 9, 9))
         );
 
@@ -207,12 +215,33 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        buscarDNI();
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void buscarDNI() {
+        String dni = txt_dni.getText().trim().toUpperCase();
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            DAOCliente dao = new DAOClienteImple();
+            Cliente cliente_obtenido = dao.getClienteId(dni);
+            if (cliente_obtenido != null) {
+                txt_nombre.setText(cliente_obtenido.getNombre_cliente());
+                txt_nro.setText(cliente_obtenido.getNro_telefono());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No existe el cliente en la base de datos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JLabel lbl_dni;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_nro;
     private javax.swing.JLabel lbl_titulo;
@@ -220,6 +249,7 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_modificarCliente;
     private javax.swing.JPanel pnl_modificarContent;
+    private javax.swing.JTextField txt_dni;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_nro;
     // End of variables declaration//GEN-END:variables

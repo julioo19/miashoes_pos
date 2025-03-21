@@ -15,4 +15,5 @@ public interface DAOCliente {
     public void registarCliente(Cliente cliente) throws Exception;
     public void modificarCliente(Cliente cliente) throws Exception;
     public List<Cliente> listarCliente(String campo) throws Exception;
+    public Cliente getClienteId (String dni) throws Exception;
 }
