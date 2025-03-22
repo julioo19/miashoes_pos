@@ -17,15 +17,16 @@ import java.util.List;
  *
  * @author ACER
  */
-public class DAOClienteImple extends C_Conexion implements DAOCliente{
+public class DAOClienteImple extends C_Conexion implements DAOCliente {
+
     private final String REGISTRAR_CLIENTE = "INSERT INTO cliente(dni_cliente, nombre_cliente, nro_telef) VALUES (?, ?, ?)";
-    private final String ACTUALIZAR_CLIENTE = "UPDATE cliente SET dni_cliente = ?, nombre_cliente = ?, nro_telef = ?";
+    private final String ACTUALIZAR_CLIENTE = "UPDATE cliente SET nombre_cliente = ?, nro_telef = ? WHERE dni_cliente = ?";
     private final String BUSCAR_CLIENTE_NOMBRE = "SELECT * FROM cliente where nombre_cliente ILIKE ?";
     private final String BUSCAR_CLIENTE_DNI = "SELECT * FROM cliente where dni_cliente = ?";
 
     @Override
     public void registarCliente(Cliente cliente) throws Exception {
-        try{
+        try {
             establecerConexion();
             try (PreparedStatement st = this.conectar.prepareStatement(REGISTRAR_CLIENTE)) {
                 st.setString(1, cliente.getDni_id());
@@ -33,30 +34,26 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
                 st.setString(3, cliente.getNro_telefono());
                 st.executeUpdate();
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }
-        finally{
+        } finally {
             cerrarConexion();
         }
     }
 
     @Override
     public void modificarCliente(Cliente cliente) throws Exception {
-        try{
+        try {
             establecerConexion();
             try (PreparedStatement st = this.conectar.prepareStatement(ACTUALIZAR_CLIENTE)) {
-                st.setString(1, cliente.getDni_id());
-                st.setString(2, cliente.getNombre_cliente());
-                st.setString(3, cliente.getNro_telefono());
+                st.setString(1, cliente.getNombre_cliente());
+                st.setString(2, cliente.getNro_telefono());
+                st.setString(3, cliente.getDni_id());
                 st.executeUpdate();
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }
-        finally{
+        } finally {
             cerrarConexion();
         }
     }
@@ -64,13 +61,13 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
     @Override
     public List<Cliente> listarCliente(String campo) throws Exception {
         List<Cliente> listaCliente = new ArrayList<>();
-        try{
+        try {
             establecerConexion();
             ResultSet rs;
             try (PreparedStatement st = conectar.prepareStatement(BUSCAR_CLIENTE_NOMBRE)) {
                 st.setString(1, "%" + campo + "%");
                 rs = st.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setDni_id(rs.getString("dni_cliente"));
                     cliente.setNombre_cliente(rs.getString("nombre_cliente"));
@@ -79,11 +76,9 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
                 }
             }
             rs.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }
-        finally{
+        } finally {
             cerrarConexion();
         }
         return listaCliente;
@@ -91,28 +86,30 @@ public class DAOClienteImple extends C_Conexion implements DAOCliente{
 
     @Override
     public Cliente getClienteId(String dni) throws Exception {
-        Cliente cliente = new Cliente();
-        try{
+        Cliente cliente = null;
+        try {
             this.establecerConexion();
             ResultSet rs;
             try (PreparedStatement st = this.conectar.prepareStatement(BUSCAR_CLIENTE_DNI)) {
                 st.setString(1, dni);
                 rs = st.executeQuery();
-                while(rs.next()){
-                    cliente.setDni_id(rs.getString("dni_cliente"));
-                    cliente.setNombre_cliente(rs.getString("nombre_cliente"));
-                    cliente.setNro_telefono(rs.getString("nro_telef"));
+                if (rs.next()) {
+                    do {
+                        cliente = new Cliente();
+                        cliente.setDni_id(rs.getString("dni_cliente"));
+                        cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+                        cliente.setNro_telefono(rs.getString("nro_telef"));
+                    } while (rs.next());
                 }
+                rs.close();
             }
-            rs.close();
-        }
-        catch(SQLException e){
+
+        } catch (SQLException e) {
             throw e;
-        }
-        finally{
+        } finally {
             cerrarConexion();
         }
         return cliente;
     }
-    
+
 }

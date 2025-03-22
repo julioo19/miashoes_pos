@@ -326,6 +326,17 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar un material para el calzado", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+        try {
+            int talla = Integer.parseInt(txt_talla.getText().trim());
+            if (talla <= 0) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un numero de talla mayor a cero", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número entero válido en la talla", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
         int stock = (Integer) sp_stock.getValue();
         if (stock <= 0) {
             JOptionPane.showMessageDialog(null, "El stock debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
@@ -353,7 +364,6 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         }
         return true;
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
     private javax.swing.JComboBox<Marca> cb_marca;

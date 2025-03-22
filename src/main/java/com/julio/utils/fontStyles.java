@@ -44,8 +44,8 @@ public class fontStyles {
         buscar.setForeground(Color.BLACK);
     }
 
-    public static void estiloModificarCalzado(JLabel titulo, JLabel ref, JLabel color, JLabel material,
-            JLabel stock, JLabel marca) {
+    public static void estiloModificarCalzado(JLabel titulo, JLabel ref, JLabel color, JLabel material,JLabel talla,
+            JLabel stock, JLabel marca, JLabel precio) {
         titulo.putClientProperty(FLATLAF, "h1");
         ref.putClientProperty(FLATLAF, "h3");
         ref.setForeground(Color.BLACK);
@@ -56,7 +56,11 @@ public class fontStyles {
         stock.putClientProperty(FLATLAF, "h3");
         stock.setForeground(Color.BLACK);
         marca.putClientProperty(FLATLAF, "h3");
+        precio.putClientProperty(FLATLAF, "h3");
+        talla.putClientProperty(FLATLAF, "h3");
         marca.setForeground(Color.BLACK);
+        precio.setForeground(Color.BLACK);
+        talla.setForeground(Color.BLACK);
     }
 
     public static void estiloReporteCalzado(JLabel titulo, JLabel marca) {

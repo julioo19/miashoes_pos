@@ -4,7 +4,15 @@
  */
 package com.julio.vistas;
 
+import com.julio.dao.DAOCalzadoImple;
+import com.julio.dao.DAOClienteImple;
+import com.julio.interfaces.DAOCalzado;
+import com.julio.interfaces.DAOCliente;
+import com.julio.modelos.Calzado;
+import com.julio.modelos.Cliente;
 import com.julio.utils.fontStyles;
+import com.julio.utils.guiStyles;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +27,8 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         initComponents();
         initStyles();
     }
-    
-    private void initStyles(){
+
+    private void initStyles() {
         fontStyles.estiloRegistrarVenta(lbl_mia, lbl_sub, lbl_contenido, lbl_dni, lbl_cantidad, lbl_descuento);
     }
 
@@ -130,9 +138,19 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
 
         btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
         btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscarRef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarRefActionPerformed(evt);
+            }
+        });
 
         btn_buscarNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
         btn_buscarNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarNombreActionPerformed(evt);
+            }
+        });
 
         sp_cantidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sp_cantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -141,7 +159,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
 
         txt_descuento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_descuento.setForeground(new java.awt.Color(199, 199, 205));
-        txt_descuento.setText("Opcional");
         txt_descuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnl_botonAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -150,6 +167,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         btn_agregarCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/añadir-30.png"))); // NOI18N
         btn_agregarCarro.setText("Agregar al carrito");
         btn_agregarCarro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_agregarCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarCarroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botonAgregarLayout = new javax.swing.GroupLayout(pnl_botonAgregar);
         pnl_botonAgregar.setLayout(pnl_botonAgregarLayout);
@@ -202,12 +224,12 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     .addComponent(lbl_barra)
                     .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_buscarRef)))
+                        .addComponent(btn_buscarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbl_dni)
-                    .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscarNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(txt_dni, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_buscarNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_cantidad)
@@ -216,7 +238,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_descuento)
                     .addComponent(txt_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -241,25 +263,29 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             pnl_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_tablaLayout.setVerticalGroup(
             pnl_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addGap(9, 9, 9))
         );
 
         pnl_datosLlenos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txt_calzadoDatos.setBackground(new java.awt.Color(245, 240, 160));
         txt_calzadoDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_calzadoDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_calzadoDatos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_calzadoDatos.setEnabled(false);
 
+        txt_clienteDatos.setBackground(new java.awt.Color(245, 240, 160));
         txt_clienteDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_clienteDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_clienteDatos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_clienteDatos.setEnabled(false);
 
         javax.swing.GroupLayout pnl_datosLlenosLayout = new javax.swing.GroupLayout(pnl_datosLlenos);
@@ -370,10 +396,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                             .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
                                 .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_registrarVentaLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
@@ -383,18 +410,18 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(pnl_encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
                         .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnl_datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -411,6 +438,78 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_agregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarCarroActionPerformed
+        //todo:
+        
+    }//GEN-LAST:event_btn_agregarCarroActionPerformed
+
+    private void btn_buscarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRefActionPerformed
+        buscarCalzadoBarra();
+    }//GEN-LAST:event_btn_buscarRefActionPerformed
+
+    private void btn_buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarNombreActionPerformed
+        buscarDNI();
+    }//GEN-LAST:event_btn_buscarNombreActionPerformed
+    private void buscarCalzadoBarra() {
+        String barra = txt_barra.getText().trim().toUpperCase();
+        if (barra.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            DAOCalzado dao = new DAOCalzadoImple();
+            Calzado barra_busqueda = dao.getCalzadoId(barra);
+            if (barra_busqueda == null) {
+                int reply = JOptionPane.showConfirmDialog(null,
+                        "No existe el código de barras en la base de datos.\n¿Desea agregar este calzado?",
+                        "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado();
+                    guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
+                }
+                return;
+            }
+            String calzado_info = "REF: " + barra_busqueda.getReferencia()
+                    + " || COLOR: " + barra_busqueda.getColor()
+                    + " || MATERIAL: " + barra_busqueda.getMaterial()
+                    + " || TALLA: " + barra_busqueda.getTalla();
+            txt_calzadoDatos.setText(calzado_info);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el calzado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+
+    private void buscarDNI() {
+        String dni = txt_dni.getText().trim().toUpperCase();
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            DAOCliente dao = new DAOClienteImple();
+            Cliente dni_buscar = dao.getClienteId(dni);
+            if (dni_buscar == null) {
+                int reply = JOptionPane.showConfirmDialog(null,
+                        "No existe el dni en la base de datos.\n¿Desea agregar este dni?",
+                        "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    ifrm_agregarCliente agregarCliente = new ifrm_agregarCliente();
+                    guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCliente);
+                }
+                return;
+            }
+            String cliente_info = "NOMBRE: " + dni_buscar.getNombre_cliente()
+                    + " || TELEFONO: " + dni_buscar.getNro_telefono();
+            txt_clienteDatos.setText(cliente_info);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el dni: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

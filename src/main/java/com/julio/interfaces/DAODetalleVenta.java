@@ -5,11 +5,12 @@
 package com.julio.interfaces;
 
 import com.julio.modelos.DetalleVenta;
+import java.util.List;
 
 /**
  *
  * @author ACER
  */
 public interface DAODetalleVenta {
-    public void registrarDetalle (DetalleVenta detalleventa) throws Exception;
+    public void registrarDetalle (List<DetalleVenta> detalleventa) throws Exception;
 }

@@ -11,6 +11,7 @@ import com.julio.modelos.Calzado;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
 import com.julio.utils.guiStyles;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
@@ -30,7 +31,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     }
 
     private void initStyles() {
-        fontStyles.estiloModificarCalzado(lbl_titulo, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca);
+        fontStyles.estiloModificarCalzado(lbl_titulo, lbl_ref, lbl_color, lbl_material, lbl_talla, lbl_stock, lbl_marca, lbl_precio);
     }
 
     private void initContent() {
@@ -68,6 +69,11 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         lbl_marca = new javax.swing.JLabel();
         cb_marca = new javax.swing.JComboBox<>();
         btn_actualizar = new javax.swing.JButton();
+        lbl_talla = new javax.swing.JLabel();
+        txt_talla = new javax.swing.JTextField();
+        lbl_precio = new javax.swing.JLabel();
+        txt_solesPlaceholder = new javax.swing.JTextField();
+        txt_precio = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Modificar Calzado");
@@ -162,6 +168,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         lbl_stock.setText("Stock");
 
         sp_stock.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sp_stock.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         sp_stock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_marca.setText("Marca");
@@ -179,6 +186,22 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
             }
         });
 
+        lbl_talla.setText("Talla");
+
+        txt_talla.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_talla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lbl_precio.setText("Precio Sugerido");
+
+        txt_solesPlaceholder.setEditable(false);
+        txt_solesPlaceholder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_solesPlaceholder.setText("S/.");
+        txt_solesPlaceholder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_solesPlaceholder.setEnabled(false);
+
+        txt_precio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_precio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout pnl_modificarContentLayout = new javax.swing.GroupLayout(pnl_modificarContent);
         pnl_modificarContent.setLayout(pnl_modificarContentLayout);
         pnl_modificarContentLayout.setHorizontalGroup(
@@ -187,23 +210,34 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnl_modificarContentLayout.createSequentialGroup()
-                        .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_material)
-                            .addComponent(lbl_stock)
-                            .addComponent(lbl_marca))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_material, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sp_stock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb_marca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnl_modificarContentLayout.createSequentialGroup()
                         .addComponent(lbl_ref)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txt_ref, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnl_modificarContentLayout.createSequentialGroup()
                         .addComponent(lbl_color)
                         .addGap(101, 101, 101)
-                        .addComponent(txt_color, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_color, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_modificarContentLayout.createSequentialGroup()
+                        .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_material)
+                            .addComponent(lbl_stock)
+                            .addComponent(lbl_talla))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_material, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sp_stock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_talla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_modificarContentLayout.createSequentialGroup()
+                        .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_marca)
+                            .addComponent(lbl_precio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnl_modificarContentLayout.createSequentialGroup()
+                                .addComponent(txt_solesPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_precio)))))
                 .addGap(93, 93, 93)
                 .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(55, Short.MAX_VALUE))
@@ -221,22 +255,31 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
                     .addComponent(txt_color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_modificarContentLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl_modificarContentLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_material)
                             .addComponent(txt_material, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_stock)
-                            .addComponent(sp_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnl_modificarContentLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbl_talla)
+                            .addComponent(txt_talla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_marca)
-                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addComponent(sp_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_stock))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_marca))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_modificarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_precio)
+                    .addComponent(txt_solesPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_modificarCalzadoLayout = new javax.swing.GroupLayout(pnl_modificarCalzado);
@@ -285,7 +328,7 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-        
+        modificarCalzado();
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void buscarID() {
@@ -297,25 +340,128 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
         try {
             DAOCalzado dao = new DAOCalzadoImple();
             Calzado barra_obtenida = dao.getCalzadoId(barra);
-            if (barra_obtenida != null) {
-                txt_ref.setText(barra_obtenida.getReferencia());
-                txt_color.setText(barra_obtenida.getColor());
-                txt_material.setText(barra_obtenida.getMaterial());
-                int stock = barra_obtenida.getStock();
-                sp_stock.setValue((Integer) stock);
-                cb_marca.getModel().setSelectedItem(barra_obtenida.getMarca().getNombre_marca());
-                //System.out.println(marca);
-            } 
-            else {
-                int reply = JOptionPane.showConfirmDialog(null, "No se encontro el codigo de barras: " + barra_obtenida.getCod_barra() + "\nDesea agregar este calzado?", "INFORMACION", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (barra_obtenida == null) {
+                int reply = JOptionPane.showConfirmDialog(null,
+                        "No existe el código de barras en la base de datos.\n¿Desea agregar este calzado?",
+                        "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                     ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado();
                     guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
                 }
+                return;
             }
+            txt_ref.setText(barra_obtenida.getReferencia());
+            txt_color.setText(barra_obtenida.getColor());
+            txt_material.setText(barra_obtenida.getMaterial());
+            int talla = barra_obtenida.getTalla();
+            txt_talla.setText(String.valueOf(talla));
+            int stock = barra_obtenida.getStock();
+            sp_stock.setValue((Integer) stock);
+            cb_marca.getModel().setSelectedItem(barra_obtenida.getMarca().getNombre_marca());
+            BigDecimal precio = barra_obtenida.getPrecio_sugerido();
+            txt_precio.setText(String.valueOf(precio));
+            txt_barra.setEnabled(false);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No existe el codigo de barras en la base de datos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al buscar el calzado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void modificarCalzado() {
+        if (!validarCampos()) {
+            return;
+        }
+        String barra = txt_barra.getText().trim().toUpperCase();
+        String ref = txt_ref.getText().trim().toUpperCase();
+        String color = txt_color.getText().trim().toUpperCase();
+        String material = txt_material.getText().trim().toUpperCase();
+        int talla = Integer.parseInt(txt_talla.getText().trim());
+        int stock = (Integer) sp_stock.getValue();
+        int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
+        BigDecimal precio = new BigDecimal(txt_precio.getText().trim().replace(",", "."));
+
+        Calzado calzado = new Calzado();
+        Marca marca = new Marca();
+        calzado.setReferencia(ref);
+        calzado.setColor(color);
+        calzado.setMaterial(material);
+        calzado.setTalla(talla);
+        calzado.setStock(stock);
+        marca.setId_marca(marca_id);
+        calzado.setMarca(marca);
+        calzado.setPrecio_sugerido(precio);
+        calzado.setCod_barra(barra);
+        try {
+            DAOCalzado dao = new DAOCalzadoImple();
+            dao.modificarCalzado(calzado);
+            JOptionPane.showMessageDialog(null, "Se modifico el calzado correctamente", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+            txt_barra.setEnabled(true);
+            limpiarCaja();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo modificar el calzado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean validarCampos() {
+        if (txt_barra.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe poner un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (txt_ref.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe poner una referencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (txt_color.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe poner una referencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        try {
+            int talla = Integer.parseInt(txt_talla.getText().trim());
+            if (talla <= 0) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un numero de talla mayor a cero", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número entero válido en la talla", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        int stock = (Integer) sp_stock.getValue();
+        if (stock <= 0) {
+            JOptionPane.showMessageDialog(null, "Debe poner una referencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (cb_marca.getSelectedIndex() < -1) {
+            JOptionPane.showMessageDialog(null, "Debe poner una referencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        String precio_texto = txt_precio.getText().trim().replace(",", ".");
+        if (precio_texto.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un precio para el calzado", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        try {
+            BigDecimal precio = new BigDecimal(precio_texto);
+            if (precio.compareTo(BigDecimal.ZERO) <= 0) {
+                JOptionPane.showMessageDialog(null, "El precio debe ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número válido en el precio", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private void limpiarCaja() {
+        txt_barra.setText("");
+        txt_ref.setText("");
+        txt_color.setText("");
+        txt_material.setText("");
+        txt_talla.setText("");
+        sp_stock.setValue(1);
+        cb_marca.setSelectedIndex(-1);
+        txt_precio.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizar;
@@ -325,8 +471,10 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbl_color;
     private javax.swing.JLabel lbl_marca;
     private javax.swing.JLabel lbl_material;
+    private javax.swing.JLabel lbl_precio;
     private javax.swing.JLabel lbl_ref;
     private javax.swing.JLabel lbl_stock;
+    private javax.swing.JLabel lbl_talla;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JPanel pnl_busqueda;
     private javax.swing.JPanel pnl_encabezado;
@@ -336,6 +484,9 @@ public class ifrm_modificarCalzado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_barra;
     private javax.swing.JTextField txt_color;
     private javax.swing.JTextField txt_material;
+    private javax.swing.JTextField txt_precio;
     private javax.swing.JTextField txt_ref;
+    private javax.swing.JTextField txt_solesPlaceholder;
+    private javax.swing.JTextField txt_talla;
     // End of variables declaration//GEN-END:variables
 }

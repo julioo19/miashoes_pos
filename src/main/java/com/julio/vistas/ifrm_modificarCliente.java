@@ -8,6 +8,7 @@ import com.julio.dao.DAOClienteImple;
 import com.julio.interfaces.DAOCliente;
 import com.julio.modelos.Cliente;
 import com.julio.utils.fontStyles;
+import com.julio.utils.guiStyles;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,6 +140,11 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         btn_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-30.png"))); // NOI18N
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_modificarContentLayout = new javax.swing.GroupLayout(pnl_modificarContent);
         pnl_modificarContent.setLayout(pnl_modificarContentLayout);
@@ -219,6 +225,10 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         buscarDNI();
     }//GEN-LAST:event_btn_buscarActionPerformed
 
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        modificarCliente();
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
     private void buscarDNI() {
         String dni = txt_dni.getText().trim().toUpperCase();
         if (dni.isEmpty()) {
@@ -228,16 +238,72 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
         try {
             DAOCliente dao = new DAOClienteImple();
             Cliente cliente_obtenido = dao.getClienteId(dni);
-            if (cliente_obtenido != null) {
-                txt_nombre.setText(cliente_obtenido.getNombre_cliente());
-                txt_nro.setText(cliente_obtenido.getNro_telefono());
+            if (cliente_obtenido == null) {
+                int reply = JOptionPane.showConfirmDialog(null,
+                        "No existe el dni del cliente en la base de datos.\n¿Desea agregar a este cliente?",
+                        "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    ifrm_agregarCliente agregarCliente = new ifrm_agregarCliente();
+                    guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCliente);
+                }
+                return;
             }
+            txt_nombre.setText(cliente_obtenido.getNombre_cliente());
+            txt_nro.setText(cliente_obtenido.getNro_telefono());
+            txt_dni.setEnabled(false);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No existe el cliente en la base de datos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al buscar el cliente en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }
 
+    private void modificarCliente() {
+        if (!validarCampos()) {
+            return;
+        }
+        String dni = txt_dni.getText().trim().toUpperCase();
+        String nombre = txt_nombre.getText().trim().toUpperCase();
+        String nro = txt_nro.getText().trim().toUpperCase();
+        Cliente cliente = new Cliente();
+        cliente.setNombre_cliente(nombre);
+        cliente.setNro_telefono(nro);
+        cliente.setDni_id(dni);
+        try {
+            DAOCliente dao = new DAOClienteImple();
+            dao.modificarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Cliente modificado correctamente", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+            txt_dni.setEnabled(true);
+            limpiarCaja();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al modificar el cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private boolean validarCampos() {
+        if (txt_dni.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe poner un DNI", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (txt_nombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe poner un nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (txt_nro.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe poner un numero de celular", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private void limpiarCaja() {
+        txt_dni.setText("");
+        txt_nombre.setText("");
+        txt_nro.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_buscar;

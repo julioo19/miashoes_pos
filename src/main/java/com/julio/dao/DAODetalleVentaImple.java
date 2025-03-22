@@ -9,6 +9,7 @@ import com.julio.interfaces.DAODetalleVenta;
 import com.julio.modelos.DetalleVenta;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,16 +19,27 @@ public class DAODetalleVentaImple extends C_Conexion implements DAODetalleVenta{
 
     private final String REGISTRAR_DETALLE_VENTA = "INSERT INTO detalleventa(venta_id, calzado_barra, cantidad, descuento, precio_final) VALUES (?, ?, ?, ?, ?)";
     @Override
-    public void registrarDetalle(DetalleVenta detalleventa) throws Exception {
+    public void registrarDetalle(List<DetalleVenta> detalleventa) throws Exception {
         try{
             establecerConexion();
+            final int batchSize = 5;
+            int count = 0;
             try (PreparedStatement st = this.conectar.prepareStatement(REGISTRAR_DETALLE_VENTA)) {
-                st.setInt(1, detalleventa.getVenta().getId_venta());
-                st.setString(2, detalleventa.getCalzado().getCod_barra());
-                st.setInt(3, detalleventa.getCantidad());
-                st.setBigDecimal(4, detalleventa.getDescuento());
-                st.setBigDecimal(5, detalleventa.getPrecio());
-                st.executeUpdate();
+                for (DetalleVenta detalle : detalleventa){
+                    st.setString(1, detalle.getCalzado().getCod_barra());
+                    st.setInt(2, detalle.getCantidad());
+                    st.setBigDecimal(3, detalle.getDescuento());
+                    st.setBigDecimal(4, detalle.getPrecio());
+                    st.addBatch();
+                    if(++count % batchSize == 0){
+                        st.executeBatch();
+                        st.clearBatch();
+                        count = 0;
+                    }
+                }
+                if (count >= 0){
+                    st.executeBatch();
+                }
             }
         }
         catch(SQLException e ){
