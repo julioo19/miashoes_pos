@@ -23,11 +23,21 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     /**
      * Creates new form ifrm_agregarCalzado
      */
+    //private String calzado_venta;
     public ifrm_agregarCalzado() {
         initComponents();
         initStyles();
         initContent();
     }
+    
+    public ifrm_agregarCalzado(String calzado_venta){
+        initComponents();
+        initStyles();
+        initContent();
+        //this.calzado_venta = calzado_venta;
+        txt_barras.setText(calzado_venta);
+    }
+   
 
     private void initStyles() {
         fontStyles.estilosAgregarCalzado(lbl_titulo, lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca,

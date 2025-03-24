@@ -20,11 +20,19 @@ public class ifrm_agregarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form ifrm_agregarCliente
      */
+    //private String cliente_venta;
     public ifrm_agregarCliente() {
         initComponents();
         initStyle();
     }
+    
+    public ifrm_agregarCliente(String dni_venta) {
+        initComponents();
+        initStyle();
+        txt_dni.setText(dni_venta);
+    }
 
+   
     private void initStyle() {
         fontStyles.estiloAgregarCliente(lbl_titulo, lbl_dni, lbl_nombre, lbl_telefono);
     }

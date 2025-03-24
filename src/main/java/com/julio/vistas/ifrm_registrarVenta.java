@@ -12,7 +12,9 @@ import com.julio.modelos.Calzado;
 import com.julio.modelos.Cliente;
 import com.julio.utils.fontStyles;
 import com.julio.utils.guiStyles;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,9 +25,13 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     /**
      * Creates new form ifrm_registrarVenta
      */
+    Calzado buscar_resultado;
+    Cliente dni_buscar;
+
     public ifrm_registrarVenta() {
         initComponents();
         initStyles();
+
     }
 
     private void initStyles() {
@@ -158,7 +164,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         lbl_descuento.setText("Descuento");
 
         txt_descuento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txt_descuento.setForeground(new java.awt.Color(199, 199, 205));
         txt_descuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         pnl_botonAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -253,8 +258,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 "C_BARRA", "REF", "CANTIDAD", "PRECIO", "DESCUENTO", "MONTO"
             }
         ));
-        tbl_carro.setShowHorizontalLines(true);
-        tbl_carro.setShowVerticalLines(true);
+        tbl_carro.setShowGrid(true);
         jScrollPane1.setViewportView(tbl_carro);
 
         javax.swing.GroupLayout pnl_tablaLayout = new javax.swing.GroupLayout(pnl_tabla);
@@ -263,7 +267,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             pnl_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_tablaLayout.setVerticalGroup(
@@ -315,6 +319,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         btn_eliminarSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-30.png"))); // NOI18N
         btn_eliminarSeleccion.setText("Eliminar Seleccion");
         btn_eliminarSeleccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_eliminarSeleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarSeleccionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botonEliminarLayout = new javax.swing.GroupLayout(pnl_botonEliminar);
         pnl_botonEliminar.setLayout(pnl_botonEliminarLayout);
@@ -336,7 +345,8 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         pnl_monto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txt_monto.setBackground(new java.awt.Color(245, 240, 160));
-        txt_monto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txt_monto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txt_monto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_monto.setEnabled(false);
 
         javax.swing.GroupLayout pnl_montoLayout = new javax.swing.GroupLayout(pnl_monto);
@@ -362,6 +372,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         btn_cobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/dinero-65.png"))); // NOI18N
         btn_cobrar.setText("COBRAR");
         btn_cobrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_cobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cobrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botonCobrarLayout = new javax.swing.GroupLayout(pnl_botonCobrar);
         pnl_botonCobrar.setLayout(pnl_botonCobrarLayout);
@@ -390,7 +405,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
                         .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnl_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -440,9 +455,101 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarCarroActionPerformed
-        //todo:
+        //aqui hacemos otra verificacion si el objeto es NULL, debido a que al user se le puede pasar
+        //hacer click al boton de busqueda
         
+        //Si el objeto es NULL, se llama al metodo
+        if (buscar_resultado == null) {
+            buscarCalzadoBarra();
+        }
+        //Si el objeto es NULL, se llama al metodo
+        if (dni_buscar == null) {
+            buscarDNI();
+        }
+        //Esta llamada nose si sigue siendo obligatoria (?)
+        if (!verificarCampos()) {
+            return;
+        }
+        txt_dni.setEnabled(false);
+        agregarCarro();
+        limpiarCampos();
+        //buscar_resultado = null;
     }//GEN-LAST:event_btn_agregarCarroActionPerformed
+
+    private void limpiarCampos(){
+        txt_barra.setText("");
+        //txt_dni.setText("");
+        txt_descuento.setText("0");
+        //txt_calzadoDatos.setText("");
+        //txt_clienteDatos.setText("");
+    }
+    private boolean verificarCampos() {
+        if (txt_barra.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (txt_dni.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        int cantidad = (Integer) sp_cantidad.getValue();
+        if (cantidad <= 0) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        try {
+            double descuento = Double.parseDouble(txt_descuento.getText().trim());
+            if (descuento < 0) {
+                JOptionPane.showMessageDialog(null, "No puede haber un descuento negativo", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero en el descuento", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private void agregarCarro() {
+        //verificamos si los campos estan llenos
+        if (!verificarCampos()) {
+            return;
+        }
+        //verificamos si el objeto Calzado esta NULL, para evitar problemas con el compilador
+        if (buscar_resultado == null){
+            System.out.println("FLAG: no se envian nada a la tabla");
+            return;
+        }
+        //envio de datos a la tabla
+        String barra = txt_barra.getText().trim().toUpperCase();
+        int cantidad = (Integer) sp_cantidad.getValue();
+        BigDecimal descuento = new BigDecimal(txt_descuento.getText().trim().replace(",", "."));
+        Double descuento_tabla = descuento.doubleValue();
+        String ref = buscar_resultado.getReferencia();
+        BigDecimal precio = buscar_resultado.getPrecio_sugerido();
+        Double precio_tabla = precio.doubleValue();
+        Double subtotal = calcularSubTotal(precio_tabla, descuento_tabla, cantidad);
+        Object[] row = {barra, ref, cantidad, precio, descuento, subtotal};
+        DefaultTableModel dtm = (DefaultTableModel) tbl_carro.getModel();
+        dtm.addRow(row);
+        precioTotal();
+    }
+
+    private Double calcularSubTotal(Double precio_sugerido, Double descuento, int cantidad) {
+        Double subtotal = (precio_sugerido * cantidad) - descuento;
+        return subtotal;
+    }
+
+    //mejor lo convertimos a BigDecimal al final de todo
+    private void precioTotal() {
+        Double total = 0.00;
+        int numRow = tbl_carro.getRowCount();
+        for (int i = 0; i < numRow; i++) {
+            double subtotal = Double.parseDouble(tbl_carro.getValueAt(i, 5).toString());
+            total = total + subtotal;
+        }
+        txt_monto.setText(String.valueOf(total));
+    }
 
     private void btn_buscarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRefActionPerformed
         buscarCalzadoBarra();
@@ -451,29 +558,68 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     private void btn_buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarNombreActionPerformed
         buscarDNI();
     }//GEN-LAST:event_btn_buscarNombreActionPerformed
+
+    private void btn_eliminarSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarSeleccionActionPerformed
+        eliminarSeleccion();
+    }//GEN-LAST:event_btn_eliminarSeleccionActionPerformed
+
+    private void eliminarSeleccion() {
+        //verifica si la seleccion de rows esta vacia 
+        if (tbl_carro.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar 1 o mas filas", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //almacenamos los rows seleccionados en un arreglo
+        int[] selectedRows = tbl_carro.getSelectedRows();
+        //inicializamos el monto anterior a cero
+        double last_monto = 0.00;
+        DefaultTableModel dtm = (DefaultTableModel) tbl_carro.getModel();
+        //For loop de atras hacia adelante, para que se elimine el indice mayor primero
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            //parseamos el monto de la tabla y lo asignamos como monto previo
+            last_monto = (double) tbl_carro.getValueAt(selectedRows[i], 5);
+            //removemos las filas seleccionadas
+            dtm.removeRow(selectedRows[i]);
+            //actualizamos el monto total de la venta
+            double current_monto = Double.parseDouble(txt_monto.getText());
+            current_monto = current_monto - last_monto;
+            txt_monto.setText(String.valueOf(current_monto));
+        }
+    }
+    private void btn_cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cobrarActionPerformed
+
+    }//GEN-LAST:event_btn_cobrarActionPerformed
+    //seguramente se convierta en boolean si se olvidan de dar buscar
     private void buscarCalzadoBarra() {
+        //verificamos si txt_barra esta rellenado
         String barra = txt_barra.getText().trim().toUpperCase();
         if (barra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //intentamos llamar a DAOCalzadoImple
         try {
             DAOCalzado dao = new DAOCalzadoImple();
-            Calzado barra_busqueda = dao.getCalzadoId(barra);
-            if (barra_busqueda == null) {
+            buscar_resultado = dao.getCalzadoId(barra);
+            //Si el objeto despues de ser llamado, sigue siendo NULL, se abre una ventana para agregarlo a la base
+            // de datos
+            if (buscar_resultado == null) {
                 int reply = JOptionPane.showConfirmDialog(null,
                         "No existe el código de barras en la base de datos.\n¿Desea agregar este calzado?",
                         "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
-                    ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado();
+                    //pasamos el txt_barra de Venta a Calzado
+                    ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado(txt_barra.getText());
                     guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
                 }
+                //aqui para el metodo, sino los valores a calzado_info serian nulos
                 return;
             }
-            String calzado_info = "REF: " + barra_busqueda.getReferencia()
-                    + " || COLOR: " + barra_busqueda.getColor()
-                    + " || MATERIAL: " + barra_busqueda.getMaterial()
-                    + " || TALLA: " + barra_busqueda.getTalla();
+            String calzado_info = "REF: " + buscar_resultado.getReferencia()
+                    + " || COLOR: " + buscar_resultado.getColor()
+                    + " || MATERIAL: " + buscar_resultado.getMaterial()
+                    + " || TALLA: " + buscar_resultado.getTalla();
             txt_calzadoDatos.setText(calzado_info);
 
         } catch (Exception e) {
@@ -483,22 +629,26 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     }
 
     private void buscarDNI() {
+        //verificamos si el campo DNI esta vacio
         String dni = txt_dni.getText().trim().toUpperCase();
         if (dni.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        //intentamos llamar a DAOClienteImple para buscar el DNI
         try {
             DAOCliente dao = new DAOClienteImple();
-            Cliente dni_buscar = dao.getClienteId(dni);
+            dni_buscar = dao.getClienteId(dni);
+            //Si el objeto sigue siendo NULL despues de llamar a la BD, se abre un dialogo para agregar ese cliente
             if (dni_buscar == null) {
                 int reply = JOptionPane.showConfirmDialog(null,
                         "No existe el dni en la base de datos.\n¿Desea agregar este dni?",
                         "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
-                    ifrm_agregarCliente agregarCliente = new ifrm_agregarCliente();
+                    ifrm_agregarCliente agregarCliente = new ifrm_agregarCliente(txt_dni.getText());
                     guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCliente);
                 }
+                //aqui para el metodo sino los valores de cliente_info serian nulos
                 return;
             }
             String cliente_info = "NOMBRE: " + dni_buscar.getNombre_cliente()
