@@ -16,7 +16,7 @@ import java.util.List;
  * @author ACER
  */
 public class DAODetalleFacturacionImple extends C_Conexion implements DAODetalleFacturacion {
-    private final String REGISTRAR_DETALLE_FACTURA = "INSERT INTO detallefacturacion (factura_id, calzado_id, cantidad) VALUES (?, ?, ?)";
+    private final String REGISTRAR_DETALLE_FACTURA = "INSERT INTO detallefacturacion (factura_id, calzado_id) VALUES (?, ?)";
 
     @Override
     public void registrarDetalleFacturacion(List<DetalleFacturacion> detalles) throws Exception {
@@ -33,7 +33,6 @@ public class DAODetalleFacturacionImple extends C_Conexion implements DAODetalle
                     /*Hasta int cantidad*/
                     st.setString(1, detalle.getFactura().getNro_factura());
                     st.setString(2, detalle.getCalzado().getCod_barra());
-                    st.setInt(3, detalle.getCantidad());
                     st.addBatch();
                     if (++count % batchSize == 0) {
                         st.executeBatch();

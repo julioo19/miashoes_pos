@@ -22,7 +22,7 @@ import java.util.List;
 public class DAOFacturacionImple extends C_Conexion implements DAOFacturacion {
 
     private final String REGISTRAR_FACTURACION = "INSERT INTO facturacion (id_factura, marca_id, fecha_emision) VALUES (?, ?, ?)";
-    private final String REGISTRAR_DETALLE_FACTURA = "INSERT INTO detallefacturacion (factura_id, calzado_id, cantidad) VALUES (?, ?, ?)";
+    private final String REGISTRAR_DETALLE_FACTURA = "INSERT INTO detallefacturacion (factura_id, calzado_id) VALUES (?, ?)";
     private final String BUSQUEDA_FACTURACION = "SELECT * FROM facturacion where id_factura = ?";
 
     @Override
@@ -45,7 +45,6 @@ public class DAOFacturacionImple extends C_Conexion implements DAOFacturacion {
             for (DetalleFacturacion detalle : detalles){
                 stDetalleFacturacion.setString(1, detalle.getFactura().getNro_factura());
                 stDetalleFacturacion.setString(2, detalle.getCalzado().getCod_barra());
-                stDetalleFacturacion.setInt(3, detalle.getCantidad());
                 stDetalleFacturacion.addBatch();
                 if (++count % batchSize == 0){
                     stDetalleFacturacion.executeBatch();

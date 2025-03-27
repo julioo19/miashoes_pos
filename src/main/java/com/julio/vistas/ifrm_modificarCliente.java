@@ -233,7 +233,7 @@ public class ifrm_modificarCliente extends javax.swing.JInternalFrame {
     private void buscarDNI() {
         String dni = txt_dni.getText().trim().toUpperCase();
         if (dni.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {

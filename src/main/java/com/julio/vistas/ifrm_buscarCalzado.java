@@ -8,6 +8,9 @@ import com.julio.dao.DAOCalzadoImple;
 import com.julio.interfaces.DAOCalzado;
 import com.julio.utils.fontStyles;
 import com.julio.utils.guiStyles;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,11 +23,22 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
     /**
      * Creates new form ifrm_buscarCalzado
      */
+    private ifrm_agregarFactura facturaFrame;
+
     public ifrm_buscarCalzado() {
         initComponents();
         initStyles();
         tbl_busqueda.setDefaultEditor(Object.class, null);
+        btn_agregarFactura.setVisible(false);
         //tbl_busqueda.setEnabled(false);
+    }
+
+    public ifrm_buscarCalzado(ifrm_agregarFactura facturaFrame) {
+        initComponents();
+        initStyles();
+        this.facturaFrame = facturaFrame;
+        btn_agregarFactura.setVisible(true);
+        this.setTitle("Buscar calzados para la factura");
     }
 
     private void initStyles() {
@@ -49,6 +63,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         lbl_buscar = new javax.swing.JLabel();
         txt_buscar = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
+        btn_agregarFactura = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Buscar Calzado");
@@ -109,6 +124,15 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_agregarFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_agregarFactura.setText("Agregar a factura");
+        btn_agregarFactura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_agregarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarFacturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_buscarContentLayout = new javax.swing.GroupLayout(pnl_buscarContent);
         pnl_buscarContent.setLayout(pnl_buscarContentLayout);
         pnl_buscarContentLayout.setHorizontalGroup(
@@ -125,6 +149,10 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(pnl_buscarContentLayout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(btn_agregarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_buscarContentLayout.setVerticalGroup(
             pnl_buscarContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +163,10 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
                     .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_agregarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_buscarLayout = new javax.swing.GroupLayout(pnl_buscar);
@@ -182,6 +212,25 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         llenarTablaRef(ref);
     }//GEN-LAST:event_btn_buscarActionPerformed
 
+    private void btn_agregarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarFacturaActionPerformed
+        if (tbl_busqueda.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar que calzados quiere agregar a la facturacion", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        List<String> barra_obtenida = seleccionarBarras();
+        facturaFrame.agregarFilas(barra_obtenida);
+        this.dispose();
+    }//GEN-LAST:event_btn_agregarFacturaActionPerformed
+
+    public List<String> seleccionarBarras() {
+        int numRows = tbl_busqueda.getSelectedRows().length;
+        List<String> barra = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            barra.add((String) tbl_busqueda.getValueAt(i, 0));
+        }
+        return barra;
+    }
+
     private void llenarTablaRef(String campo) {
         try {
             DAOCalzado dao = new DAOCalzadoImple();
@@ -216,6 +265,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_agregarFactura;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_buscar;

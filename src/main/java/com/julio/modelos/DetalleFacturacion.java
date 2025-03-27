@@ -12,7 +12,6 @@ public class DetalleFacturacion {
     private int detalleFacturacion_id;
     private Facturacion factura;
     private Calzado calzado;
-    private int cantidad;
 
     public int getDetalleFacturacion_id() {
         return detalleFacturacion_id;
@@ -37,14 +36,5 @@ public class DetalleFacturacion {
     public void setCalzado(Calzado calzado) {
         this.calzado = calzado;
     }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-    
     
 }
