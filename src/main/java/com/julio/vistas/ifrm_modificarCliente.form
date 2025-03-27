@@ -129,7 +129,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txt_dni" min="-2" pref="142" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_buscar" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btn_buscar" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -183,6 +183,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/b&#xfa;squeda-24.png"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="BUSCAR"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder/>

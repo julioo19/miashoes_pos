@@ -29,15 +29,14 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
         initStyles();
         initContent();
     }
-    
-    public ifrm_agregarCalzado(String calzado_venta){
+
+    public ifrm_agregarCalzado(String calzado_venta) {
         initComponents();
         initStyles();
         initContent();
         //this.calzado_venta = calzado_venta;
         txt_barras.setText(calzado_venta);
     }
-   
 
     private void initStyles() {
         fontStyles.estilosAgregarCalzado(lbl_titulo, lbl_barras, lbl_ref, lbl_color, lbl_material, lbl_stock, lbl_marca,
@@ -282,6 +281,11 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        guardarCalzado();
+
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void guardarCalzado() {
         if (!verificarCampos()) {
             return;
         }
@@ -310,14 +314,38 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
             DAOCalzado dao = new DAOCalzadoImple();
             dao.registrarCalzado(calzado);
             JOptionPane.showMessageDialog(null, "Calzado agregado correctamente", "AVISO", JOptionPane.INFORMATION_MESSAGE);
-
+            nextTalla(talla);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al agregar el calzado: " + e.getMessage());
+            limpiarCampos();
             e.printStackTrace();
         }
+    }
 
-    }//GEN-LAST:event_btn_guardarActionPerformed
+    private void nextTalla(int talla) {
+        int reply = JOptionPane.showConfirmDialog(null, "Desea agregar la siguiente talla?", "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            int temp = talla + 1;
+            txt_talla.setText(String.valueOf(temp));
+            txt_barras.setText("");
+            txt_barras.requestFocus();
 
+        } else {
+            txt_barras.requestFocus();
+            limpiarCampos();
+        }
+    }
+
+    private void limpiarCampos(){
+        txt_barras.setText("");
+        txt_ref.setText("");
+        txt_color.setText("");
+        txt_material.setText("");
+        txt_talla.setText("");
+        txt_precio.setText("");
+        sp_stock.setValue(1);
+        cb_marca.setSelectedIndex(-1);
+    }
     private boolean verificarCampos() {
         if (txt_barras.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
@@ -346,7 +374,7 @@ public class ifrm_agregarCalzado extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número entero válido en la talla", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         int stock = (Integer) sp_stock.getValue();
         if (stock <= 0) {
             JOptionPane.showMessageDialog(null, "El stock debe de ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);

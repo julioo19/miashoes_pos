@@ -14,6 +14,7 @@ import com.julio.modelos.DetalleFacturacion;
 import com.julio.modelos.Facturacion;
 import com.julio.modelos.Marca;
 import com.julio.utils.fontStyles;
+import com.julio.utils.guiStyles;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -128,6 +129,11 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
 
         btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
         btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_buscarRef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarRefActionPerformed(evt);
+            }
+        });
 
         dc_fechaEmision.setBackground(new java.awt.Color(255, 255, 153));
         dc_fechaEmision.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -372,19 +378,22 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         txt_factura.setEnabled(false);
         dc_fechaEmision.setEnabled(false);
         cb_marca.setEnabled(false);
+        txt_barra.setText("");
         txt_barra.requestFocus();
+        
     }//GEN-LAST:event_btn_agregarTablaActionPerformed
 
     private void agregarFilas() {
-        String factura = txt_factura.getText();
+        String factura = txt_factura.getText().trim().toUpperCase();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha_emision = sdf.format(dc_fechaEmision.getDate());
-        String barra = txt_barra.getText();
+        String barra = txt_barra.getText().trim().toUpperCase();
         int cantidad = (Integer) sp_cantidad.getValue();
         //int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
         Object[] row = {factura, barra, cantidad, fecha_emision};
         DefaultTableModel dtm = (DefaultTableModel) tbl_detalleFactura.getModel();
         dtm.addRow(row);
+        System.out.println(factura);
     }
 
     private void btn_borrarSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarSeleccionActionPerformed
@@ -409,7 +418,7 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         dc_fechaEmision.setEnabled(flag);
         cb_marca.setEnabled(flag);
     }
-    
+
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         int numRow = tbl_detalleFactura.getRowCount();
         if (numRow == 0) {
@@ -417,8 +426,13 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
             return;
         }
         guardarFacturacion();
-        guardarDetalleFacturacion();
+        //guardarDetalleFacturacion();
     }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_buscarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRefActionPerformed
+        ifrm_buscarCalzado buscarCalzado = new ifrm_buscarCalzado();
+        guiStyles.centrarInternalVentana(frm_menu.dp_menu, buscarCalzado);
+    }//GEN-LAST:event_btn_buscarRefActionPerformed
 
     private boolean validarCampos() {
         if (txt_factura.getText().trim().isEmpty()) {
@@ -444,22 +458,23 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         String factura = (String) tbl_detalleFactura.getValueAt(0, 0);
         String factura_final = factura.trim().toUpperCase();
         int marca_id = cb_marca.getItemAt(cb_marca.getSelectedIndex()).getId_marca();
-
         Facturacion factos = new Facturacion();
         Marca marca = new Marca();
         factos.setNro_factura(factura_final);
         marca.setId_marca(marca_id);
         factos.setMarca(marca);
         factos.setFecha_emision(fecha_final);
+        List<DetalleFacturacion> detalle_facto = obtenerDetallesTabla(factos);
         try {
             DAOFacturacion dao = new DAOFacturacionImple();
-            dao.registrarFacturacion(factos);
+            dao.registrarFacturacionConDetalles(factos, detalle_facto);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo enviar a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
 
+    /*/
     private void guardarDetalleFacturacion() {
         List<DetalleFacturacion> detalles = obtenerDetallesTabla();
         try {
@@ -472,19 +487,20 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         }
 
     }
+/*/
 
-    private List<DetalleFacturacion> obtenerDetallesTabla() {
+    private List<DetalleFacturacion> obtenerDetallesTabla(Facturacion factura) {
         List<DetalleFacturacion> listaDetalles = new ArrayList<>();
         int rowCount = tbl_detalleFactura.getRowCount();
         for (int row = 0; row < rowCount; row++) {
             DetalleFacturacion d_facto = new DetalleFacturacion();
-            Facturacion facturacion = new Facturacion();
-            facturacion.setNro_factura((String) tbl_detalleFactura.getValueAt(row, 0));
+            //Facturacion facturacion = new Facturacion();
+            factura.setNro_factura((String) tbl_detalleFactura.getValueAt(row, 0));
 
             Calzado calzado = new Calzado();
             calzado.setCod_barra((String) tbl_detalleFactura.getValueAt(row, 1));
 
-            d_facto.setFactura(facturacion);
+            d_facto.setFactura(factura);
             d_facto.setCalzado(calzado);
             d_facto.setCantidad((Integer) tbl_detalleFactura.getValueAt(0, 2));
             listaDetalles.add(d_facto);

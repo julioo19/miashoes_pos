@@ -23,6 +23,8 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
     public ifrm_buscarCalzado() {
         initComponents();
         initStyles();
+        tbl_busqueda.setDefaultEditor(Object.class, null);
+        //tbl_busqueda.setEnabled(false);
     }
 
     private void initStyles() {
@@ -88,8 +90,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
             }
         ));
         tbl_busqueda.setShowGrid(true);
-        tbl_busqueda.setShowHorizontalLines(true);
-        tbl_busqueda.setShowVerticalLines(true);
+        tbl_busqueda.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbl_busqueda);
 
         lbl_buscar.setText("Ingrese la referencia");
@@ -174,7 +175,7 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        String ref = txt_buscar.getText().trim();
+        String ref = txt_buscar.getText().trim().toUpperCase();
         if (!validarCampos(ref)) {
             return;
         }
