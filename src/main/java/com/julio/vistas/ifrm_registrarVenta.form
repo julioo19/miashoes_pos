@@ -203,14 +203,14 @@
                                   <Component id="txt_descuento" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btn_buscarRef" pref="34" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btn_buscarRef" pref="92" max="32767" attributes="0"/>
                                   <Component id="btn_buscarNombre" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="pnl_botonAgregar" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -292,9 +292,13 @@
             </Component>
             <Component class="javax.swing.JButton" name="btn_buscarRef">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/busqueda-14.png"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder/>
@@ -307,9 +311,13 @@
             </Component>
             <Component class="javax.swing.JButton" name="btn_buscarNombre">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/busqueda-14.png"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder/>

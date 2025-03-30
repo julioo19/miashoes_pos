@@ -142,7 +142,9 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btn_buscarRef.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
+        btn_buscarRef.setText("Buscar");
         btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_buscarRef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +152,9 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_buscarNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_buscarNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
+        btn_buscarNombre.setText("Buscar");
         btn_buscarNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_buscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,11 +219,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                             .addComponent(sp_cantidad)
                             .addComponent(txt_descuento, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_buscarRef, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                        .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_buscarRef, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                             .addComponent(btn_buscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnl_datosLayout.setVerticalGroup(
             pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,32 +461,28 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     private void btn_agregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarCarroActionPerformed
         //aqui hacemos otra verificacion si el objeto es NULL, debido a que al user se le puede pasar
         //hacer click al boton de busqueda
-        
+
         //Si el objeto es NULL, se llama al metodo
-        if (buscar_resultado == null) {
-            buscarCalzadoBarra();
-        }
         //Si el objeto es NULL, se llama al metodo
-        if (dni_buscar == null) {
-            buscarDNI();
-        }
         //Esta llamada nose si sigue siendo obligatoria (?)
         if (!verificarCampos()) {
             return;
         }
-        txt_dni.setEnabled(false);
+        buscarCalzadoBarra();
+        buscarDNI();
         agregarCarro();
         limpiarCampos();
         //buscar_resultado = null;
     }//GEN-LAST:event_btn_agregarCarroActionPerformed
 
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         txt_barra.setText("");
         //txt_dni.setText("");
         txt_descuento.setText("0");
         //txt_calzadoDatos.setText("");
         //txt_clienteDatos.setText("");
     }
+
     private boolean verificarCampos() {
         if (txt_barra.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
@@ -511,15 +511,17 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     }
 
     private void agregarCarro() {
-        //verificamos si los campos estan llenos
+        /*/verificamos si los campos estan llenos
         if (!verificarCampos()) {
             return;
         }
+        /*/
         //verificamos si el objeto Calzado esta NULL, para evitar problemas con el compilador
-        if (buscar_resultado == null){
+        if (buscar_resultado == null) {
             System.out.println("FLAG: no se envian nada a la tabla");
             return;
         }
+        //
         //envio de datos a la tabla
         String barra = txt_barra.getText().trim().toUpperCase();
         int cantidad = (Integer) sp_cantidad.getValue();
@@ -569,7 +571,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe seleccionar 1 o mas filas", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         //almacenamos los rows seleccionados en un arreglo
         int[] selectedRows = tbl_carro.getSelectedRows();
         //inicializamos el monto anterior a cero
@@ -592,14 +594,16 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_cobrarActionPerformed
     //seguramente se convierta en boolean si se olvidan de dar buscar
     private void buscarCalzadoBarra() {
-        //verificamos si txt_barra esta rellenado
+        /*/verificamos si txt_barra esta rellenado
         String barra = txt_barra.getText().trim().toUpperCase();
         if (barra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barra", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+/*/
         //intentamos llamar a DAOCalzadoImple
         try {
+            String barra = txt_barra.getText().trim().toUpperCase();
             DAOCalzado dao = new DAOCalzadoImple();
             buscar_resultado = dao.getCalzadoId(barra);
             //Si el objeto despues de ser llamado, sigue siendo NULL, se abre una ventana para agregarlo a la base
@@ -610,6 +614,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                         "AVISO", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                     //pasamos el txt_barra de Venta a Calzado
+                    txt_dni.setEnabled(false);
                     ifrm_agregarCalzado agregarCalzado = new ifrm_agregarCalzado(txt_barra.getText());
                     guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
                 }
@@ -629,15 +634,17 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     }
 
     private void buscarDNI() {
-        //verificamos si el campo DNI esta vacio
+        /*/verificamos si el campo DNI esta vacio
         String dni = txt_dni.getText().trim().toUpperCase();
         if (dni.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+/*/
         //intentamos llamar a DAOClienteImple para buscar el DNI
         try {
             DAOCliente dao = new DAOClienteImple();
+            String dni = txt_dni.getText().trim().toUpperCase();
             dni_buscar = dao.getClienteId(dni);
             //Si el objeto sigue siendo NULL despues de llamar a la BD, se abre un dialogo para agregar ese cliente
             if (dni_buscar == null) {

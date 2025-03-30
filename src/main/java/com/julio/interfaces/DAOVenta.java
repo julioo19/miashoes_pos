@@ -4,12 +4,14 @@
  */
 package com.julio.interfaces;
 
+import com.julio.modelos.DetalleVenta;
 import com.julio.modelos.Venta;
+import java.util.List;
 
 /**
  *
  * @author ACER
  */
 public interface DAOVenta {
-    public void registrarVenta(Venta venta) throws Exception;
+    public void registrarVentaConDetalles(Venta venta, List<DetalleVenta> detalleVenta) throws Exception;
 }
