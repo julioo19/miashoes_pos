@@ -376,6 +376,8 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
     }
 
     private void btn_borrarSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarSeleccionActionPerformed
+        eliminarSeleccion();
+        /*/
         if (tbl_detalleFactura.getSelectionModel().isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar 1 o mas filas", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -390,8 +392,24 @@ public class ifrm_agregarFactura extends javax.swing.JInternalFrame {
         if (rows == 0) {
             setFields(true);
         }
+             /*/  
     }//GEN-LAST:event_btn_borrarSeleccionActionPerformed
 
+    private void eliminarSeleccion(){
+        if (tbl_detalleFactura.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar 1 o mas filas", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //almacenamos los rows seleccionados en un arreglo
+        int[] selectedRows = tbl_detalleFactura.getSelectedRows();
+        DefaultTableModel dtm = (DefaultTableModel) tbl_detalleFactura.getModel();
+        //For loop de atras hacia adelante, para que se elimine el indice mayor primero
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            //parseamos el monto de la tabla y lo asignamos como monto previo
+            //removemos las filas seleccionadas
+            dtm.removeRow(selectedRows[i]);
+        }
+    }
     private void setFields(boolean flag) {
         txt_factura.setEnabled(flag);
         dc_fechaEmision.setEnabled(flag);

@@ -590,7 +590,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         }
     }
     private void btn_cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cobrarActionPerformed
-
+        
     }//GEN-LAST:event_btn_cobrarActionPerformed
     //seguramente se convierta en boolean si se olvidan de dar buscar
     private void buscarCalzadoBarra() {
