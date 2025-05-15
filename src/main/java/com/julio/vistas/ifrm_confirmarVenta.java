@@ -4,6 +4,8 @@
  */
 package com.julio.vistas;
 
+import com.julio.utils.fontStyles;
+
 /**
  *
  * @author ACER
@@ -15,8 +17,19 @@ public class ifrm_confirmarVenta extends javax.swing.JInternalFrame {
      */
     public ifrm_confirmarVenta() {
         initComponents();
+        initStyles();
+        initContent();
     }
 
+    private void initStyles(){
+        fontStyles.estiloConfirmarVenta(lbl_total, lbl_placeholderPrecio);
+    }
+    
+    private void initContent(){
+        gb_metodosPago.add(rb_yape);
+        gb_metodosPago.add(rb_efectivo);
+        gb_metodosPago.add(rb_izipay);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,78 +39,173 @@ public class ifrm_confirmarVenta extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        gb_metodosPago = new javax.swing.ButtonGroup();
+        pnl_confirmarVenta = new javax.swing.JPanel();
+        pnl_encabezado = new javax.swing.JPanel();
+        lbl_total = new javax.swing.JLabel();
+        lbl_placeholderPrecio = new javax.swing.JLabel();
+        lbl_yape = new javax.swing.JLabel();
+        rb_yape = new javax.swing.JRadioButton();
+        lbl_efectivo = new javax.swing.JLabel();
+        rb_efectivo = new javax.swing.JRadioButton();
+        lbl_izipay = new javax.swing.JLabel();
+        rb_izipay = new javax.swing.JRadioButton();
+        btn_confirmarVenta = new javax.swing.JButton();
+        btn_atras = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        setClosable(true);
+        setTitle("Confirmar Venta");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnl_confirmarVenta.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_confirmarVenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabel1.setText("Total a pagar");
+        pnl_encabezado.setBackground(new java.awt.Color(156, 166, 217));
+        pnl_encabezado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setText("jLabel2");
+        lbl_total.setText("Total a pagar");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        lbl_placeholderPrecio.setText("jLabel2");
+
+        javax.swing.GroupLayout pnl_encabezadoLayout = new javax.swing.GroupLayout(pnl_encabezado);
+        pnl_encabezado.setLayout(pnl_encabezadoLayout);
+        pnl_encabezadoLayout.setHorizontalGroup(
+            pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_encabezadoLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
-                .addComponent(jLabel1)
+                .addComponent(lbl_total)
                 .addGap(118, 118, 118)
-                .addComponent(jLabel2)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addComponent(lbl_placeholderPrecio)
+                .addContainerGap(446, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnl_encabezadoLayout.setVerticalGroup(
+            pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_encabezadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(pnl_encabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_total)
+                    .addComponent(lbl_placeholderPrecio))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        lbl_yape.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/yape-110.png"))); // NOI18N
+        lbl_yape.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        rb_yape.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        rb_yape.setText("Yape");
+
+        lbl_efectivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/billete100 -110.jpg"))); // NOI18N
+
+        rb_efectivo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        rb_efectivo.setText("Efectivo");
+
+        lbl_izipay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izipay-110.png"))); // NOI18N
+
+        rb_izipay.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        rb_izipay.setText("Izipay");
+
+        btn_confirmarVenta.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_confirmarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/confirmar-65.png"))); // NOI18N
+        btn_confirmarVenta.setText("CONFIRMAR");
+        btn_confirmarVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn_atras.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/back-65.png"))); // NOI18N
+        btn_atras.setText("ATRAS");
+        btn_atras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_atrasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnl_confirmarVentaLayout = new javax.swing.GroupLayout(pnl_confirmarVenta);
+        pnl_confirmarVenta.setLayout(pnl_confirmarVentaLayout);
+        pnl_confirmarVentaLayout.setHorizontalGroup(
+            pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_confirmarVentaLayout.createSequentialGroup()
+                .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_confirmarVentaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnl_encabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnl_confirmarVentaLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_yape)
+                            .addComponent(rb_yape))
+                        .addGap(72, 72, 72)
+                        .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_efectivo)
+                            .addComponent(lbl_efectivo))
+                        .addGap(75, 75, 75)
+                        .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_confirmarVentaLayout.createSequentialGroup()
+                                .addComponent(rb_izipay)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lbl_izipay))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_confirmarVentaLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(btn_atras, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_confirmarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnl_confirmarVentaLayout.setVerticalGroup(
+            pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_confirmarVentaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addComponent(pnl_encabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_efectivo)
+                    .addComponent(lbl_yape)
+                    .addComponent(lbl_izipay))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_yape)
+                    .addComponent(rb_efectivo)
+                    .addComponent(rb_izipay))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addGroup(pnl_confirmarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_confirmarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_atras, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_confirmarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnl_confirmarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_atrasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton btn_atras;
+    private javax.swing.JButton btn_confirmarVenta;
+    private javax.swing.ButtonGroup gb_metodosPago;
+    private javax.swing.JLabel lbl_efectivo;
+    private javax.swing.JLabel lbl_izipay;
+    private javax.swing.JLabel lbl_placeholderPrecio;
+    private javax.swing.JLabel lbl_total;
+    private javax.swing.JLabel lbl_yape;
+    private javax.swing.JPanel pnl_confirmarVenta;
+    private javax.swing.JPanel pnl_encabezado;
+    private javax.swing.JRadioButton rb_efectivo;
+    private javax.swing.JRadioButton rb_izipay;
+    private javax.swing.JRadioButton rb_yape;
     // End of variables declaration//GEN-END:variables
 }

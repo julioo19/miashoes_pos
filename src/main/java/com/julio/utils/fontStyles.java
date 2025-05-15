@@ -146,7 +146,6 @@ public class fontStyles {
         devName.putClientProperty(FLATLAF, "h3");
         gmail.putClientProperty(FLATLAF, "h3");
         numero.putClientProperty(FLATLAF, "h3");
-
     }
 
     public static void estiloAyudaleft(JLabel titulo, JLabel sistema, JLabel version, JLabel dev,
@@ -183,5 +182,12 @@ public class fontStyles {
     public static void estiloReporteCliente(JLabel titulo) {
         titulo.putClientProperty(FLATLAF, "h2");
         titulo.setForeground(Color.BLACK);
+    }
+    
+    public static void estiloConfirmarVenta(JLabel pagar, JLabel precio){
+        pagar.putClientProperty(FLATLAF, "h2");
+        precio.putClientProperty(FLATLAF, "h2");
+        pagar.setForeground(Color.BLACK);
+        precio.setForeground(Color.BLACK);
     }
 }

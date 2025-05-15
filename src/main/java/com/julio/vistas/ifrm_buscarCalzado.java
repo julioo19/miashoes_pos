@@ -10,7 +10,6 @@ import com.julio.utils.fontStyles;
 import com.julio.utils.guiStyles;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -220,13 +219,27 @@ public class ifrm_buscarCalzado extends javax.swing.JInternalFrame {
         List<String> barra_obtenida = seleccionarBarras();
         facturaFrame.agregarFilas(barra_obtenida);
         this.dispose();
+        //clear all the items when closing the frame
     }//GEN-LAST:event_btn_agregarFacturaActionPerformed
 
     public List<String> seleccionarBarras() {
+        /*
         int numRows = tbl_busqueda.getSelectedRows().length;
-        List<String> barra = new ArrayList<>();
+        List<String> barra = new ArrayList<>();  
         for (int i = 0; i < numRows; i++) {
             barra.add((String) tbl_busqueda.getValueAt(i, 0));
+        }
+        return barra;
+        */
+        //codigo corregido
+        //obtenemos los indices seleccionados
+        int[] selectedRows = tbl_busqueda.getSelectedRows();
+        //inicializamos una lista tipo String
+        List<String> barra = new ArrayList<>();
+        //iteramos for-each con los indices reales
+        for (int rowIndex : selectedRows){
+            //se añade los valores de rowIndex a la lista
+            barra.add((String) tbl_busqueda.getValueAt(rowIndex, 0));
         }
         return barra;
     }

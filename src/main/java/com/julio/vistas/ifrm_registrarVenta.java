@@ -488,10 +488,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (txt_dni.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+        
         int cantidad = (Integer) sp_cantidad.getValue();
         if (cantidad <= 0) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
@@ -554,10 +551,18 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     }
 
     private void btn_buscarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRefActionPerformed
+        if (txt_barra.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         buscarCalzadoBarra();
     }//GEN-LAST:event_btn_buscarRefActionPerformed
 
     private void btn_buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarNombreActionPerformed
+        if (txt_dni.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         buscarDNI();
     }//GEN-LAST:event_btn_buscarNombreActionPerformed
 
@@ -590,6 +595,8 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         }
     }
     private void btn_cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cobrarActionPerformed
+        ifrm_confirmarVenta confirmarVenta = new ifrm_confirmarVenta();
+        guiStyles.centrarInternalVentana(frm_menu.dp_menu, confirmarVenta);
         
     }//GEN-LAST:event_btn_cobrarActionPerformed
     //seguramente se convierta en boolean si se olvidan de dar buscar
