@@ -185,8 +185,8 @@ public class fontStyles {
     }
     
     public static void estiloConfirmarVenta(JLabel pagar, JLabel precio){
-        pagar.putClientProperty(FLATLAF, "h2");
-        precio.putClientProperty(FLATLAF, "h2");
+        pagar.putClientProperty(FLATLAF, "h1");
+        precio.putClientProperty(FLATLAF, "h1");
         pagar.setForeground(Color.BLACK);
         precio.setForeground(Color.BLACK);
     }

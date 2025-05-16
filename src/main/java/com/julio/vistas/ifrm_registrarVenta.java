@@ -31,11 +31,15 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     public ifrm_registrarVenta() {
         initComponents();
         initStyles();
+        initContent();
 
     }
-
     private void initStyles() {
         fontStyles.estiloRegistrarVenta(lbl_mia, lbl_sub, lbl_contenido, lbl_dni, lbl_cantidad, lbl_descuento);
+    }
+    
+    private void initContent(){
+        txt_descuento.setText("0");
     }
 
     /**
@@ -59,19 +63,16 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         lbl_cantidad = new javax.swing.JLabel();
         txt_dni = new javax.swing.JTextField();
         txt_barra = new javax.swing.JTextField();
-        btn_buscarRef = new javax.swing.JButton();
         btn_buscarNombre = new javax.swing.JButton();
         sp_cantidad = new javax.swing.JSpinner();
         lbl_descuento = new javax.swing.JLabel();
         txt_descuento = new javax.swing.JTextField();
         pnl_botonAgregar = new javax.swing.JPanel();
         btn_agregarCarro = new javax.swing.JButton();
+        txt_clienteDatos = new javax.swing.JTextField();
         pnl_tabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_carro = new javax.swing.JTable();
-        pnl_datosLlenos = new javax.swing.JPanel();
-        txt_calzadoDatos = new javax.swing.JTextField();
-        txt_clienteDatos = new javax.swing.JTextField();
         pnl_botonEliminar = new javax.swing.JPanel();
         btn_eliminarSeleccion = new javax.swing.JButton();
         pnl_monto = new javax.swing.JPanel();
@@ -142,16 +143,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         txt_barra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txt_barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_buscarRef.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_buscarRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
-        btn_buscarRef.setText("Buscar");
-        btn_buscarRef.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_buscarRef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscarRefActionPerformed(evt);
-            }
-        });
-
         btn_buscarNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_buscarNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda-14.png"))); // NOI18N
         btn_buscarNombre.setText("Buscar");
@@ -199,6 +190,12 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txt_clienteDatos.setBackground(new java.awt.Color(245, 240, 160));
+        txt_clienteDatos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txt_clienteDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_clienteDatos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txt_clienteDatos.setEnabled(false);
+
         javax.swing.GroupLayout pnl_datosLayout = new javax.swing.GroupLayout(pnl_datos);
         pnl_datos.setLayout(pnl_datosLayout);
         pnl_datosLayout.setHorizontalGroup(
@@ -219,10 +216,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                             .addComponent(sp_cantidad)
                             .addComponent(txt_descuento, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_buscarRef, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(btn_buscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_buscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
+                    .addGroup(pnl_datosLayout.createSequentialGroup()
+                        .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txt_clienteDatos))
                 .addContainerGap())
         );
         pnl_datosLayout.setVerticalGroup(
@@ -231,15 +229,15 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbl_barra)
-                    .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_buscarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txt_barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbl_dni)
                     .addComponent(txt_dni, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_buscarNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_clienteDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_cantidad)
                     .addComponent(sp_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -247,7 +245,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addGroup(pnl_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_descuento)
                     .addComponent(txt_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(pnl_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -259,10 +257,11 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "C_BARRA", "REF", "CANTIDAD", "PRECIO", "DESCUENTO", "MONTO"
+                "C_BARRA", "REF", "COLOR", "MATERIAL", "TALLA", "PRECIO", "CANTIDAD", "DESCUENTO", "MONTO"
             }
         ));
         tbl_carro.setShowGrid(true);
+        tbl_carro.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbl_carro);
 
         javax.swing.GroupLayout pnl_tablaLayout = new javax.swing.GroupLayout(pnl_tabla);
@@ -280,41 +279,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addGap(9, 9, 9))
-        );
-
-        pnl_datosLlenos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        txt_calzadoDatos.setBackground(new java.awt.Color(245, 240, 160));
-        txt_calzadoDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txt_calzadoDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txt_calzadoDatos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txt_calzadoDatos.setEnabled(false);
-
-        txt_clienteDatos.setBackground(new java.awt.Color(245, 240, 160));
-        txt_clienteDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txt_clienteDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txt_clienteDatos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txt_clienteDatos.setEnabled(false);
-
-        javax.swing.GroupLayout pnl_datosLlenosLayout = new javax.swing.GroupLayout(pnl_datosLlenos);
-        pnl_datosLlenos.setLayout(pnl_datosLlenosLayout);
-        pnl_datosLlenosLayout.setHorizontalGroup(
-            pnl_datosLlenosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_datosLlenosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_datosLlenosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_calzadoDatos)
-                    .addComponent(txt_clienteDatos))
-                .addContainerGap())
-        );
-        pnl_datosLlenosLayout.setVerticalGroup(
-            pnl_datosLlenosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_datosLlenosLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(txt_calzadoDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txt_clienteDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pnl_botonEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -412,7 +376,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnl_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
                                 .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -431,16 +394,16 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
-                        .addComponent(pnl_datosLlenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnl_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addGroup(pnl_registrarVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnl_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnl_botonCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnl_registrarVentaLayout.createSequentialGroup()
+                        .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -469,7 +432,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             return;
         }
         buscarCalzadoBarra();
-        buscarDNI();
+        //buscarDNI();
         agregarCarro();
         limpiarCampos();
         //buscar_resultado = null;
@@ -525,10 +488,13 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         BigDecimal descuento = new BigDecimal(txt_descuento.getText().trim().replace(",", "."));
         Double descuento_tabla = descuento.doubleValue();
         String ref = buscar_resultado.getReferencia();
+        String color = buscar_resultado.getColor();
+        String material = buscar_resultado.getMaterial();
+        int talla = buscar_resultado.getTalla();
         BigDecimal precio = buscar_resultado.getPrecio_sugerido();
         Double precio_tabla = precio.doubleValue();
         Double subtotal = calcularSubTotal(precio_tabla, descuento_tabla, cantidad);
-        Object[] row = {barra, ref, cantidad, precio, descuento, subtotal};
+        Object[] row = {barra, ref, color, material, talla, precio, cantidad, descuento, subtotal};
         DefaultTableModel dtm = (DefaultTableModel) tbl_carro.getModel();
         dtm.addRow(row);
         precioTotal();
@@ -549,14 +515,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         }
         txt_monto.setText(String.valueOf(total));
     }
-
-    private void btn_buscarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRefActionPerformed
-        if (txt_barra.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        buscarCalzadoBarra();
-    }//GEN-LAST:event_btn_buscarRefActionPerformed
 
     private void btn_buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarNombreActionPerformed
         if (txt_dni.getText().trim().isEmpty()){
@@ -585,7 +543,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         //For loop de atras hacia adelante, para que se elimine el indice mayor primero
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             //parseamos el monto de la tabla y lo asignamos como monto previo
-            last_monto = (double) tbl_carro.getValueAt(selectedRows[i], 5);
+            last_monto = (double) tbl_carro.getValueAt(selectedRows[i], 8);
             //removemos las filas seleccionadas
             dtm.removeRow(selectedRows[i]);
             //actualizamos el monto total de la venta
@@ -595,7 +553,12 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         }
     }
     private void btn_cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cobrarActionPerformed
-        ifrm_confirmarVenta confirmarVenta = new ifrm_confirmarVenta();
+        if (tbl_carro.getRowCount() <= 0){
+            JOptionPane.showMessageDialog(null, "Debe tener calzados agregados al carro de compra para que se pueda cobrar", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        ifrm_confirmarVenta confirmarVenta = new ifrm_confirmarVenta(this);
+        confirmarVenta.lbl_placeholderPrecio.setText("S/. "+ txt_monto.getText());
         guiStyles.centrarInternalVentana(frm_menu.dp_menu, confirmarVenta);
         
     }//GEN-LAST:event_btn_cobrarActionPerformed
@@ -626,14 +589,9 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                     guiStyles.centrarInternalVentana(frm_menu.dp_menu, agregarCalzado);
                 }
                 //aqui para el metodo, sino los valores a calzado_info serian nulos
-                return;
+                //return;
             }
-            String calzado_info = "REF: " + buscar_resultado.getReferencia()
-                    + " || COLOR: " + buscar_resultado.getColor()
-                    + " || MATERIAL: " + buscar_resultado.getMaterial()
-                    + " || TALLA: " + buscar_resultado.getTalla();
-            txt_calzadoDatos.setText(calzado_info);
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al buscar el calzado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -679,7 +637,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregarCarro;
     private javax.swing.JButton btn_buscarNombre;
-    private javax.swing.JButton btn_buscarRef;
     private javax.swing.JButton btn_cobrar;
     private javax.swing.JButton btn_eliminarSeleccion;
     private javax.swing.JScrollPane jScrollPane1;
@@ -695,7 +652,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl_botonCobrar;
     private javax.swing.JPanel pnl_botonEliminar;
     private javax.swing.JPanel pnl_datos;
-    private javax.swing.JPanel pnl_datosLlenos;
     private javax.swing.JPanel pnl_encabezado;
     private javax.swing.JPanel pnl_monto;
     private javax.swing.JPanel pnl_registrarVenta;
@@ -703,7 +659,6 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner sp_cantidad;
     private javax.swing.JTable tbl_carro;
     private javax.swing.JTextField txt_barra;
-    private javax.swing.JTextField txt_calzadoDatos;
     private javax.swing.JTextField txt_clienteDatos;
     private javax.swing.JTextField txt_descuento;
     private javax.swing.JTextField txt_dni;
