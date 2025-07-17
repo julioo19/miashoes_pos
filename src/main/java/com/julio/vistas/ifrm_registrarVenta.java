@@ -34,11 +34,12 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         initContent();
 
     }
+
     private void initStyles() {
         fontStyles.estiloRegistrarVenta(lbl_mia, lbl_sub, lbl_contenido, lbl_dni, lbl_cantidad, lbl_descuento);
     }
-    
-    private void initContent(){
+
+    private void initContent() {
         txt_descuento.setText("0");
     }
 
@@ -259,7 +260,15 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             new String [] {
                 "C_BARRA", "REF", "COLOR", "MATERIAL", "TALLA", "PRECIO", "CANTIDAD", "DESCUENTO", "MONTO"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tbl_carro.setShowGrid(true);
         tbl_carro.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbl_carro);
@@ -451,7 +460,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar un codigo de barras", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         int cantidad = (Integer) sp_cantidad.getValue();
         if (cantidad <= 0) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un cantidad valida", "Error", JOptionPane.ERROR_MESSAGE);
@@ -486,38 +495,43 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         String barra = txt_barra.getText().trim().toUpperCase();
         int cantidad = (Integer) sp_cantidad.getValue();
         BigDecimal descuento = new BigDecimal(txt_descuento.getText().trim().replace(",", "."));
-        Double descuento_tabla = descuento.doubleValue();
+        //Double descuento_tabla = descuento.doubleValue();
         String ref = buscar_resultado.getReferencia();
         String color = buscar_resultado.getColor();
         String material = buscar_resultado.getMaterial();
         int talla = buscar_resultado.getTalla();
         BigDecimal precio = buscar_resultado.getPrecio_sugerido();
-        Double precio_tabla = precio.doubleValue();
-        Double subtotal = calcularSubTotal(precio_tabla, descuento_tabla, cantidad);
+        //Double precio_tabla = precio.doubleValue();
+        BigDecimal subtotal = calcularSubTotalSuma(precio, descuento, cantidad);
         Object[] row = {barra, ref, color, material, talla, precio, cantidad, descuento, subtotal};
         DefaultTableModel dtm = (DefaultTableModel) tbl_carro.getModel();
         dtm.addRow(row);
         precioTotal();
     }
 
-    private Double calcularSubTotal(Double precio_sugerido, Double descuento, int cantidad) {
+    private BigDecimal calcularSubTotalSuma(BigDecimal precio_sugerido, BigDecimal descuento, int cantidad) {
+        /*
         Double subtotal = (precio_sugerido * cantidad) - descuento;
+        return subtotal;
+         */
+        BigDecimal precio_item = precio_sugerido.multiply(BigDecimal.valueOf(cantidad));
+        BigDecimal subtotal = precio_item.subtract(descuento);
         return subtotal;
     }
 
     //mejor lo convertimos a BigDecimal al final de todo
     private void precioTotal() {
-        Double total = 0.00;
+        BigDecimal total = BigDecimal.ZERO;
         int numRow = tbl_carro.getRowCount();
         for (int i = 0; i < numRow; i++) {
-            double subtotal = Double.parseDouble(tbl_carro.getValueAt(i, 5).toString());
-            total = total + subtotal;
+            BigDecimal subtotal = (BigDecimal) tbl_carro.getValueAt(i, 8);
+            total = total.add(subtotal);
         }
         txt_monto.setText(String.valueOf(total));
     }
 
     private void btn_buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarNombreActionPerformed
-        if (txt_dni.getText().trim().isEmpty()){
+        if (txt_dni.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un dni", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -538,29 +552,36 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
         //almacenamos los rows seleccionados en un arreglo
         int[] selectedRows = tbl_carro.getSelectedRows();
         //inicializamos el monto anterior a cero
-        double last_monto = 0.00;
+        BigDecimal last_monto = BigDecimal.ZERO;
         DefaultTableModel dtm = (DefaultTableModel) tbl_carro.getModel();
         //For loop de atras hacia adelante, para que se elimine el indice mayor primero
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             //parseamos el monto de la tabla y lo asignamos como monto previo
-            last_monto = (double) tbl_carro.getValueAt(selectedRows[i], 8);
+            last_monto = (BigDecimal) (tbl_carro.getValueAt(selectedRows[i], 8));
             //removemos las filas seleccionadas
             dtm.removeRow(selectedRows[i]);
             //actualizamos el monto total de la venta
-            double current_monto = Double.parseDouble(txt_monto.getText());
-            current_monto = current_monto - last_monto;
-            txt_monto.setText(String.valueOf(current_monto));
+            BigDecimal current_monto = new BigDecimal(txt_monto.getText());
+            //calcularSubTotalResta(last_monto, current_monto);
+            //current_monto = current_monto.subtract(last_monto);
+            txt_monto.setText(String.valueOf(calcularSubTotalResta(last_monto, current_monto)));
         }
     }
+    
+    private BigDecimal calcularSubTotalResta(BigDecimal last_monto, BigDecimal current_monto){
+        current_monto = current_monto.subtract(last_monto);
+        return current_monto;
+        
+    }
     private void btn_cobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cobrarActionPerformed
-        if (tbl_carro.getRowCount() <= 0){
+        if (tbl_carro.getRowCount() <= 0) {
             JOptionPane.showMessageDialog(null, "Debe tener calzados agregados al carro de compra para que se pueda cobrar", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         ifrm_confirmarVenta confirmarVenta = new ifrm_confirmarVenta(this);
-        confirmarVenta.lbl_placeholderPrecio.setText("S/. "+ txt_monto.getText());
+        confirmarVenta.lbl_placeholderPrecio.setText("S/. " + txt_monto.getText());
         guiStyles.centrarInternalVentana(frm_menu.dp_menu, confirmarVenta);
-        
+
     }//GEN-LAST:event_btn_cobrarActionPerformed
     //seguramente se convierta en boolean si se olvidan de dar buscar
     private void buscarCalzadoBarra() {
@@ -591,7 +612,7 @@ public class ifrm_registrarVenta extends javax.swing.JInternalFrame {
                 //aqui para el metodo, sino los valores a calzado_info serian nulos
                 //return;
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al buscar el calzado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
